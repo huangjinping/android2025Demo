@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.google.android.flexbox.FlexboxLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:alignContent="stretch"
+        app:alignItems="stretch"
+        app:flexWrap="wrap">
+
+        <TextView
+            android:id="@+id/txt_crash"
+            style="@style/flex_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="crash"
+            android:textStyle="bold"></TextView>
+
+        <TextView
+            android:id="@+id/txt_154"
+            style="@style/flex_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="154Glide"
+            android:textStyle="bold"></TextView>
+
+        <TextView
+            android:id="@+id/txt_glideclear"
+            style="@style/flex_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="glideclear"
+            android:textStyle="bold"></TextView>
+
+        <TextView
+            android:id="@+id/txt_appssid151"
+            style="@style/flex_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="151appssid"
+            android:textStyle="bold"></TextView>
+
+        <TextView
+            android:id="@+id/txt_viewpager2"
+            style="@style/flex_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="viewpager2162"
+            android:textStyle="bold"></TextView>
+
+
+        <TextView
+            android:id="@+id/txt_googleopen"
+            style="@style/flex_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="googleopen"
+            android:textStyle="bold"></TextView>
+    </com.google.android.flexbox.FlexboxLayout>
+
+    <ImageView
+        android:id="@+id/img_banner"
+        android:layout_width="200dp"
+        android:layout_height="200dp"></ImageView>
+
+    <ImageView
+        android:id="@+id/img_error"
+        android:layout_width="200dp"
+        android:layout_height="200dp"></ImageView>
+
+</LinearLayout>

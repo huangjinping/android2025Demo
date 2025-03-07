@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <EditText
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:hint="number  something"
+                android:inputType="number"
+                android:maxLines="3"
+                ></EditText>
+
+
+            <EditText
+                android:id="@+id/textView3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="input  something"
+                android:inputType="numberDecimal"></EditText>
+
+            <EditText
+                android:id="@+id/et_code"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_marginHorizontal="22dp"
+                android:layout_marginTop="22dp"
+                android:background="@null"
+                android:digits="1234567890"
+                android:hint="Please_enter_OTP_cod"
+                android:inputType="phone"
+                android:maxLength="20" />
+
+
+            <TextView
+                android:id="@+id/txt_resultApi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="10sp"></TextView>
+
+
+            <TextView
+                android:id="@+id/txt_resultReceiver"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/teal_200"
+                android:textSize="10sp"></TextView>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

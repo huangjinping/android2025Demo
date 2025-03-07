@@ -1,0 +1,388 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <com.google.android.flexbox.FlexboxLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:alignContent="stretch"
+                app:alignItems="stretch"
+                app:flexWrap="wrap">
+
+                <TextView
+                    android:id="@+id/txt_toast01"
+                    style="@style/flex_item"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="toast01"></TextView>
+
+                <TextView
+                    android:id="@+id/txt_permission"
+                    style="@style/flex_item"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Permission"></TextView>
+
+
+                <TextView
+                    android:id="@+id/txt_permission_new"
+                    style="@style/flex_item"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="PermissionNew"></TextView>
+
+
+                <TextView
+                    android:id="@+id/txt_screen_record"
+                    style="@style/flex_item"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ScreenRecord"></TextView>
+
+            </com.google.android.flexbox.FlexboxLayout>
+
+            <com.google.android.flexbox.FlexboxLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:alignContent="stretch"
+                app:alignItems="stretch"
+                app:flexWrap="wrap">
+
+                <TextView
+                    android:id="@+id/txt_image"
+                    style="@style/flex_item"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="照片"></TextView>
+
+
+                <TextView
+                    android:id="@+id/txt_web"
+                    style="@style/flex_item"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="webVie1w"></TextView>
+
+                <TextView
+                    android:id="@+id/txt_web_bottom"
+                    style="@style/flex_item"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="WebView buttom"></TextView>
+
+                <TextView
+                    android:id="@+id/txt_selectContract"
+                    style="@style/flex_item"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="selectContract"></TextView>
+
+                <TextView
+                    android:id="@+id/txt_queries"
+                    style="@style/flex_item"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="queries"></TextView>
+
+                <TextView
+                    android:id="@+id/txt_timer"
+                    style="@style/flex_item"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="TimerCount"></TextView>
+
+                <TextView
+                    android:id="@+id/txt_pop"
+                    style="@style/flex_item"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="View"></TextView>
+
+                <TextView
+                    android:id="@+id/txt_uiFragment"
+                    style="@style/flex_item"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="UIFragment"
+                    android:textStyle="bold"></TextView>
+
+                <TextView
+                    android:id="@+id/txt_editText"
+                    style="@style/flex_item"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="EditText"
+                    android:textStyle="bold"></TextView>
+
+                <TextView
+                    android:id="@+id/txt_smsbuild"
+                    style="@style/flex_item"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="smsbuild" />
+
+            </com.google.android.flexbox.FlexboxLayout>
+
+            <com.google.android.flexbox.FlexboxLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:alignContent="stretch"
+                app:alignItems="stretch"
+                app:flexWrap="wrap">
+
+
+                <TextView
+                    android:id="@+id/txt_test"
+                    style="@style/flex_item"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="test"
+                    android:textStyle="bold"></TextView>
+
+                <TextView
+                    android:id="@+id/txt_crisp"
+                    style="@style/flex_item"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="crisp"
+                    android:textStyle="bold"></TextView>
+
+                <TextView
+                    android:id="@+id/txt_googleLogin"
+                    style="@style/flex_item"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="GoogleLogin"
+                    android:textStyle="bold"></TextView>
+
+                <TextView
+                    android:id="@+id/txt_peopleApi"
+                    style="@style/flex_item"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="PeopleApi"
+                    android:textStyle="bold"></TextView>
+
+                <TextView
+                    android:id="@+id/txt_Referrer"
+                    style="@style/flex_item"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Referrer"
+                    android:textStyle="bold"></TextView>
+
+                <TextView
+                    android:id="@+id/txt_testdialog"
+                    style="@style/flex_item"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="dialog"
+                    android:textStyle="bold"></TextView>
+
+                <TextView
+                    android:id="@+id/txt_packageUsageStats"
+                    style="@style/flex_item"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="packageUsageStats"
+                    android:textStyle="bold"></TextView>
+
+                <TextView
+                    android:id="@+id/txt_template"
+                    style="@style/flex_item"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="txt_template"
+                    android:textStyle="bold"></TextView>
+
+
+                <TextView
+                    android:id="@+id/txt_snippets"
+                    style="@style/flex_item"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Snippets"
+                    android:textStyle="bold"></TextView>
+
+                <TextView
+                    android:id="@+id/txt_crash"
+                    style="@style/flex_item"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="crash"
+                    android:textStyle="bold"></TextView>
+
+                <TextView
+                    android:id="@+id/txt_SysModel"
+                    style="@style/flex_item"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="SysModel"></TextView>
+
+                <TextView
+                    android:id="@+id/txt_systemlogin"
+                    style="@style/flex_item"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Systemlogin"></TextView>
+
+                <TextView
+                    android:id="@+id/txt_authlogin"
+                    style="@style/flex_item"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Authlogin"></TextView>
+
+                <TextView
+                    android:id="@+id/txt_authemail"
+                    style="@style/flex_item"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="AuthEmail"></TextView>
+
+                <TextView
+                    android:id="@+id/txt_AppList"
+                    style="@style/flex_item"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="AppList"></TextView>
+            </com.google.android.flexbox.FlexboxLayout>
+
+
+            <TextView
+                style="@style/flex_item_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Web"></TextView>
+
+            <com.google.android.flexbox.FlexboxLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:alignContent="stretch"
+                app:alignItems="stretch"
+                app:flexWrap="wrap">
+
+
+                <TextView
+                    android:id="@+id/txt_webAgent"
+                    style="@style/flex_item"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="WebAgent"
+                    android:textStyle="bold"></TextView>
+
+                <TextView
+                    android:id="@+id/txt_web154"
+                    style="@style/flex_item"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Web154"
+                    android:textStyle="bold"></TextView>
+
+
+                <TextView
+                    android:id="@+id/txt_webupload"
+                    style="@style/flex_item"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="WebUpload"
+                    android:textStyle="bold"></TextView>
+
+
+            </com.google.android.flexbox.FlexboxLayout>
+
+            <TextView
+                style="@style/flex_item_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SDK"></TextView>
+
+            <com.google.android.flexbox.FlexboxLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:alignContent="stretch"
+                app:alignItems="stretch"
+                app:flexWrap="wrap">
+
+
+                <TextView
+                    android:id="@+id/txt_facebooklog"
+                    style="@style/flex_item"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="FacebookLog"
+                    android:textStyle="bold"></TextView>
+
+
+                <TextView
+                    android:id="@+id/txt_Bluetooth"
+                    style="@style/flex_item"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Bluetooth"
+                    android:textStyle="bold"></TextView>
+
+
+                <TextView
+                    android:id="@+id/txt_facebookLogin"
+                    style="@style/flex_item"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="facebookLogin"
+                    android:textStyle="bold"></TextView>
+
+
+                <TextView
+                    android:id="@+id/txt_audioManager"
+                    style="@style/flex_item"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="AudioManager"></TextView>
+
+                <TextView
+                    android:id="@+id/txt_getLine"
+                    style="@style/flex_item"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="LineNumber"></TextView>
+
+                <TextView
+                    android:id="@+id/txt_laolin"
+                    style="@style/flex_item"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="laolin"></TextView>
+
+                <TextView
+                    android:id="@+id/txt_FCM"
+                    style="@style/flex_item"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="FCM"></TextView>
+
+                <TextView
+                    android:id="@+id/txt_RemoteConfig"
+                    style="@style/flex_item"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="RemoteConfig" />
+            </com.google.android.flexbox.FlexboxLayout>
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</LinearLayout>

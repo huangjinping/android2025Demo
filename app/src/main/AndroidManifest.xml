@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="con.fire.android2023demo">
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.telephony"
+        android:required="false" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="com.google.android.gms.permission.AD_ID" />
+    <uses-permission android:name="android.permission.REORDER_TASKS" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
+    <uses-permission android:name="android.permission.READ_CALENDAR"></uses-permission>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"></uses-permission>
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_CALL_LOG" />
+    <uses-permission android:name="android.permission.READ_SMS" />
+    <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS"></uses-permission>
+    <uses-permission android:name="android.permission.READ_PHONE_NUMBERS"></uses-permission>
+    <uses-permission android:name="android.permission.READ_SMS"></uses-permission>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"></uses-permission>
+
+    <uses-permission android:name="android.permission.RECEIVE_SMS"></uses-permission>
+    <uses-permission android:name="android.permission.SEND_SMS"/>
+    <uses-permission android:name="android.permission.RECEIVE_SMS"/>
+    <uses-permission android:name="android.permission.USE_BIOMETRIC" />
+    <uses-permission android:name="android.permission.INSTALL_PACKAGES"></uses-permission>
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"></uses-permission>
+
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission
+        android:name="android.permission.PACKAGE_USAGE_STATS"
+        tools:ignore="ProtectedPermissions" />
+
+    <uses-permission
+        android:name="android.permission.READ_MEDIA_VISUAL_USER_SELECTED"
+        tools:node="remove"></uses-permission>
+    <uses-permission
+        android:name="android.permission.READ_MEDIA_IMAGES"
+        tools:node="remove"></uses-permission>
+    <uses-permission
+        android:name="android.permission.READ_CONTACTS"
+        tools:node="remove" />
+
+    <uses-permission
+        android:name="android.permission.READ_EXTERNAL_STORAGE"
+        tools:node="remove" />
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        tools:node="remove" />
+
+
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <queries package="${applicationId}">
+        <intent>
+            <action android:name="android.intent.action.MAIN" />
+        </intent>
+        <intent>
+            <action android:name="android.media.action.IMAGE_CAPTURE" />
+        </intent>
+        <intent>
+            <action android:name="android.media.action.ACTION_VIDEO_CAPTURE" />
+        </intent>
+
+        <!--        <intent>-->
+        <!--            <action android:name="android.intent.action.PICK" />-->
+        <!--            <data android:mimeType="*/*" />-->
+        <!--        </intent>-->
+
+        <!--        <intent>-->
+        <!--            <action android:name="android.intent.action.OPEN_DOCUMENT" />-->
+        <!--        </intent>-->
+        <intent>
+            <action android:name="android.intent.action.PICK" />
+            <data android:mimeType="*/*" />
+        </intent>
+        <!--        <intent>-->
+        <!--            <action android:name="android.intent.action.GET_CONTENT" />-->
+        <!--            <data android:mimeType="*/*" />-->
+        <!--        </intent>-->
+    </queries>
+
+    <application
+        android:name=".App"
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ceshi"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:roundIcon="@mipmap/ceshi"
+        android:supportsRtl="true"
+        android:theme="@style/BaseTheme"
+        android:usesCleartextTraffic="true"
+        tools:replace="android:theme,android:fullBackupContent"
+        tools:targetApi="31">
+
+        <activity
+            android:name=".ui.TimerActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ui.ContractTestActivity"
+            android:exported="true"></activity>
+        <activity android:name="con.fire.android2023demo.ui.RemoteConfigActivity"/>
+        <activity android:name="con.fire.android2023demo.ui.SMSActivity"/>
+        <activity
+            android:name=".ui.branchTestActivity"
+            android:exported="true"></activity>
+        <activity
+            android:name=".ui.WebViewActivity"
+            android:exported="true"></activity>
+        <activity android:name=".ui.PermissionActivity"></activity>
+
+
+        <activity
+            android:name=".Hao123ActivityC"
+            android:exported="true">
+
+            <intent-filter>
+                <data
+                    android:host="possessequality"
+                    android:scheme="getprestamo" />
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+            </intent-filter>
+
+
+            <intent-filter>
+                <data
+                    android:host="ffff"
+                    android:scheme="xxxx" />
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+            </intent-filter>
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ui.MainActivity"
+            android:configChanges="orientation|screenSize"
+            android:exported="true">
+
+        </activity>
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.fileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
+        <provider
+            android:name=".utils.ImagePickerFileProvider"
+            android:authorities="${applicationId}.flutter.image_provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/flutter_image_picker_file_paths" />
+        </provider>
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.cc_provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/flutter_image_picker_file_paths" />
+        </provider>
+
+        <activity
+            android:name=".ui.GoogleOpActivity"
+            android:exported="true"></activity>
+        <activity android:name=".ui.UIFragmentActivity"></activity>
+        <activity android:name=".ui.SelectContractActivity"></activity>
+        <activity android:name=".ui.PermissionNewActivity"></activity>
+        <activity
+            android:name=".ui.ViewActivity"
+            android:windowSoftInputMode="adjustResize"></activity>
+        <activity android:name=".ui.ScreenRecordActivity"></activity>
+        <activity android:name=".ui.WebView2Activity"></activity>
+        <activity android:name=".ui.QueriesActivity"></activity>
+
+        <activity android:name=".ui.EditActivity"></activity>
+        <activity android:name=".ui.InxAgentwebActivity"></activity>
+        <activity android:name=".ui.GooleLogin2Activity"></activity>
+        <activity android:name=".ui.ReferrerActivity"></activity>
+        <activity android:name=".ui.BaseWeb154Activity"></activity>
+
+        <activity android:name=".ui.TemplateActivity"></activity>
+        <activity android:name=".ui.DialogTestActivity"></activity>
+        <activity android:name=".ui.UploadWebActivity"></activity>
+
+        <activity android:name=".ui.PackageUsageStatsActivity"></activity>
+        <activity android:name=".ui.BluetoothActivity"></activity>
+        <activity android:name=".ui.FaceBookTestActivity"></activity>
+        <activity android:name=".ui.AudioManagerActivity"></activity>
+        <activity android:name=".ui.AppCurrentActivity"></activity>
+        <activity android:name=".ui.CrashActivity"></activity>
+        <activity android:name=".ui.login.PhoneLoginActivity"></activity>
+        <activity android:name=".ui.login.EmailLoginActivity"></activity>
+        <activity android:name=".ui.login.SystemLoginActivity"></activity>
+        <activity android:name=".ui.ap162.ViewPager2Activity"></activity>
+        <activity
+            android:name=".ui.SnippetsActivity"
+            android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:resizeableActivity="true"
+            android:supportsPictureInPicture="true"></activity>
+
+        <activity android:name=".ui.LaoLinActivity"></activity>
+        <activity android:name=".ui.SysModelActivity"></activity>
+
+        <service android:name=".service.PostErrorService"></service>
+
+        <service
+            android:name=".service.ScreenRecordService"
+            android:exported="true"
+            android:foregroundServiceType="mediaProjection"
+            android:stopWithTask="false"
+            tools:ignore="ForegroundServicePermission"></service>
+
+        <receiver
+            android:name=".receiver.PackageStatusReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_FIRST_LAUNCH" />
+            </intent-filter>
+        </receiver>
+
+        <receiver android:name=".receiver.SMSReceiver"
+            android:enabled="true"
+            android:exported="true"
+            >
+            <intent-filter>
+                <action android:name="com.google.android.gms.auth.api.phone.SMS_RETRIEVED" />
+            </intent-filter>
+        </receiver>
+
+        <receiver
+            android:name=".receiver.InstallTrackingReceiver"
+            android:enabled="true"
+            android:exported="true"
+            android:permission="android.permission.INSTALL_PACKAGES">
+            <intent-filter>
+                <action android:name="com.android.vending.INSTALL_REFERRER" />
+            </intent-filter>
+        </receiver>
+
+
+        <meta-data
+            android:name="com.google.android.gms.ads.AD_MANAGER_APP"
+            android:value="true" />
+        <meta-data
+            android:name="io.branch.sdk.BranchKey"
+            android:value="key_live_fBjnFckP6i9LAvM4yEJ1WlaguBgOULWl" />
+        <meta-data
+            android:name="io.branch.sdk.TestMode"
+            android:value="false" />
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+        <meta-data
+            android:name="com.facebook.sdk.ClientToken"
+            android:value="@string/fb_client_token" />
+
+        <service
+            android:name="com.appsflyer.FirebaseMessagingServiceListener"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+
+        <service
+            android:name=".service.ZXFirebaseMessagingService"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+    </application>
+    <queries package="${applicationId}">
+        <package android:name="com.facebook.katana" />
+
+        <intent>
+            <action android:name="android.intent.action.MAIN" />
+        </intent>
+        <intent>
+            <action android:name="android.media.action.IMAGE_CAPTURE" />
+        </intent>
+        <intent>
+            <action android:name="android.media.action.ACTION_VIDEO_CAPTURE" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.SEND" />
+            <data android:mimeType="text/plain" />
+        </intent>
+    </queries>
+</manifest>

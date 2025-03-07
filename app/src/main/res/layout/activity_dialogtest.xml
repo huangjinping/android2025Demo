@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/buttonT0"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Button0" />
+
+    <Button
+        android:id="@+id/buttonT1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Button1" />
+
+    <Button
+        android:id="@+id/btn_195"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="195" />
+
+    <Button
+        android:id="@+id/btn_154"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="154" />
+
+    <Button
+        android:id="@+id/btn_201"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="201" />
+
+
+    <Button
+        android:id="@+id/btn_162"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="162" />
+    <Button
+        android:id="@+id/btn_306"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="306" />
+
+    <LinearLayout
+        android:id="@+id/layout_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"></LinearLayout>
+</LinearLayout>
