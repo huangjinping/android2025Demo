@@ -128,7 +128,7 @@ public class ScreenRecordService extends Service {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             pendingIntent = PendingIntent.getActivity(this, 0, nfIntent, PendingIntent.FLAG_CANCEL_CURRENT | PendingIntent.FLAG_IMMUTABLE);
         } else {
-            pendingIntent = PendingIntent.getActivity(this, 0, nfIntent, 0);
+            pendingIntent = PendingIntent.getActivity(this, 0, nfIntent, PendingIntent.FLAG_IMMUTABLE);
         }
         builder.setContentIntent(pendingIntent) // 设置PendingIntent
                 .setLargeIcon(BitmapFactory.decodeResource(this.getResources(), con.fire.android2023demo.R.mipmap.ic_launcher)) // 设置下拉列表中的图标(大图标)

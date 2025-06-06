@@ -44,11 +44,9 @@ import con.fire.android2023demo.photo.PhotoCallback;
 import con.fire.android2023demo.photo.PhotoSo;
 import con.fire.android2023demo.photo.PhotoUtilsImagePicker;
 import con.fire.android2023demo.utils.Compressor;
-import con.fire.android2023demo.utils.ImageSimpleUtils;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.functions.Consumer;
 import io.reactivex.rxjava3.schedulers.Schedulers;
-
 
 
 public class MainActivity extends AppCompatActivity {
@@ -58,13 +56,12 @@ public class MainActivity extends AppCompatActivity {
     String tempMemory = "tempMemorytempMemorytempMemorytempMemorytempMemorytempMemory";
     StringBuilder builder = new StringBuilder();
     FileUtils fileUtils;
-
+    private ImageView img_load_take;
+    private ImageView img_load_album;
     ActivityResultLauncher<PickVisualMediaRequest> pickMedia = registerForActivityResult(new ActivityResultContracts.PickVisualMedia(), uri -> {
         // Callback is invoked after the user selects a media item or closes the
         // photo picker.
         if (uri != null) {
-
-
 
             String path = fileUtils.getPathFromUri(MainActivity.this, uri);
 
@@ -78,8 +75,6 @@ public class MainActivity extends AppCompatActivity {
             Log.d("PhotoPicker", "No media selected");
         }
     });
-    private ImageView img_load_take;
-    private ImageView img_load_album;
     private ImageView image_target;
     private boolean toLone = true;
 
@@ -164,6 +159,7 @@ public class MainActivity extends AppCompatActivity {
         img_banner.setImageResource(R.mipmap.banner);
 
         photoSo = new PhotoUtilsImagePicker(this);
+
         photoSo.setCallback(new PhotoCallback() {
             @Override
             public void getPath(Uri uri, String path) {
@@ -223,7 +219,9 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("okhttps", "====000===11==>>>>");
 //                ActivityCompat.requestPermissions(MainActivity.this, permissionArr, 101);
 //                photoSo.take_Album();
+
                 pickMedia.launch(new PickVisualMediaRequest.Builder().setMediaType(ActivityResultContracts.PickVisualMedia.ImageOnly.INSTANCE).build());
+
 
             }
         });

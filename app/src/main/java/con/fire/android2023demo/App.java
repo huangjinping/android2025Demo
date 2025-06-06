@@ -2,7 +2,6 @@ package con.fire.android2023demo;
 
 import android.app.Application;
 import android.content.Context;
-import android.os.Looper;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -11,8 +10,13 @@ import androidx.annotation.NonNull;
 import com.android.installreferrer.api.InstallReferrerClient;
 import com.android.installreferrer.api.InstallReferrerStateListener;
 import com.android.installreferrer.api.ReferrerDetails;
+import com.appsflyer.AppsFlyerConversionListener;
+import com.appsflyer.AppsFlyerLib;
 import com.facebook.FacebookSdk;
 import com.facebook.appevents.AppEventsLogger;
+import com.google.gson.Gson;
+
+import java.util.Map;
 
 import con.fire.android2023demo.utils.CrashHandler;
 import con.fire.android2023demo.utils.LogUtils;
@@ -69,6 +73,32 @@ public class App extends Application implements Thread.UncaughtExceptionHandler 
         startReferrer(this);
         FacebookSdk.setApplicationId(getString(R.string.facebook_app_id));
         AppEventsLogger.activateApp(this);
+        AppsFlyerLib.getInstance().init("ZUwwP6a2jFqoXzxtrszHRn", new AppsFlyerConversionListener() {
+            @Override
+            public void onConversionDataSuccess(Map<String, Object> map) {
+                Gson gson = new Gson();
+                Log.d("okhttp9", "=========onConversionDataSuccess=======>>>" + gson.toJson(map));
+
+            }
+
+            @Override
+            public void onConversionDataFail(String s) {
+                Log.d("okhttp9", "=========onConversionDataFail=======>>>" + s);
+
+            }
+
+            @Override
+            public void onAppOpenAttribution(Map<String, String> map) {
+
+            }
+
+            @Override
+            public void onAttributionFailure(String s) {
+                Log.d("okhttp9", "====onAttributionFailure============>>>" + s);
+
+            }
+        }, this);
+        AppsFlyerLib.getInstance().start(this);
 
         application = this;
 
@@ -171,4 +201,31 @@ public class App extends Application implements Thread.UncaughtExceptionHandler 
 //        Thread.getDefaultUncaughtExceptionHandler().uncaughtException(t, e);
 
     }
+
+//
+//    private void  asd(){
+//        val packageManager: PackageManager = getPackageManager()
+//
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) { // Android 12L and above
+//            // Use QUERY_ALL_PACKAGES if necessary
+//            val apps: List<PackageInfo> =
+//            packageManager.getInstalledPackages(PackageManager.MATCH_ALL)
+//
+//            Toast.makeText(this,apps.size.toString(),Toast.LENGTH_LONG ).show()
+//        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) { // Android 11 and above
+//            // Consider using specific intents or declaring QUERY_ALL_PACKAGES in manifest
+//            val launcherIntent: Intent = Intent(Intent.ACTION_MAIN, null)
+//            launcherIntent.addCategory(Intent.CATEGORY_LAUNCHER)
+//            val resolveInfos: List<ResolveInfo> =
+//            packageManager.queryIntentActivities(launcherIntent, 0)
+//
+//
+//            Toast.makeText(this,resolveInfos.size.toString(),Toast.LENGTH_LONG ).show()
+//        } else {
+//            // For older versions, you can directly query all packages
+//            val apps: List<PackageInfo> = packageManager.getInstalledPackages(0)
+//
+//            Toast.makeText(this,apps.size.toString(),Toast.LENGTH_LONG ).show()
+//        }
+//    }
 }

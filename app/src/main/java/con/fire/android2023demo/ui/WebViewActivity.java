@@ -25,6 +25,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.fingerprintjs.android.fingerprint.Fingerprinter;
 import com.fingerprintjs.android.fingerprint.FingerprinterFactory;
 
+import java.util.UUID;
+
 import con.fire.android2023demo.R;
 
 public class WebViewActivity extends AppCompatActivity {
@@ -93,6 +95,10 @@ public class WebViewActivity extends AppCompatActivity {
         url = " https://web.creditlandsa.com/clause?userId=9752&detailId=18&chooseAmountIds=,7167793935007899649";
 
         url = "https://pay-met.ec:6080/#/metodo-pago/VE9LRU4gR0VORVJBIFJFQ0FVRE8xNjEzMTE=";
+//        url = "https://doc.inxtech.cn/webview.html?v="+ UUID.randomUUID().toString();
+
+        url = "http://10.1.2.8:8080/test/webview.html?v=" + UUID.randomUUID().toString();
+
         webview.loadUrl(url);
 //        webview.loadUrl("https://www.inx-fintech.com/#/home/index");
 //jianshu://notes/4860097148c0

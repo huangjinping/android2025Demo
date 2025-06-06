@@ -260,6 +260,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="AppList"></TextView>
+
+
+                <TextView
+                    android:id="@+id/txt_package_list"
+                    style="@style/flex_item"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="package_list"></TextView>
             </com.google.android.flexbox.FlexboxLayout>
 
 
@@ -286,7 +294,7 @@
                     android:textStyle="bold"></TextView>
 
                 <TextView
-                    android:id="@+id/txt_web154"
+                    android:id="@+id/txt_weddbw_154"
                     style="@style/flex_item"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -380,6 +388,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="RemoteConfig" />
+
+                <TextView
+                    android:id="@+id/txtJsB22ridge"
+                    style="@style/flex_item"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="JsBridge" />
             </com.google.android.flexbox.FlexboxLayout>
         </LinearLayout>
 

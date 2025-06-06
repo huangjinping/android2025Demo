@@ -108,7 +108,7 @@ public class TimerActivity extends AppCompatActivity {
     public void startPage01() {
         Intent intent = new Intent(this, SelectContractActivity.class);
         int flags = 1;
-        PendingIntent.getActivity(this, 12, intent, 0);
+//        PendingIntent.getActivity(this, 12, intent, 0);
     }
 
     public void startPage() {

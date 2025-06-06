@@ -35,8 +35,10 @@ import con.fire.android2023demo.ui.FaceBookTestActivity;
 import con.fire.android2023demo.ui.GoogleOpActivity;
 import con.fire.android2023demo.ui.GooleLogin2Activity;
 import con.fire.android2023demo.ui.InxAgentwebActivity;
+import con.fire.android2023demo.ui.JsBridgeActivity;
 import con.fire.android2023demo.ui.LaoLinActivity;
 import con.fire.android2023demo.ui.MainActivity;
+import con.fire.android2023demo.ui.PackageListActivity;
 import con.fire.android2023demo.ui.PackageUsageStatsActivity;
 import con.fire.android2023demo.ui.PermissionActivity;
 import con.fire.android2023demo.ui.PermissionNewActivity;
@@ -50,7 +52,7 @@ import con.fire.android2023demo.ui.SnippetsActivity;
 import con.fire.android2023demo.ui.SysModelActivity;
 import con.fire.android2023demo.ui.TimerActivity;
 import con.fire.android2023demo.ui.UIFragmentActivity;
-import con.fire.android2023demo.ui.UploadWebActivity;
+import con.fire.android2023demo.ui.UploadWebPDFActivity;
 import con.fire.android2023demo.ui.ViewActivity;
 import con.fire.android2023demo.ui.WebViewActivity;
 import con.fire.android2023demo.ui.login.EmailLoginActivity;
@@ -99,10 +101,13 @@ public class Hao123ActivityC extends BaseActivity {
             @Override
             public void onSuccess() {
 
+                Log.d("okhttp9", "=========onSuccess=======>>>");
+
             }
 
             @Override
             public void onError(int i, @NonNull String s) {
+                Log.d("okhttp9", "=========onError===" + i + "====>>>" + s);
 
             }
         });
@@ -205,7 +210,7 @@ public class Hao123ActivityC extends BaseActivity {
 
         });
 
-        binding.txtWeb154.setOnClickListener(view -> {
+        binding.txtWeddbw154.setOnClickListener(view -> {
             Intent intent = new Intent(Hao123ActivityC.this, BaseWeb154Activity.class);
             startActivity(intent);
         });
@@ -225,7 +230,7 @@ public class Hao123ActivityC extends BaseActivity {
         });
 
         binding.txtWebupload.setOnClickListener(view -> {
-            Intent intent = new Intent(Hao123ActivityC.this, UploadWebActivity.class);
+            Intent intent = new Intent(Hao123ActivityC.this, UploadWebPDFActivity.class);
             startActivity(intent);
 
 //            openOutUrl("https://play.google.com/store/apps/details?id=com.kash.credito.aztaca.paypal.dinero.banrural&gl=co&hl=es");
@@ -352,6 +357,21 @@ public class Hao123ActivityC extends BaseActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(Hao123ActivityC.this, SMSActivity.class);
                 Hao123ActivityC.this.startActivity(intent);
+            }
+        });
+        this.binding.txtJsB22ridge.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Hao123ActivityC.this, JsBridgeActivity.class);
+                Hao123ActivityC.this.startActivity(intent);
+            }
+        });
+        this.binding.txtPackageList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Hao123ActivityC.this, PackageListActivity.class);
+                Hao123ActivityC.this.startActivity(intent);
+
             }
         });
     }

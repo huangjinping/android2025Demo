@@ -13,6 +13,11 @@
         android:background="@drawable/background_standard_blue"
         android:orientation="horizontal">
 
+
+        <TextView
+            android:id="@+id/txtJsB22ridge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></TextView>
         <TextView
             android:id="@+id/textview_toast"
             android:layout_width="wrap_content"

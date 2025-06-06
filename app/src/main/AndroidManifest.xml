@@ -15,24 +15,29 @@
     <uses-permission android:name="android.permission.REORDER_TASKS" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.WRITE_SMS" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
 
     <uses-permission android:name="android.permission.READ_CALENDAR"></uses-permission>
     <uses-permission android:name="android.permission.READ_PHONE_STATE"></uses-permission>
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_CALL_LOG" />
     <uses-permission android:name="android.permission.READ_SMS" />
-    <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES" />
+    <!--    <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES" />-->
     <uses-permission android:name="android.permission.GET_ACCOUNTS"></uses-permission>
     <uses-permission android:name="android.permission.READ_PHONE_NUMBERS"></uses-permission>
     <uses-permission android:name="android.permission.READ_SMS"></uses-permission>
     <uses-permission android:name="android.permission.READ_PHONE_STATE"></uses-permission>
 
+<!--    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE"></uses-permission>-->
+
     <uses-permission android:name="android.permission.RECEIVE_SMS"></uses-permission>
-    <uses-permission android:name="android.permission.SEND_SMS"/>
-    <uses-permission android:name="android.permission.RECEIVE_SMS"/>
+    <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.USE_BIOMETRIC" />
     <uses-permission android:name="android.permission.INSTALL_PACKAGES"></uses-permission>
-    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"></uses-permission>
+
+
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" ></uses-permission>
 
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission
@@ -71,6 +76,9 @@
         <intent>
             <action android:name="android.media.action.ACTION_VIDEO_CAPTURE" />
         </intent>
+        <intent>
+            <action android:name="android.provider.Telephony.SMS_DELIVER" />
+        </intent>
 
         <!--        <intent>-->
         <!--            <action android:name="android.intent.action.PICK" />-->
@@ -88,6 +96,8 @@
         <!--            <action android:name="android.intent.action.GET_CONTENT" />-->
         <!--            <data android:mimeType="*/*" />-->
         <!--        </intent>-->
+
+
     </queries>
 
     <application
@@ -111,8 +121,8 @@
         <activity
             android:name=".ui.ContractTestActivity"
             android:exported="true"></activity>
-        <activity android:name="con.fire.android2023demo.ui.RemoteConfigActivity"/>
-        <activity android:name="con.fire.android2023demo.ui.SMSActivity"/>
+        <activity android:name="con.fire.android2023demo.ui.RemoteConfigActivity" />
+        <activity android:name="con.fire.android2023demo.ui.SMSActivity" />
         <activity
             android:name=".ui.branchTestActivity"
             android:exported="true"></activity>
@@ -150,6 +160,28 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+            <!-- 支持 SMS 的 Intent 过滤器 -->
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+                <action android:name="android.intent.action.SENDTO" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:scheme="sms" />
+                <data android:scheme="smsto" />
+                <data android:scheme="mms" />
+                <data android:scheme="mmsto" />
+            </intent-filter>
+
+            <intent-filter>
+                <action android:name="android.provider.Telephony.SMS_DELIVER" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.provider.Telephony.SMS_RECEIVED" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity
@@ -222,6 +254,9 @@
         <activity android:name=".ui.login.EmailLoginActivity"></activity>
         <activity android:name=".ui.login.SystemLoginActivity"></activity>
         <activity android:name=".ui.ap162.ViewPager2Activity"></activity>
+
+        <activity android:name=".ui.PackageListActivity"></activity>
+
         <activity
             android:name=".ui.SnippetsActivity"
             android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize"
@@ -230,10 +265,13 @@
             android:resizeableActivity="true"
             android:supportsPictureInPicture="true"></activity>
 
+        <activity android:name=".ui.UploadWebPDFActivity"></activity>
+
         <activity android:name=".ui.LaoLinActivity"></activity>
         <activity android:name=".ui.SysModelActivity"></activity>
 
         <service android:name=".service.PostErrorService"></service>
+        <activity android:name=".ui.JsBridgeActivity"></activity>
 
         <service
             android:name=".service.ScreenRecordService"
@@ -250,14 +288,37 @@
             </intent-filter>
         </receiver>
 
-        <receiver android:name=".receiver.SMSReceiver"
-            android:enabled="true"
-            android:exported="true"
-            >
-            <intent-filter>
-                <action android:name="com.google.android.gms.auth.api.phone.SMS_RETRIEVED" />
+        <!--        <receiver-->
+        <!--            android:name=".receiver.SMSReceiver"-->
+        <!--            android:enabled="true"-->
+        <!--            android:exported="true">-->
+        <!--            <intent-filter>-->
+        <!--                <action android:name="com.google.android.gms.auth.api.phone.SMS_RETRIEVED" />-->
+        <!--            </intent-filter>-->
+        <!--        </receiver>-->
+
+        <!--        <receiver-->
+        <!--            android:name=".receiver.SMSReceiver"-->
+        <!--            android:enabled="true"-->
+        <!--            android:exported="true"-->
+        <!--            android:permission="android.permission.BROADCAST_SMS">-->
+        <!--            <intent-filter>-->
+        <!--                <action android:name="android.provider.Telephony.SMS_RECEIVED" />-->
+        <!--            </intent-filter>-->
+        <!--        </receiver>-->
+
+        <receiver
+            android:name=".receiver.SMSReceiver"
+            android:exported="true">
+            <intent-filter android:priority="1000">
+                <action android:name="android.provider.Telephony.SMS_RECEIVED" />
             </intent-filter>
         </receiver>
+
+        <!--        <provider-->
+        <!--            android:name=".SmsProvider"-->
+        <!--            android:authorities="com.example.smsapp.sms"-->
+        <!--            android:exported="true" />-->
 
         <receiver
             android:name=".receiver.InstallTrackingReceiver"

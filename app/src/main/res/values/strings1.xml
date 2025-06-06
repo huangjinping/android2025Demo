@@ -6,6 +6,7 @@
 
     <string name="facebook_app_id">996099931846007</string>
     <string name="fb_client_token" translatable="false">f650fe4e5aa36d94f404b1f9aecc85b4</string>
+    <string name="button_name">Java调用Web</string>
 
 
     <string name="coateCalendrierDes">"Afin d'offrir une expérience d'emprunt de qualité supérieure, nous nous engageons à éliminer tout risque de remboursement ou de dépassement d'échéance qui pourrait être négligé. Afin d'atteindre cet objectif, nous aimerions obtenir l'autorisation de synchroniser votre calendrier afin de pouvoir :

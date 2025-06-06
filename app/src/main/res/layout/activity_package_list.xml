@@ -4,11 +4,10 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-
-
     <Button
-        android:id="@+id/button12"
+        android:id="@+id/btn_apply"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="获取当前手机号" />
+        android:orientation="vertical"
+        android:text="apply"></Button>
 </LinearLayout>

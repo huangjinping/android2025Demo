@@ -1,7 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
-    id 'com.google.gms.google-services'
-    id 'com.google.firebase.crashlytics'
+//    id 'com.google.gms.google-services'
+//    id 'com.google.firebase.crashlytics'
 
 }
 
@@ -11,10 +11,12 @@ android {
 
     defaultConfig {
 //        applicationId "con.fire.android2023demo"
-        applicationId "con.modhe.myapplication"
+//        applicationId "con.modhe.myapplication"
+//        applicationId "com.fori.ready.naqd.paisa.jazz.foriqarz"
+        applicationId "con.fire.android2023demo"
 
-        minSdk 24
-        targetSdk 35
+        minSdk 23
+        targetSdk 34
         versionCode 1
         versionName "1.0"
 
@@ -48,7 +50,7 @@ dependencies {
     testImplementation libs.junit
     androidTestImplementation libs.ext.junit
     androidTestImplementation libs.espresso.core
-
+    implementation 'com.github.lzyzsd:jsbridge:1.0.5'
 
     implementation 'io.branch.sdk.android:library:5.+'
     implementation 'androidx.browser:browser:1.0.0'
@@ -118,6 +120,7 @@ dependencies {
     implementation 'pub.devrel:easypermissions:3.0.0'
     implementation 'com.facebook.android:facebook-android-sdk:15.1.0'
     implementation 'com.facebook.android:facebook-login:latest.release'
+
 
 //    implementation 'com.meituan.android.walle:library:1.1.7'
     implementation 'io.github.justson:agentweb-core:v5.1.1-androidx'

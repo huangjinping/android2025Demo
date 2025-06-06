@@ -3,8 +3,8 @@ package con.fire.android2023demo.ui;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Base64;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.webkit.URLUtil;
 import android.webkit.WebChromeClient;
 import android.webkit.WebResourceError;
@@ -13,9 +13,16 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.appsflyer.AppsFlyerLib;
+import com.appsflyer.attribution.AppsFlyerRequestListener;
+
+import java.util.zip.GZIPOutputStream;
+
+import con.fire.android2023demo.R;
 import con.fire.android2023demo.databinding.ActivityWebbaseBinding;
 
 public class BaseWeb154Activity extends AppCompatActivity {
@@ -33,6 +40,18 @@ public class BaseWeb154Activity extends AppCompatActivity {
         WebSettings webSettings = wvContent.getSettings();
 
 
+//        AppsFlyerLib.getInstance().logEvent(wvContent, null, null, new AppsFlyerRequestListener() {
+//            @Override
+//            public void onSuccess() {
+//
+//            }
+//
+//            @Override
+//            public void onError(int i, @NonNull String s) {
+//
+//            }
+//        });
+
         //存储
         webSettings.setDomStorageEnabled(true);//是否支持 Local Storage
         webSettings.setJavaScriptEnabled(true);//支持JavaScript
@@ -45,7 +64,7 @@ public class BaseWeb154Activity extends AppCompatActivity {
         webSettings.setDisplayZoomControls(false);//不显示缩放按钮
         webSettings.setJavaScriptCanOpenWindowsAutomatically(true);
         webSettings.setSupportMultipleWindows(true);//开启支持多窗口
-
+        webSettings.setMixedContentMode(WebSettings.MIXED_CONTENT_COMPATIBILITY_MODE);
         //缓存
         webSettings.setCacheMode(WebSettings.LOAD_DEFAULT);
 //        webSettings.setTextZoom(100);
@@ -79,11 +98,83 @@ public class BaseWeb154Activity extends AppCompatActivity {
 
             }
 
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+                String url = request.getUrl().toString();
+
+                if (url.startsWith("http") || url.startsWith("https")) {
+                    return false;
+                } else {
+                    return true;
+                }
+//                // 处理特殊协议
+//                if (url.startsWith("tel:")) {
+//                    Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse(url));
+//                    startActivity(intent);
+//                    return true; // 表示已处理，不交给 WebView 加载
+//                } else if (url.startsWith("mailto:")) {
+//                    Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.parse(url));
+//                    startActivity(intent);
+//                    return true;
+//                } else if (url.startsWith("sms:")) {
+//                    Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.parse(url));
+//                    startActivity(intent);
+//                    return true;
+//                } else if (url.startsWith("intent:")) {
+//                    try {
+//                        Intent intent = Intent.parseUri(url, Intent.URI_INTENT_SCHEME);
+//                        startActivity(intent);
+//                        return true;
+//                    } catch (Exception e) {
+//                        e.printStackTrace();
+//                        return false;
+//                    }
+//                }
+
+                // 默认处理 HTTP/HTTPS
+//                return false; // 交给 WebView 加载
+            }
+
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                // 兼容旧版本（API < 24）
+//                if (url.startsWith("tel:")) {
+//                    Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse(url));
+//                    startActivity(intent);
+//                    return true;
+//                } else if (url.startsWith("mailto:")) {
+//                    Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.parse(url));
+//                    startActivity(intent);
+//                    return true;
+//                } else if (url.startsWith("sms:")) {
+//                    Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.parse(url));
+//                    startActivity(intent);
+//                    return true;
+//                } else if (url.startsWith("intent:")) {
+//                    try {
+//                        Intent intent = Intent.parseUri(url, Intent.URI_INTENT_SCHEME);
+//                        startActivity(intent);
+//                        return true;
+//                    } catch (Exception e) {
+//                        e.printStackTrace();
+//                        return false;
+//                    }
+//                }
+//                return false;
+                if (url.startsWith("http") || url.startsWith("https")) {
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+
         });
-//        loadUrl("https://web.itshcash.com/pay/#/?token=249b8e30e44c2c84c5e51cf6104ab2fb");
+//        loadUrl("https://www.jianshu.com/p/2499255c7e79");
 
+//        loadUrl("https://web.infinancingci.com/pay/#/?token=6058fbd6c6697e4e5cce805e4091d6dc");
 
-        loadUrl("https://temp.empruntfacilecod.com/Chat/index.html");
+        loadUrl("https://ecuador.prestamogratis.com/evolvingloans/privacy.html");
+//        loadUrl("https://temp.empruntfacilecod.com/Chat/index.html");
     }
 
 
@@ -105,6 +196,9 @@ public class BaseWeb154Activity extends AppCompatActivity {
 //            wvContent.destroy();
 //            wvContent = null;
 //        }
+//        GZIPOutputStream gzip = new GZIPOutputStream(baos);
+//        String base64String = Base64.encodeToString(compressed, Base64.DEFAULT);
+
 
         super.onDestroy();
     }

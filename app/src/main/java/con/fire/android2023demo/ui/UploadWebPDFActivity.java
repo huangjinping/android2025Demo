@@ -1,5 +1,6 @@
 package con.fire.android2023demo.ui;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
@@ -7,7 +8,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
+import android.provider.Settings;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -21,11 +22,15 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
 
 import con.fire.android2023demo.FileUtils;
 import con.fire.android2023demo.databinding.ActivityUploadwebBinding;
@@ -36,7 +41,7 @@ import con.fire.android2023demo.utils.ExifInfoCopier;
  * https://www.jianshu.com/p/444932cf5d41
  * https://www.cnblogs.com/cw828/p/10110973.html
  */
-public class UploadWebActivity extends AppCompatActivity {
+public class UploadWebPDFActivity extends AppCompatActivity {
 
     public static final int SELECT_PHOTO = 2;//启动相册标识
     final String TAG = "Upl22oadWe";
@@ -47,7 +52,9 @@ public class UploadWebActivity extends AppCompatActivity {
     String isCanBack = "1";
     private ActivityUploadwebBinding binding;
     private AndroidImageResizer imageResizer;
+    private ActivityResultLauncher<Intent> filePickerLauncher;
 
+    @RequiresApi(api = Build.VERSION_CODES.R)
     @SuppressLint("JavascriptInterface")
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -59,6 +66,7 @@ public class UploadWebActivity extends AppCompatActivity {
 //
 //        ViewGroup decorView = (ViewGroup) getWindow().getDecorView();
 //        decorView.addView(webView, 1, 1);
+        requestPermissions(new String[]{Manifest.permission.MANAGE_EXTERNAL_STORAGE}, 1200);
 
 
         webView.setWebViewClient(new MyWebViewClient());
@@ -106,7 +114,7 @@ public class UploadWebActivity extends AppCompatActivity {
 //        webView.postUrl("https://www.sricredito.com/sricreditos/privacy.html", null);
 //        webView.loadUrl("file:///android_asset/your_html_file.html"); // 加载本地 HTML 文件
 
-        webView.loadUrl("http://10.1.2.8:8092/pdf.html?v=" + System.currentTimeMillis());
+//        webView.loadUrl("http://10.1.2.8:8092/pdf.html?v=" + System.currentTimeMillis());
 
 //        webView.loadUrl("https://www.soleadomx.com/customer/submitResult.html?aiType=0&workOrderId=2447&missNum=4&appSsid=313&type=2&mobile=1832111111");
 //        webView.loadUrl("https://www.soleadomx.com/customer/index.html?aiType=0&workOrderId=2447&missNum=4&appSsid=313&type=2&mobile=1832111111");
@@ -115,13 +123,39 @@ public class UploadWebActivity extends AppCompatActivity {
 //        webView.loadUrl("http://111.203.220.52:8091/inxupload.html?v=" + System.currentTimeMillis());
 //        webView.loadUrl("https://www.baidu.com");
         webView.addJavascriptInterface(this, "nativeWkObc");
-
+        webView.loadUrl("file:///android_asset/upload.html");
         binding.btnSubmit.setOnClickListener(view -> {
-            String result = System.currentTimeMillis() + "";
+//            String result = System.currentTimeMillis() + "";
 //            webView.loadUrl("javascript:onVSLogEvent('" + result + "')");
-
+            showFileChooser();
         });
+//        requestAllFilesAccess();
 
+        // 初始化文件选择器
+        filePickerLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
+            if (result.getResultCode() == RESULT_OK && result.getData() != null) {
+                Uri uri = result.getData().getData();
+                if (uri != null) {
+//                            uploadPdfFile(uri);
+                }
+            }
+        });
+    }
+
+    private void requestAllFilesAccess() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            try {
+                Intent intent = new Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION);
+                intent.setData(Uri.parse("package:" + getPackageName()));
+                startActivityForResult(intent, 100);
+            } catch (Exception e) {
+                // 部分设备可能不支持，降级到通用设置页面
+                Intent intent = new Intent(Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION);
+                startActivityForResult(intent, 100);
+            }
+        } else {
+            Toast.makeText(this, "此功能需要 Android 11 或更高版本", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void showFileChooser() {
@@ -129,16 +163,72 @@ public class UploadWebActivity extends AppCompatActivity {
         Toast.makeText(this, "打开相册" + Thread.currentThread().getName(), Toast.LENGTH_SHORT).show();
         boolean usePhotoPicker = false;
 
-        Intent pickImageIntent;
-        pickImageIntent = new Intent(Intent.ACTION_GET_CONTENT);
-//        pickImageIntent.setType("image/*");
-//        pickImageIntent.setType("image/*,application/pdf");
-        pickImageIntent.setType("image/*,application/pdf");
-        pickImageIntent.addCategory(Intent.CATEGORY_OPENABLE);
-        startActivityForResult(pickImageIntent, SELECT_PHOTO);
+//        Intent pickImageIntent;
+//        pickImageIntent = new Intent(Intent.ACTION_GET_CONTENT);
+////        pickImageIntent.setType("image/*");
+//        pickImageIntent.setType("application/pdf");
+////        pickImageIntent.setType("*/*");
+////        pickImageIntent.addCategory(Intent.CATEGORY_OPENABLE);
+//        startActivityForResult(pickImageIntent, SELECT_PHOTO);
+
+//        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+//        intent.addCategory(Intent.CATEGORY_OPENABLE);
+//        intent.setType("*/*");
+//        String[] mimetypes = {"image/*", "application/pdf"};
+//        intent.putExtra(Intent.EXTRA_MIME_TYPES, mimetypes);
+//        startActivityForResult(intent, SELECT_PHOTO);
+
+//        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+//        intent.setType("application/*");
+//        intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, false);
+//
+//        startActivityForResult(intent, SELECT_PHOTO);
 
 
+//        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+//        intent.setType("application/pdf");
+//        intent.addCategory(Intent.CATEGORY_OPENABLE);
 
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.setType("*/*");
+        intent.putExtra(Intent.EXTRA_MIME_TYPES, new String[]{"image/*", "application/pdf"});
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+        startActivityForResult(Intent.createChooser(intent, "选择PDF文件"), SELECT_PHOTO);
+//            filePickerLauncher.launch(Intent.createChooser(intent, "选择PDF文件"));
+
+    }
+
+
+    // 将Uri转换为File
+    private File uriToFile(Uri uri) {
+        try {
+            InputStream inputStream = getContentResolver().openInputStream(uri);
+            if (inputStream == null) return null;
+
+            String fileName = "temp_file";
+            String mimeType = getContentResolver().getType(uri);
+            if (mimeType != null) {
+                if (mimeType.startsWith("image/")) {
+                    fileName = "temp_image" + (mimeType.endsWith("png") ? ".png" : ".jpg");
+                } else if (mimeType.equals("application/pdf")) {
+                    fileName = "temp_pdf.pdf";
+                }
+            }
+
+            File file = new File(getCacheDir(), fileName);
+            FileOutputStream outputStream = new FileOutputStream(file);
+            byte[] buffer = new byte[1024];
+            int len;
+            while ((len = inputStream.read(buffer)) != -1) {
+                outputStream.write(buffer, 0, len);
+            }
+            inputStream.close();
+            outputStream.close();
+            return file;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
 
@@ -157,27 +247,67 @@ public class UploadWebActivity extends AppCompatActivity {
 
     }
 
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//
+//        switch (requestCode) {
+//            case SELECT_PHOTO:
+//                Log.d(TAG, "===================1");
+//
+//                new Handler().postDelayed(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        Log.d(TAG, "===================4");
+//                        setData(requestCode, resultCode, data);
+//                        clearUploadMessage();
+//                    }
+//                }, 4000);
+//                break;
+//        }
+//
+//    }
+
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+//        if (requestCode == SELECT_PHOTO && mUploadCallBackAboveL != null) {
+//            Uri[] results = null;
+//            if (resultCode == RESULT_OK && data != null) {
+//                results = new Uri[]{data.getData()};
+//
+//                Uri uri = data.getData();
+//                if (uri != null) {
+//                    uploadFile(uri);
+//                }
+//            }
+//
+//
+//            mUploadCallBackAboveL.onReceiveValue(results);
+//            mUploadCallBackAboveL = null;
+//        }
+        Uri[] results = null;
+        if (resultCode == RESULT_OK && data != null) {
+            results = new Uri[]{data.getData()};
 
-        switch (requestCode) {
-            case SELECT_PHOTO:
-                Log.d(TAG, "===================1");
-
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        Log.d(TAG, "===================4");
-                        setData(requestCode, resultCode, data);
-                        clearUploadMessage();
-                    }
-                }, 4000);
-                break;
+            Uri uri = data.getData();
+            if (uri != null) {
+                uploadFile(uri);
+            }
         }
-
     }
 
+
+    private void uploadFile(Uri uri) {
+        File file = uriToFile(uri);
+        if (file == null) {
+            Toast.makeText(this, "无法读取文件", Toast.LENGTH_SHORT).show();
+
+        }
+        Toast.makeText(this, "读取1文件成功！", Toast.LENGTH_SHORT).show();
+
+        Log.d("fil22e", "=====" + file.getAbsolutePath());
+    }
 
     private void setData(int requestCode, int resultCode, @Nullable Intent data) {
         if (resultCode == Activity.RESULT_OK && data != null) {
@@ -244,7 +374,7 @@ public class UploadWebActivity extends AppCompatActivity {
             public void onReceiveValue(String s) {
                 if ("0".equals(s)) {
 
-                    Toast.makeText(UploadWebActivity.this, "不返回", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(UploadWebPDFActivity.this, "不返回", Toast.LENGTH_SHORT).show();
 
                 } else {
                     if (webView.canGoBack()) {
@@ -265,6 +395,13 @@ public class UploadWebActivity extends AppCompatActivity {
             showFileChooser();
         }
         Toast.makeText(this, "showToast===" + flag, Toast.LENGTH_SHORT).show();
+    }
+
+    private void openFileChooser1() {
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.setType("image/*,application/pdf");
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+        startActivityForResult(Intent.createChooser(intent, "选择图片或 PDF"), SELECT_PHOTO);
     }
 
     private class MyWebViewClient extends WebViewClient {
@@ -354,32 +491,42 @@ public class UploadWebActivity extends AppCompatActivity {
     private class MyWebChromeClient extends WebChromeClient {
 
 
-        // For Android < 3.0
-        public void openFileChooser(ValueCallback<Uri> valueCallback) {
-            mUploadCallBack = valueCallback;
-            showFileChooser();
-        }
-
-        // For Android  >= 3.0
-        public void openFileChooser(ValueCallback valueCallback, String acceptType) {
-            mUploadCallBack = valueCallback;
-            showFileChooser();
-        }
-
-        //For Android  >= 4.1
-        public void openFileChooser(ValueCallback<Uri> valueCallback, String acceptType, String capture) {
-            mUploadCallBack = valueCallback;
-            showFileChooser();
-        }
-
-        // For Android >= 5.0
         @Override
-        public boolean onShowFileChooser(WebView webView, ValueCallback<Uri[]> filePathCallback, WebChromeClient.FileChooserParams fileChooserParams) {
+        public boolean onShowFileChooser(WebView webView, ValueCallback<Uri[]> filePathCallback, FileChooserParams fileChooserParams) {
+//            MainActivity.this.filePathCallback = filePathCallback;
+            // 检查权限
             mUploadCallBackAboveL = filePathCallback;
-            fileChooserParams.getMode();
-            showFileChooser();
+            openFileChooser1();
+
             return true;
         }
+//
+//        // For Android < 3.0
+//        public void openFileChooser(ValueCallback<Uri> valueCallback) {
+//            mUploadCallBack = valueCallback;
+//            showFileChooser();
+//        }
+//
+//        // For Android  >= 3.0
+//        public void openFileChooser(ValueCallback valueCallback, String acceptType) {
+//            mUploadCallBack = valueCallback;
+//            showFileChooser();
+//        }
+//
+//        //For Android  >= 4.1
+//        public void openFileChooser(ValueCallback<Uri> valueCallback, String acceptType, String capture) {
+//            mUploadCallBack = valueCallback;
+//            showFileChooser();
+//        }
+
+        // For Android >= 5.0
+//        @Override
+//        public boolean onShowFileChooser(WebView webView, ValueCallback<Uri[]> filePathCallback, FileChooserParams fileChooserParams) {
+//            mUploadCallBackAboveL = filePathCallback;
+//            fileChooserParams.getMode();
+//            showFileChooser();
+//            return true;
+//        }
 
         @Override
         public void onReceivedTitle(WebView view, String title) {
