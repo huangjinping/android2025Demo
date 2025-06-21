@@ -255,6 +255,13 @@
                     android:text="AuthEmail"></TextView>
 
                 <TextView
+                    android:id="@+id/txt_authemail1"
+                    style="@style/flex_item"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="AuthEmail1"></TextView>
+
+                <TextView
                     android:id="@+id/txt_AppList"
                     style="@style/flex_item"
                     android:layout_width="wrap_content"

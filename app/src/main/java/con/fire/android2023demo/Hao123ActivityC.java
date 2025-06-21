@@ -33,6 +33,7 @@ import con.fire.android2023demo.ui.DialogTestActivity;
 import con.fire.android2023demo.ui.EditActivity;
 import con.fire.android2023demo.ui.FaceBookTestActivity;
 import con.fire.android2023demo.ui.GoogleOpActivity;
+import con.fire.android2023demo.ui.GooglePlayEmailActivity;
 import con.fire.android2023demo.ui.GooleLogin2Activity;
 import con.fire.android2023demo.ui.InxAgentwebActivity;
 import con.fire.android2023demo.ui.JsBridgeActivity;
@@ -52,7 +53,7 @@ import con.fire.android2023demo.ui.SnippetsActivity;
 import con.fire.android2023demo.ui.SysModelActivity;
 import con.fire.android2023demo.ui.TimerActivity;
 import con.fire.android2023demo.ui.UIFragmentActivity;
-import con.fire.android2023demo.ui.UploadWebPDFActivity;
+import con.fire.android2023demo.ui.UploadWebActivity;
 import con.fire.android2023demo.ui.ViewActivity;
 import con.fire.android2023demo.ui.WebViewActivity;
 import con.fire.android2023demo.ui.login.EmailLoginActivity;
@@ -86,6 +87,11 @@ public class Hao123ActivityC extends BaseActivity {
         String uuid = UUID.randomUUID().toString();
 //        MainKt.start();
 
+
+        getExternalCacheDir();
+        getCacheDir();
+
+
 //        com.facebook.appevents.AppEventsConstants.
 //                EVENT_NAME_SUBSCRIBE
 
@@ -96,6 +102,7 @@ public class Hao123ActivityC extends BaseActivity {
         Log.d("233Act", "" + io.branch.referral.util.BRANCH_STANDARD_EVENT.COMPLETE_REGISTRATION);
         Map<String, Object> eventValues = new HashMap<String, Object>();
         eventValues.put(AFInAppEventParameterName.CONTENT_ID, "1234567");
+
 
         AppsFlyerLib.getInstance().logEvent(getApplicationContext(), AFInAppEventType.LOGIN, eventValues, new AppsFlyerRequestListener() {
             @Override
@@ -230,7 +237,7 @@ public class Hao123ActivityC extends BaseActivity {
         });
 
         binding.txtWebupload.setOnClickListener(view -> {
-            Intent intent = new Intent(Hao123ActivityC.this, UploadWebPDFActivity.class);
+            Intent intent = new Intent(Hao123ActivityC.this, UploadWebActivity.class);
             startActivity(intent);
 
 //            openOutUrl("https://play.google.com/store/apps/details?id=com.kash.credito.aztaca.paypal.dinero.banrural&gl=co&hl=es");
@@ -337,12 +344,19 @@ public class Hao123ActivityC extends BaseActivity {
                 startActivity(intent);
             }
         });
+        binding.txtAuthemail1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Hao123ActivityC.this, GooglePlayEmailActivity.class);
+                startActivity(intent);
+            }
+        });
 
         binding.txtAppList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                Log.d("okhttp", "=============" + FileUtils.getAppList(Hao123ActivityC.this));
+//                Log.d("okhttp", "=============" + FileUtils.getAppList(Hao123ActivityC.this));
             }
         });
         this.binding.txtRemoteConfig.setOnClickListener(new View.OnClickListener() { // from class: con.fire.android2023demo.Hao123ActivityC.15

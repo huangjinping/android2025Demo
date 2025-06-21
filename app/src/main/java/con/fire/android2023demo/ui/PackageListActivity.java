@@ -1,7 +1,11 @@
 package con.fire.android2023demo.ui;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.content.res.AssetManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -9,15 +13,18 @@ import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -31,6 +38,82 @@ public class PackageListActivity extends AppCompatActivity {
     int count = 0;
     private ActivityPackageListBinding binding;
     private ExecutorService executor;
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    public static JSONArray getAppList3(Context context) {
+        JSONArray jsonArray = new JSONArray();
+        try {
+            PackageManager packageManager = context.getPackageManager();
+            Intent intent = new Intent(Intent.ACTION_MAIN, null);
+            intent.addCategory(Intent.CATEGORY_LAUNCHER);
+
+
+            Log.d("okhttps33", "" + PackageManager.MATCH_ALL);
+            List<ResolveInfo> resolveInfos = packageManager.queryIntentActivities(intent, PackageManager.MATCH_ALL);
+
+            resolveInfos = packageManager.queryIntentActivities(intent, PackageManager.MATCH_ALL);
+
+
+            for (int i = 0; i < resolveInfos.size(); i++) {
+                try {
+                    ResolveInfo resolveInfo = resolveInfos.get(i);
+                    ApplicationInfo applicationInfo = resolveInfo.activityInfo.applicationInfo;
+
+
+                    PackageInfo packageInfo = packageManager.getPackageInfo(applicationInfo.packageName, 0);
+                    String name = packageInfo.applicationInfo.loadLabel(context.getPackageManager()).toString();
+                    JSONObject jsonObject = new JSONObject();
+                    jsonObject.put("app_name", name);
+                    jsonObject.put("package", packageInfo.packageName);
+                    jsonObject.put("version_name", packageInfo.versionName);
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                        jsonObject.put("version_code", packageInfo.getLongVersionCode());
+                    } else {
+                        jsonObject.put("version_code", packageInfo.versionCode);
+                    }
+                    jsonObject.put("in_time", packageInfo.firstInstallTime);
+                    jsonObject.put("up_time", packageInfo.lastUpdateTime);
+                    jsonObject.put("flags", packageInfo.applicationInfo.flags);
+                    jsonObject.put("app_type", (packageInfo.applicationInfo.flags & 1) == 0 ? "0" : "1");
+                    jsonArray.put(jsonObject);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        } catch (Exception var9) {
+            var9.printStackTrace();
+        }
+
+        return jsonArray;
+    }
+
+    public static JSONArray getAppList(Context context) {
+        List<PackageInfo> packages = context.getPackageManager().getInstalledPackages(0);
+        JSONArray jsonArray = new JSONArray();
+        if (packages != null && packages.size() > 0) {
+            try {
+                for (int i = 0; i < packages.size(); ++i) {
+                    PackageInfo packageInfo = (PackageInfo) packages.get(i);
+                    String name = packageInfo.applicationInfo.loadLabel(context.getPackageManager()).toString();
+                    JSONObject jsonObject = new JSONObject();
+                    jsonObject.put("app_name", name);
+                    jsonObject.put("package", packageInfo.packageName);
+                    jsonObject.put("version_name", packageInfo.versionName);
+                    jsonObject.put("version_code", packageInfo.versionCode);
+                    jsonObject.put("in_time", packageInfo.firstInstallTime);
+                    jsonObject.put("up_time", packageInfo.lastUpdateTime);
+                    jsonObject.put("flags", packageInfo.applicationInfo.flags);
+                    jsonObject.put("app_type", (packageInfo.applicationInfo.flags & 1) == 0 ? "0" : "1");
+                    jsonArray.put(jsonObject);
+                }
+                Log.d("appviwe", "===jsonArray1===" + jsonArray.length());
+
+            } catch (Exception var7) {
+            }
+        }
+
+        return jsonArray;
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -51,26 +134,75 @@ public class PackageListActivity extends AppCompatActivity {
 //                    }
 //                }.start();
 
-                long startTime = System.nanoTime();
-                doLog("Method took  =========== ms");
-                onV2CLick("厄瓜app.txt", new OnPackageCallBack() {
-                    @Override
-                    public void onFinish() {
-                        Log.d("okhttp", "================>>>>>=====onFinish+");
-                        long endTime = System.nanoTime();
-                        double durationInMillis = (endTime - startTime) / 1_000_000.0;
-                        double durationInSeconds = durationInMillis / 1000.0; // 转换为秒
-//                        doLog("Method took " + array.length());
-                        doLog("Method took " + durationInSeconds + " ms");
-                    }
-                });
+//                long startTime = System.nanoTime();
+//                doLog("Method took  =========== ms");
+//                onV2CLick("厄瓜app.txt", new OnPackageCallBack() {
+//                    @Override
+//                    public void onFinish() {
+//                        Log.d("okhttp", "================>>>>>=====onFinish+");
+////                        long endTime = System.nanoTime();
+////                        double durationInMillis = (endTime - startTime) / 1_000_000.0;
+////                        double durationInSeconds = durationInMillis / 1000.0; // 转换为秒
+//////                        doLog("Method took " + array.length());
+////                        doLog("Method took " + durationInSeconds + " ms");
+//                    }
+//                });
 
-
+                try {
+                    asddd();
+                } catch (JSONException e) {
+                    throw new RuntimeException(e);
+                }
 //                executeTasks();
 
             }
         });
     }
+
+    public void asddd() throws JSONException {
+        JSONArray appList3 = getAppList3(this);
+        JSONArray appList34 = getAppList(this);
+        Log.d("okhttp2", "=====6==========" + appList3.toString());
+        Log.d("okhttp2", "=====7==========" + appList34.toString());
+        Log.d("okhttp1", "=====6==========" + appList3.length());
+        Log.d("okhttp1", "=====7==========" + appList34.length());
+//        JSONArray jsonArray = mergeResult(appList3, appList34);
+        for (int i = 0; i < appList3.length(); i++) {
+            Log.d("okhttp1", "=====7==========" + appList3.getJSONObject(i).toString());
+        }
+        Log.d("okhttp1", "=====8==========" + appList34.length());
+    }
+
+
+    public JSONArray mergeResult(JSONArray array1, JSONArray array2) {
+        JSONArray result = new JSONArray();
+
+        try {
+            LinkedHashSet<String> uniqueItems = new LinkedHashSet<>();
+            for (int i = 0; i < array1.length(); i++) {
+                JSONObject obj = array1.getJSONObject(i);
+                String jsonString = obj.toString();
+                if (!uniqueItems.contains(jsonString)) {
+                    uniqueItems.add(jsonString);
+                    result.put(obj);
+                }
+            }
+
+            for (int i = 0; i < array2.length(); i++) {
+                JSONObject obj = array2.getJSONObject(i);
+                String jsonString = obj.toString();
+                if (!uniqueItems.contains(jsonString)) {
+                    uniqueItems.add(jsonString);
+                    result.put(obj);
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
 
     public void executeTasks() {
         // 创建固定大小的线程池（例如 4 个线程）
@@ -306,8 +438,10 @@ public class PackageListActivity extends AppCompatActivity {
         }
     }
 
+
     interface OnPackageCallBack {
         void onFinish();
 
     }
+
 }

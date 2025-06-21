@@ -85,6 +85,7 @@ public class UploadWebActivity extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             WebView.setWebContentsDebuggingEnabled(true);
         }
+        String url = "https://www.pretimmediatpi.com/customer/index.html?frontSource=2&appSsid=478&userId=30494&mobile=1833693699";
 
 //        -----------------------------___>>>>>>>>>>>>>>>>>1>>>>>>>
         settings.setDatabaseEnabled(true);
@@ -106,13 +107,17 @@ public class UploadWebActivity extends AppCompatActivity {
 //        webView.postUrl("https://www.sricredito.com/sricreditos/privacy.html", null);
 //        webView.loadUrl("file:///android_asset/your_html_file.html"); // 加载本地 HTML 文件
 
-        webView.loadUrl("http://10.1.2.8:8092/pdf.html?v=" + System.currentTimeMillis());
+//        webView.loadUrl("http://10.1.2.8:8092/pdf.html?v=" + System.currentTimeMillis());
 
 //        webView.loadUrl("https://www.soleadomx.com/customer/submitResult.html?aiType=0&workOrderId=2447&missNum=4&appSsid=313&type=2&mobile=1832111111");
 //        webView.loadUrl("https://www.soleadomx.com/customer/index.html?aiType=0&workOrderId=2447&missNum=4&appSsid=313&type=2&mobile=1832111111");
         http:
 //111.203.220.52:8091/inxuploadBack.html
-//        webView.loadUrl("http://111.203.220.52:8091/inxupload.html?v=" + System.currentTimeMillis());
+//        webView.loadUrl("https://apkparse.inxtech.cn/inxupload.html?v=" + System.currentTimeMillis());
+
+
+        webView.loadUrl(url);
+
 //        webView.loadUrl("https://www.baidu.com");
         webView.addJavascriptInterface(this, "nativeWkObc");
 
@@ -136,7 +141,6 @@ public class UploadWebActivity extends AppCompatActivity {
         pickImageIntent.setType("image/*,application/pdf");
         pickImageIntent.addCategory(Intent.CATEGORY_OPENABLE);
         startActivityForResult(pickImageIntent, SELECT_PHOTO);
-
 
 
     }
