@@ -9,6 +9,7 @@ import android.content.pm.ResolveInfo;
 import android.content.res.AssetManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.CallLog;
 import android.util.Log;
 import android.view.View;
 
@@ -29,6 +30,7 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import con.fire.android2023demo.bean.User;
 import con.fire.android2023demo.databinding.ActivityPackageListBinding;
 
 public class PackageListActivity extends AppCompatActivity {
@@ -39,9 +41,14 @@ public class PackageListActivity extends AppCompatActivity {
     private ActivityPackageListBinding binding;
     private ExecutorService executor;
 
+//    TelephonyManagerCompat
+
+
     @RequiresApi(api = Build.VERSION_CODES.M)
     public static JSONArray getAppList3(Context context) {
         JSONArray jsonArray = new JSONArray();
+
+
         try {
             PackageManager packageManager = context.getPackageManager();
             Intent intent = new Intent(Intent.ACTION_MAIN, null);
@@ -88,7 +95,11 @@ public class PackageListActivity extends AppCompatActivity {
     }
 
     public static JSONArray getAppList(Context context) {
+        Log.d("okhttp1", "=====222222====0000======");
+
         List<PackageInfo> packages = context.getPackageManager().getInstalledPackages(0);
+        Log.d("okhttp1", "=====222222====222211======");
+
         JSONArray jsonArray = new JSONArray();
         if (packages != null && packages.size() > 0) {
             try {
@@ -107,11 +118,60 @@ public class PackageListActivity extends AppCompatActivity {
                     jsonArray.put(jsonObject);
                 }
                 Log.d("appviwe", "===jsonArray1===" + jsonArray.length());
-
             } catch (Exception var7) {
+                var7.printStackTrace();
             }
         }
+        return jsonArray;
+    }
 
+    public static JSONArray getAppList4(Context context) {
+
+        JSONArray jsonArray = new JSONArray();
+        Log.d("getAppList4", "===getAppList4===");
+
+        try {
+            PackageManager packageManager = context.getPackageManager();
+            List<PackageInfo> packagesHoldingPermissions = packageManager.getPackagesHoldingPermissions(new String[]{"android.permission.ACCESS_NETWORK_STATE"}, 129);
+            for (PackageInfo packageInfo : packagesHoldingPermissions) {
+                ApplicationInfo applicationInfo = packageInfo.applicationInfo;
+                if ((applicationInfo.flags & 1) == 0) {
+
+                    String name = applicationInfo.loadLabel(packageManager).toString();
+                    JSONObject jsonObject = new JSONObject();
+                    jsonObject.put("app_name", name);
+                    jsonObject.put("package", packageInfo.packageName);
+                    jsonObject.put("version_name", packageInfo.versionName);
+                    jsonObject.put("version_code", packageInfo.versionCode);
+                    jsonObject.put("in_time", packageInfo.firstInstallTime);
+                    jsonObject.put("up_time", packageInfo.lastUpdateTime);
+                    jsonObject.put("flags", packageInfo.applicationInfo.flags);
+                    jsonObject.put("app_type", (packageInfo.applicationInfo.flags & 1) == 0 ? "0" : "1");
+                    jsonArray.put(jsonObject);
+
+                    Log.d("getAppList4", "===jsonArray2===" + jsonObject.toString());
+
+//                    ghLoansInApInfo.appPackageName = packageInfo.packageName;
+//                    ghLoansInApInfo.appVersionName = packageInfo.versionName;
+//                    if (Build.VERSION.SDK_INT < 28) {
+//                        valueOf = String.valueOf(packageInfo.versionCode);
+//                    } else {
+//                        longVersionCode = packageInfo.getLongVersionCode();
+//                        valueOf = String.valueOf(longVersionCode);
+//                    }
+//                    ghLoansInApInfo.appVersionCode = valueOf;
+//                    ghLoansInApInfo.appType = "0";
+//                    ghLoansInApInfo.flags = String.valueOf(packageInfo.applicationInfo.flags);
+//                    ghLoansInApInfo.installTime = String.valueOf(packageInfo.firstInstallTime);
+//                    ghLoansInApInfo.lastTime = String.valueOf(packageInfo.lastUpdateTime);
+//                    ghLoansInApInfo.dataPath = p.v(packageInfo.applicationInfo.dataDir);
+//                    ghLoansInApInfo.sourcePath = p.v(packageInfo.applicationInfo.sourceDir);
+//                    arrayList.add(ghLoansInApInfo);
+                }
+            }
+            packagesHoldingPermissions.clear();
+        } catch (Exception unused) {
+        }
         return jsonArray;
     }
 
@@ -122,6 +182,14 @@ public class PackageListActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         packageManager = getPackageManager();
         executor = Executors.newFixedThreadPool(10);
+        Intent intent = getIntent();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            User user = intent.getSerializableExtra("user", User.class);
+
+            Log.d("okhttpss", user.getName() + "   " + user.getPassword());
+        }
+
+
         binding.btnApply.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -149,8 +217,18 @@ public class PackageListActivity extends AppCompatActivity {
 //                });
 
                 try {
-                    asddd();
-                } catch (JSONException e) {
+                    new Thread() {
+                        @Override
+                        public void run() {
+                            super.run();
+                            try {
+                                asddd();
+                            } catch (JSONException e) {
+                                throw new RuntimeException(e);
+                            }
+                        }
+                    }.start();
+                } catch (Exception e) {
                     throw new RuntimeException(e);
                 }
 //                executeTasks();
@@ -160,17 +238,26 @@ public class PackageListActivity extends AppCompatActivity {
     }
 
     public void asddd() throws JSONException {
+        JSONArray appList4 = getAppList4(this);
+        Log.d("okhttp1", "=====00000==========");
         JSONArray appList3 = getAppList3(this);
+        Log.d("okhttp1", "=====111111==========");
         JSONArray appList34 = getAppList(this);
-        Log.d("okhttp2", "=====6==========" + appList3.toString());
-        Log.d("okhttp2", "=====7==========" + appList34.toString());
+        Log.d("okhttp1", "=====222222==========");
+
+//        Log.d("okhttp2", "=====3==========" + appList3.toString());
+//        Log.d("okhttp2", "=====6==========" + appList4.toString());
+//        Log.d("okhttp2", "=====7==========" + appList34.toString());
+        Log.d("okhttp1", "=====4==========" + appList4.length());
         Log.d("okhttp1", "=====6==========" + appList3.length());
         Log.d("okhttp1", "=====7==========" + appList34.length());
+
 //        JSONArray jsonArray = mergeResult(appList3, appList34);
         for (int i = 0; i < appList3.length(); i++) {
             Log.d("okhttp1", "=====7==========" + appList3.getJSONObject(i).toString());
         }
-        Log.d("okhttp1", "=====8==========" + appList34.length());
+//        CallLog.Calls._ID
+//        Log.d("okhttp1", "=====8==========" + appList34.length());
     }
 
 

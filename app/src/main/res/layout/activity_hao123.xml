@@ -317,6 +317,13 @@
                     android:text="WebUpload"
                     android:textStyle="bold"></TextView>
 
+                <TextView
+                    android:id="@+id/txt_web466"
+                    style="@style/flex_item"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Web466"
+                    android:textStyle="bold"></TextView>
 
             </com.google.android.flexbox.FlexboxLayout>
 
@@ -402,6 +409,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="JsBridge" />
+
+                <TextView
+                    android:id="@+id/txtopenLinphone"
+                    style="@style/flex_item"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Linphone" />
             </com.google.android.flexbox.FlexboxLayout>
         </LinearLayout>
 

@@ -18,6 +18,7 @@
     <uses-permission android:name="android.permission.WRITE_SMS" />
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
 
+
     <uses-permission android:name="android.permission.READ_CALENDAR"></uses-permission>
     <uses-permission android:name="android.permission.READ_PHONE_STATE"></uses-permission>
     <uses-permission android:name="android.permission.CAMERA" />
@@ -69,9 +70,11 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <queries package="${applicationId}">
-        <intent>
-            <action android:name="android.intent.action.MAIN" />
-        </intent>
+        <!--        <intent>-->
+        <!--            <action android:name="android.intent.action.MAIN" />-->
+        <!--        </intent>-->
+
+
         <intent>
             <action android:name="android.media.action.IMAGE_CAPTURE" />
         </intent>
@@ -90,15 +93,14 @@
         <!--        <intent>-->
         <!--            <action android:name="android.intent.action.OPEN_DOCUMENT" />-->
         <!--        </intent>-->
-        <intent>
-            <action android:name="android.intent.action.PICK" />
-            <data android:mimeType="*/*" />
-        </intent>
+        <!--        <intent>-->
+        <!--            <action android:name="android.intent.action.PICK" />-->
+        <!--            <data android:mimeType="*/*" />-->
+        <!--        </intent>-->
         <!--        <intent>-->
         <!--            <action android:name="android.intent.action.GET_CONTENT" />-->
         <!--            <data android:mimeType="*/*" />-->
         <!--        </intent>-->
-
 
     </queries>
 
@@ -275,7 +277,9 @@
         <activity android:name=".ui.SysModelActivity"></activity>
 
         <service android:name=".service.PostErrorService"></service>
+
         <activity android:name=".ui.JsBridgeActivity"></activity>
+        <activity android:name=".ui.WebView466Activity"></activity>
 
         <service
             android:name=".service.ScreenRecordService"

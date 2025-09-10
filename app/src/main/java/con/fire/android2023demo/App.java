@@ -47,6 +47,8 @@ public class App extends Application implements Thread.UncaughtExceptionHandler 
     @Override
     public void onCreate() {
         super.onCreate();
+
+
 //        Thread.setDefaultUncaughtExceptionHandler((t, e) -> {
 //            upCatchMsg(e); // 读取异常堆栈并上传
 //            if (t == Looper.getMainLooper().getThread()) {

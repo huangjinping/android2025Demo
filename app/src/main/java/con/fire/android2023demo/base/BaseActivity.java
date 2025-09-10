@@ -16,11 +16,11 @@ public class BaseActivity extends AppCompatActivity {
         app = App.getAppContext();
         super.onCreate(savedInstanceState);
         String absolutePath = getExternalCacheDir().getAbsolutePath();
-         runOnUiThread(new Runnable() {
-             @Override
-             public void run() {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
 
-             }
-         });
+            }
+        });
     }
 }

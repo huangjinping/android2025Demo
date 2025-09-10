@@ -1,6 +1,8 @@
 package con.fire.android2023demo;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -9,12 +11,17 @@ import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import com.appsflyer.AFInAppEventParameterName;
 import com.appsflyer.AFInAppEventType;
 import com.appsflyer.AppsFlyerLib;
 import com.appsflyer.attribution.AppsFlyerRequestListener;
 import com.facebook.appevents.AppEventsLogger;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.analytics.FirebaseAnalytics;
+import com.google.firebase.installations.FirebaseInstallations;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -23,6 +30,7 @@ import java.util.Map;
 import java.util.UUID;
 
 import con.fire.android2023demo.base.BaseActivity;
+import con.fire.android2023demo.bean.User;
 import con.fire.android2023demo.databinding.ActivityHao123Binding;
 import con.fire.android2023demo.ui.AppCurrentActivity;
 import con.fire.android2023demo.ui.AudioManagerActivity;
@@ -55,11 +63,13 @@ import con.fire.android2023demo.ui.TimerActivity;
 import con.fire.android2023demo.ui.UIFragmentActivity;
 import con.fire.android2023demo.ui.UploadWebActivity;
 import con.fire.android2023demo.ui.ViewActivity;
+import con.fire.android2023demo.ui.WebView466Activity;
 import con.fire.android2023demo.ui.WebViewActivity;
 import con.fire.android2023demo.ui.login.EmailLoginActivity;
 import con.fire.android2023demo.ui.login.PhoneLoginActivity;
 import con.fire.android2023demo.ui.login.SystemLoginActivity;
 import con.fire.android2023demo.utils.Constants;
+import con.fire.android2023demo.utils.PromisedReply;
 import con.fire.android2023demo.utils.ToastUtils;
 import im.crisp.client.ChatActivity;
 import im.crisp.client.Crisp;
@@ -74,11 +84,14 @@ public class Hao123ActivityC extends BaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
 //        appContext = App.getAppContext();
         super.onCreate(savedInstanceState);
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 //        appContext.showToastApp();
         app.showToastApp();
 //        SplashScreen splashScreen = SplashScreen.installSplashScreen(this);
         String filename = UUID.randomUUID().toString();
 
+
+        Log.d("filename2w", "" + Build.VERSION.SDK_INT);
         Log.d("==filename===", "" + filename);
 
         binding = ActivityHao123Binding.inflate(getLayoutInflater());
@@ -126,8 +139,8 @@ public class Hao123ActivityC extends BaseActivity {
         binding.txtToast01.setOnClickListener(v -> {
             String msg = "以下服务端接口可免 access_token 调用的场景：使用微信云托管通过微信令牌/开放接口服务调用；使用微信云开发通过云函数免服务器发起云调用以下服务端接口可免 access_token 调用的场景：使用微信云托管通过微信令牌/开放接口服务调用；使用微信云开发通过云函数免服务器发起云调用。 ";
 //            ToastUtils.showToast(Hao123Activity.this, msg);
-            ToastUtils.makeTextOrder(Hao123ActivityC.this).show();
-//            ToastUtils.makeText(Hao123Activity.this, "" + msg, ToastUtils.LENGTH_LONG).show();
+//            ToastUtils.makeTextOrder(Hao123ActivityC.this).show();
+            ToastUtils.makeText(Hao123ActivityC.this, "" + msg, ToastUtils.LENGTH_LONG).show();
 //            Toast.makeText(Hao123Activity.this, msg, Toast.LENGTH_SHORT).show();
         });
 
@@ -383,13 +396,83 @@ public class Hao123ActivityC extends BaseActivity {
         this.binding.txtPackageList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+
+                User user = new User();
+                user.setPassword("2222");
+                user.setName("name22");
+
+//                Toast.makeText(app, "" + hasAutoFocusFeature(Hao123ActivityC.this), Toast.LENGTH_SHORT).show();
+
                 Intent intent = new Intent(Hao123ActivityC.this, PackageListActivity.class);
+                intent.putExtra("user", user);
                 Hao123ActivityC.this.startActivity(intent);
 
             }
         });
+
+        this.binding.txtWeb466.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Hao123ActivityC.this, WebView466Activity.class);
+                Hao123ActivityC.this.startActivity(intent);
+            }
+        });
+
+        this.binding.txtopenLinphone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                openLine();
+            }
+        });
     }
 
+
+    private PromisedReply<Long> testPromisedReply() {
+        final PromisedReply<Long> result = new PromisedReply<>();
+        new Thread(() -> {
+            try {
+                Thread.sleep(3 * 1000);
+                result.resolve(100l);
+            } catch (Exception ex) {
+                try {
+                    result.reject(ex);
+                } catch (Exception ignored) {
+                }
+            }
+        }).start();
+        return result;
+    }
+
+
+    private void openLine() {
+        testPromisedReply().thenApply(new PromisedReply.SuccessListener<Long>() {
+            @Override
+            public PromisedReply<Long> onSuccess(Long result) throws Exception {
+
+
+                Log.d("openLine", Thread.currentThread().getName() + "-=====onSuccess===" + result);
+                return null;
+            }
+        }, new PromisedReply.FailureListener<Long>() {
+            @Override
+            public <E extends Exception> PromisedReply<Long> onFailure(E err) throws Exception {
+                Log.d("openLine", "-=====onFailure===");
+
+                return null;
+            }
+        });
+
+//        Intent intent = new Intent(Intent.ACTION_CALL);
+//        intent.setData(Uri.parse("tel:0788405348")); // 替换为目标电话号码
+//        intent.setPackage("org.linphone"); // 指定 Linphone 包名
+//        try {
+//            startActivity(intent);
+//        } catch (ActivityNotFoundException e) {
+//            Toast.makeText(this, "Linphone 未安装", Toast.LENGTH_SHORT).show();
+//        }
+    }
 
     private void openPlay(String url) {
 
@@ -424,5 +507,39 @@ public class Hao123ActivityC extends BaseActivity {
 //        } else {
 ////            Utils.toast("Please download and install Google Play first");
 //        }
+
+        try {
+
+
+            FirebaseInstallations.getInstance().getId().addOnCompleteListener(new OnCompleteListener<String>() {
+                @Override
+                public void onComplete(@NonNull Task<String> task) {
+
+                }
+            });
+
+            FirebaseAnalytics.getInstance(this).getAppInstanceId().addOnCompleteListener(new OnCompleteListener<String>() {
+                @Override
+                public void onComplete(@NonNull Task<String> task) {
+                    if (task.isSuccessful()) {
+                        try {
+                            String instanceId = task.getResult();
+
+                            //这儿就是instanceId
+
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public boolean hasAutoFocusFeature(Context context) {
+        return context.getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_AUTOFOCUS);
     }
 }

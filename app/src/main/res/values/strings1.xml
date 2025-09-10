@@ -4,7 +4,7 @@
 <!--    <string name="fb_client_token" translatable="false">b7d94b8a0f8844886f8deac9489a5b2e</string>-->
 
 
-    <string name="facebook_app_id">996099931846007</string>
+    <string name="facebook_app_id" >996099931846007</string>
     <string name="fb_client_token" translatable="false">f650fe4e5aa36d94f404b1f9aecc85b4</string>
     <string name="button_name">Java调用Web</string>
 

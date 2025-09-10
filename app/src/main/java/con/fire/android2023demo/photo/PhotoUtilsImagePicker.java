@@ -87,6 +87,7 @@ public class PhotoUtilsImagePicker extends PhotoSo {
     private File createTemporaryWritableFile(String suffix) {
         String filename = UUID.randomUUID().toString();
         File image;
+//        File externalFilesDirectory = activity.getCacheDir();
         File externalFilesDirectory = activity.getCacheDir();
 
         try {
@@ -109,6 +110,8 @@ public class PhotoUtilsImagePicker extends PhotoSo {
         File imageFile = createTemporaryWritableImageFile();
         pendingCameraMediaUri = Uri.parse("file:" + imageFile.getAbsolutePath());
 
+
+        Log.d("take_photo", "========================>" + imageFile.getAbsolutePath());
         useFrontCamera(intent);
         Log.d(TAG, "" + imageFile.getAbsolutePath());
         Uri imageUri = fileUriResolver.resolveFileProviderUriForFile(fileProviderName, imageFile);
@@ -170,7 +173,7 @@ public class PhotoUtilsImagePicker extends PhotoSo {
 
             switch (requestCode) {
                 case SELECT_PHOTO:
-                    Log.d(TAG, resultCode+"==189===============22222222222==="+requestCode);
+                    Log.d(TAG, resultCode + "==189===============22222222222===" + requestCode);
 
                     if (resultCode == Activity.RESULT_OK && data != null) {
 

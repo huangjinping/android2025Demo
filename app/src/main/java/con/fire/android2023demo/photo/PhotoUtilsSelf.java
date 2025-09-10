@@ -52,8 +52,7 @@ public class PhotoUtilsSelf extends PhotoSo {
      * 判断sdcard是否被挂载
      */
     public static boolean hasSdcard() {
-        return Environment.getExternalStorageState().equals(
-                Environment.MEDIA_MOUNTED);
+        return Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED);
     }
 
     /**
@@ -114,8 +113,7 @@ public class PhotoUtilsSelf extends PhotoSo {
             // 从指定路径下读取图片，并获取其EXIF信息
             ExifInterface exifInterface = new ExifInterface(path);
             // 获取图片的旋转信息
-            int orientation = exifInterface.getAttributeInt(ExifInterface.TAG_ORIENTATION,
-                    ExifInterface.ORIENTATION_NORMAL);
+            int orientation = exifInterface.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL);
             switch (orientation) {
                 case ExifInterface.ORIENTATION_ROTATE_90:
                     degree = 90;
@@ -166,9 +164,7 @@ public class PhotoUtilsSelf extends PhotoSo {
                     uri = Uri.fromFile(outputImagepath);
                     intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
                 } else {
-
                     uri = FileProvider.getUriForFile(activity, activity.getPackageName() + ".fileProvider", outputImagepath);
-
                     intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
                 }
             }
@@ -190,8 +186,7 @@ public class PhotoUtilsSelf extends PhotoSo {
         } else if (uri.getScheme().equals(ContentResolver.SCHEME_CONTENT)) {
             //把文件复制到沙盒目录
             ContentResolver contentResolver = context.getContentResolver();
-            String displayName = System.currentTimeMillis() + Math.round((Math.random() + 1) * 1000)
-                    + "." + MimeTypeMap.getSingleton().getExtensionFromMimeType(contentResolver.getType(uri));
+            String displayName = System.currentTimeMillis() + Math.round((Math.random() + 1) * 1000) + "." + MimeTypeMap.getSingleton().getExtensionFromMimeType(contentResolver.getType(uri));
 
             try {
                 InputStream is = contentResolver.openInputStream(uri);
@@ -219,6 +214,10 @@ public class PhotoUtilsSelf extends PhotoSo {
                     if (requestCode == TAKE_PHOTO && resultCode == Activity.RESULT_OK) {
                         displayImage(outputImagepath.getAbsolutePath());
 
+                        String filepath = PhotoBitmapUtils.amendRotatePhoto(outputImagepath.getAbsolutePath(), activity);
+
+                        Log.d(TAG, "===1032===" + filepath);
+
                     } else if (requestCode == SELECT_PHOTO && resultCode == Activity.RESULT_OK) {
                         Uri data1 = data.getData();
 
@@ -228,7 +227,11 @@ public class PhotoUtilsSelf extends PhotoSo {
 //                bitmap = rotaingImageView(90, bitmap);
 
                         File path2 = BitmapUtils.saveBitmap(bitmap, System.currentTimeMillis() + "photo2", activity);
-//                        String filepath = PhotoBitmapUtils.amendRotatePhoto(path2.getPath(), activity);
+                        String filepath = PhotoBitmapUtils.amendRotatePhoto(path2.getPath(), activity);
+
+
+                        Log.d(TAG, "===102===" + filepath);
+
 
                         activity.runOnUiThread(new Runnable() {
                             @Override
@@ -263,7 +266,7 @@ public class PhotoUtilsSelf extends PhotoSo {
      */
     private void displayImage(String imagePath) {
         try {
-            Log.d(TAG, "========displayImage==="+imagePath);
+            Log.d(TAG, "========displayImage===" + imagePath);
 
             if (!TextUtils.isEmpty(imagePath)) {
                 orc_bitmap = comp(BitmapFactory.decodeFile(imagePath)); //压缩图片
@@ -306,8 +309,7 @@ public class PhotoUtilsSelf extends PhotoSo {
             } else if (w < h && h > hh) {//如果高度高的话根据宽度固定大小缩放
                 be = (int) (newOpts.outHeight / hh);
             }
-            if (be <= 0)
-                be = 1;
+            if (be <= 0) be = 1;
             newOpts.inSampleSize = be;//设置缩放比例
             newOpts.inPreferredConfig = Bitmap.Config.RGB_565;//降低图片从ARGB888到RGB565
             //重新读入图片，注意此时已经把options.inJustDecodeBounds 设回false了

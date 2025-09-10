@@ -37,7 +37,7 @@
         <!--  主要品牌颜色的较浅/较暗变体，在主题中很少使用  -->
         <item name="colorPrimaryVariant">@color/colorPrimaryDark</item>
         <!--  用于显示在原色上方的元素的颜色（例如，文本和图标，根据可访问性，通常为白色或半透明的黑色）  -->
-
+        <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
         <!--  字符文本 避免被自动转换为大写  -->
         <item name="textAllCaps">false</item>
         <item name="android:includeFontPadding">false</item>

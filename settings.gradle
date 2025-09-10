@@ -11,6 +11,11 @@ pluginManagement {
         gradlePluginPortal()
         google()
         maven { url 'https://jitpack.io' }
+        maven {
+            url "http://maven.geelib.360.cn/nexus/repository/replugin/"
+            allowInsecureProtocol = true
+        }
+//        maven {url "https://maven.geelib.360.cn/nexus/repository/replugin/"}
         jcenter() // Warning: this repository is going to shut down soon
     }
 }
@@ -21,6 +26,11 @@ dependencyResolutionManagement {
         google()
         mavenCentral()
         maven { url 'https://jitpack.io' }
+        maven {
+            url "http://maven.geelib.360.cn/nexus/repository/replugin/"
+            allowInsecureProtocol = true
+        }
+//        maven {url "https://maven.geelib.360.cn/nexus/repository/replugin/"}
         jcenter() // Warning: this repository is going to shut down soon
     }
 }

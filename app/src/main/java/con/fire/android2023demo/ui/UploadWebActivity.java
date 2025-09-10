@@ -21,6 +21,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -101,7 +102,7 @@ public class UploadWebActivity extends AppCompatActivity {
 
 //        webView.loadUrl("http://172.17.1.103:8092/inxupload.html?appSsid=252&frontSource=2&userId=2183&v=" + System.currentTimeMillis());
 
-//        webView.loadUrl("https://peru.prestamopluspe.com/customers/index.html?frontSource=1&appSsid=200&mobile=1820000&v=" + System.currentTimeMillis());
+        webView.loadUrl("https://peru.prestamopluspe.com/customers/index.html?frontSource=1&appSsid=200&mobile=1820000&v=" + System.currentTimeMillis());
 //        webView.loadUrl("https://chile.ultracreditosmx.com/customer/index.html?frontSource=10&appSsid=9050&userId=5201&v=" + System.currentTimeMillis());
 
 //        webView.postUrl("https://www.sricredito.com/sricreditos/privacy.html", null);
@@ -125,6 +126,19 @@ public class UploadWebActivity extends AppCompatActivity {
             String result = System.currentTimeMillis() + "";
 //            webView.loadUrl("javascript:onVSLogEvent('" + result + "')");
 
+        });
+
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) { // true 表示这个回调是临时的
+            @Override
+            public void handleOnBackPressed() {
+                onBackPage();
+                // 自定义逻辑，例如显示确认对话框等
+//                new AlertDialog.Builder(UploadWebActivity.this)
+//                        .setMessage("确定要退出吗？")
+//                        .setPositiveButton("是", (dialog, which) -> finish())
+//                        .setNegativeButton("否", null)
+//                        .show();
+            }
         });
 
     }
@@ -159,6 +173,36 @@ public class UploadWebActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+
+    private void onBackPage() {
+        webView.evaluateJavascript("javascript:onBackPressed()", new ValueCallback<String>() {
+            @Override
+            public void onReceiveValue(String s) {
+
+                Log.d("aonReceipp", "===============" + s);
+
+                if ("0".equals(s)) {
+                    Log.d("aonReceipp", "=======2========" + s);
+
+                    Toast.makeText(UploadWebActivity.this, "不返回", Toast.LENGTH_SHORT).show();
+
+                } else {
+                    Log.d("aonReceipp", "=======3=======" + s);
+
+                    if (webView.canGoBack()) {
+                        webView.goBack();
+                    } else {
+                        finish();
+
+//                        UploadWebActivity.super.onBackPressed();
+//                        super.onBackPressed();
+
+                    }
+                }
+            }
+        });
     }
 
     @Override
@@ -239,29 +283,51 @@ public class UploadWebActivity extends AppCompatActivity {
         Log.d(TAG, "-------onDestroy--------");
     }
 
-    @Override
-    public void onBackPressed() {
+//    @Override
+//    public void onBackPressed() {
+//        // 自定义逻辑（例如：确认对话框、跳转到指定页面）
+//        if (shouldAllowBack) {
+//            super.onBackPressed(); // 默认返回行为
+//        } else {
+//        }
+//        Toast.makeText(this, "请先完成操作", Toast.LENGTH_SHORT).show();
+//
+//    }
 
-        super.onBackPressed();
-        webView.evaluateJavascript("javascript:onBackPressed()", new ValueCallback<String>() {
-            @Override
-            public void onReceiveValue(String s) {
-                if ("0".equals(s)) {
-
-                    Toast.makeText(UploadWebActivity.this, "不返回", Toast.LENGTH_SHORT).show();
-
-                } else {
-                    if (webView.canGoBack()) {
-                        webView.goBack();
-                    } else {
+//    @Override
+//    public void onBackPressed() {
+//
+//
+//        super.onBackPressed();
+//        webView.evaluateJavascript("javascript:onBackPressed()", new ValueCallback<String>() {
+//            @Override
+//            public void onReceiveValue(String s) {
+//
+//                Log.d("aonReceipp", "===============" + s);
+//
+//                if ("0".equals(s)) {
+//                    Log.d("aonReceipp", "=======2========" + s);
+//
+////                    Toast.makeText(UploadWebActivity.this, "不返回", Toast.LENGTH_SHORT).show();
+//
+//                } else {
+//                    Log.d("aonReceipp", "=======3=======" + s);
+//
+//                    if (webView.canGoBack()) {
+//                        webView.goBack();
+//                    } else {
+//
 //                        UploadWebActivity.super.onBackPressed();
-                        finish();
-                    }
-                }
-            }
-        });
-    }
 
+    /// /                        finish();
+//                        //        super.onBackPressed();
+//
+//                    }
+//                }
+//            }
+//        });
+//
+//    }
     @JavascriptInterface
     public void setNativeBacKFlag(String flag) {
 
@@ -295,6 +361,7 @@ public class UploadWebActivity extends AppCompatActivity {
                     try {
                         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
                         startActivity(intent);
+
                     } catch (Exception e) {
                         e.printStackTrace();
                     }

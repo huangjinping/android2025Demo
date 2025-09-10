@@ -1,6 +1,7 @@
 package con.fire.android2023demo.ui;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -42,7 +43,7 @@ import con.fire.android2023demo.FileUtils;
 import con.fire.android2023demo.R;
 import con.fire.android2023demo.photo.PhotoCallback;
 import con.fire.android2023demo.photo.PhotoSo;
-import con.fire.android2023demo.photo.PhotoUtilsImagePicker;
+import con.fire.android2023demo.photo.PhotoUtilsSelf;
 import con.fire.android2023demo.utils.Compressor;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.functions.Consumer;
@@ -90,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
         Task<ReviewInfo> request = manager.requestReviewFlow();
         Log.d("okhttp", "=====ReviewManager" + manager.getClass().getSimpleName());
         //平台埋点
-        //
+
         request.addOnCompleteListener(new OnCompleteListener<ReviewInfo>() {
             @Override
             public void onComplete(@NonNull Task<ReviewInfo> task) {
@@ -158,7 +159,7 @@ public class MainActivity extends AppCompatActivity {
         ImageView img_banner = findViewById(R.id.img_banner);
         img_banner.setImageResource(R.mipmap.banner);
 
-        photoSo = new PhotoUtilsImagePicker(this);
+        photoSo = new PhotoUtilsSelf(this);
 
         photoSo.setCallback(new PhotoCallback() {
             @Override
@@ -271,6 +272,7 @@ public class MainActivity extends AppCompatActivity {
 //                }).launch();
     }
 
+    @SuppressLint("CheckResult")
     private void compress2(String path) {
         new Compressor(this).compressToFileAsFlowable(new File(path)).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new Consumer<File>() {
             @Override

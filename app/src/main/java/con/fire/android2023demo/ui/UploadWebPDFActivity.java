@@ -123,7 +123,10 @@ public class UploadWebPDFActivity extends AppCompatActivity {
 //        webView.loadUrl("http://111.203.220.52:8091/inxupload.html?v=" + System.currentTimeMillis());
 //        webView.loadUrl("https://www.baidu.com");
         webView.addJavascriptInterface(this, "nativeWkObc");
-        webView.loadUrl("file:///android_asset/upload.html");
+//        webView.loadUrl("file:///android_asset/upload.html");
+//        webView.loadUrl("file:///android_asset/upload.html");
+//        webView.loadUrl("file:///android_asset/h5/index.html");
+
         binding.btnSubmit.setOnClickListener(view -> {
 //            String result = System.currentTimeMillis() + "";
 //            webView.loadUrl("javascript:onVSLogEvent('" + result + "')");
