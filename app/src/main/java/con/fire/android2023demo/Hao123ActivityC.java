@@ -70,6 +70,7 @@ import con.fire.android2023demo.ui.login.PhoneLoginActivity;
 import con.fire.android2023demo.ui.login.SystemLoginActivity;
 import con.fire.android2023demo.utils.Constants;
 import con.fire.android2023demo.utils.PromisedReply;
+import con.fire.android2023demo.utils.RootedCheck.RootedCheck;
 import con.fire.android2023demo.utils.ToastUtils;
 import im.crisp.client.ChatActivity;
 import im.crisp.client.Crisp;
@@ -132,6 +133,14 @@ public class Hao123ActivityC extends BaseActivity {
             }
         });
 
+
+        initRoot();
+    }
+
+    private void initRoot() {
+        RootedCheck check = new RootedCheck(this);
+
+        binding.txtjailmonkey.setText(!check.isJailBroken() ? "已root" : "未root");
 
     }
 

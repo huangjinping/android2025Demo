@@ -1,6 +1,6 @@
 plugins {
     alias(libs.plugins.android.application)
-    id 'com.google.gms.google-services'
+//    id 'com.google.gms.google-services'
 //    id 'com.google.firebase.crashlytics'
 
 }
@@ -11,7 +11,10 @@ android {
 
     defaultConfig {
 //        applicationId "con.fire.android2023demo"
-        applicationId "con.modhe.myapplication"
+//        applicationId "con.modhe.myapplication"
+
+        applicationId "com.agrobank.affin.smebank"
+
 //        applicationId "com.fori.ready.naqd.paisa.jazz.foriqarz"
 //        applicationId "con.fire.android2023demo"
 
@@ -179,4 +182,14 @@ dependencies {
     // When using the BoM, you don't specify versions in Firebase library dependencies
     implementation("com.google.firebase:firebase-config")
     implementation("com.google.firebase:firebase-analytics")
+
+    implementation 'com.scottyab:rootbeer-lib:0.1.1'
+
+//    implementation "com.tencent.shadow:host-lib:2.1.0"
+//    // 可选：日志库（便于调试）
+//    implementation "com.tencent.shadow:logger:2.1.0"
+
+//    implementation "com.tencent.shadow.core:common:2.3.0"  // 核心工具
+//    implementation "com.tencent.shadow.dynamic:host:2.3.0"  // Host 核心
+//    implementation "com.tencent.shadow.dynamic:host-multi-loader-ext:2.3.0"  // 多加载器扩展
 }

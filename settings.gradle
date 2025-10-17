@@ -12,6 +12,9 @@ pluginManagement {
         google()
         maven { url 'https://jitpack.io' }
         maven {
+            url "https://maven.aliyun.com/repository/public"
+        }
+        maven {
             url "http://maven.geelib.360.cn/nexus/repository/replugin/"
             allowInsecureProtocol = true
         }
@@ -26,6 +29,9 @@ dependencyResolutionManagement {
         google()
         mavenCentral()
         maven { url 'https://jitpack.io' }
+        maven {
+            url "https://maven.aliyun.com/repository/public"
+        }
         maven {
             url "http://maven.geelib.360.cn/nexus/repository/replugin/"
             allowInsecureProtocol = true

@@ -9,7 +9,6 @@ import android.content.pm.ResolveInfo;
 import android.content.res.AssetManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.provider.CallLog;
 import android.util.Log;
 import android.view.View;
 
@@ -238,24 +237,24 @@ public class PackageListActivity extends AppCompatActivity {
     }
 
     public void asddd() throws JSONException {
-        JSONArray appList4 = getAppList4(this);
-        Log.d("okhttp1", "=====00000==========");
-        JSONArray appList3 = getAppList3(this);
-        Log.d("okhttp1", "=====111111==========");
+//        JSONArray appList4 = getAppList4(this);
+//        Log.d("okhttp1", "=====00000==========");
+//        JSONArray appList3 = getAppList3(this);
+        Log.d("okhttp1", "=====111111==========" + Thread.currentThread().getName());
         JSONArray appList34 = getAppList(this);
-        Log.d("okhttp1", "=====222222==========");
+        Log.d("okhttp1", "=====222222==========" + Thread.currentThread().getName());
 
 //        Log.d("okhttp2", "=====3==========" + appList3.toString());
 //        Log.d("okhttp2", "=====6==========" + appList4.toString());
 //        Log.d("okhttp2", "=====7==========" + appList34.toString());
-        Log.d("okhttp1", "=====4==========" + appList4.length());
-        Log.d("okhttp1", "=====6==========" + appList3.length());
+//        Log.d("okhttp1", "=====4==========" + appList4.length());
+//        Log.d("okhttp1", "=====6==========" + appList3.length());
         Log.d("okhttp1", "=====7==========" + appList34.length());
 
 //        JSONArray jsonArray = mergeResult(appList3, appList34);
-        for (int i = 0; i < appList3.length(); i++) {
-            Log.d("okhttp1", "=====7==========" + appList3.getJSONObject(i).toString());
-        }
+//        for (int i = 0; i < appList3.length(); i++) {
+//            Log.d("okhttp1", "=====7==========" + appList3.getJSONObject(i).toString());
+//        }
 //        CallLog.Calls._ID
 //        Log.d("okhttp1", "=====8==========" + appList34.length());
     }

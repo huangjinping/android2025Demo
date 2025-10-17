@@ -132,7 +132,7 @@ public class PhotoUtilsImagePicker extends PhotoSo {
 
     public void take_Album() {
         Intent pickImageIntent;
-        boolean usePhotoPicker = false;
+        boolean usePhotoPicker = true;
         if (usePhotoPicker && Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             pickImageIntent = new ActivityResultContracts.PickVisualMedia().createIntent(activity, new PickVisualMediaRequest.Builder().setMediaType(ActivityResultContracts.PickVisualMedia.ImageOnly.INSTANCE).build());
         } else {

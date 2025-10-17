@@ -75,7 +75,8 @@ public class App extends Application implements Thread.UncaughtExceptionHandler 
         startReferrer(this);
         FacebookSdk.setApplicationId(getString(R.string.facebook_app_id));
         AppEventsLogger.activateApp(this);
-        AppsFlyerLib.getInstance().init("ZUwwP6a2jFqoXzxtrszHRn", new AppsFlyerConversionListener() {
+        AppsFlyerLib.getInstance().setDebugLog(true);
+        AppsFlyerLib.getInstance().init("Vhds7zZfmQRsZGUb8H77jD", new AppsFlyerConversionListener() {
             @Override
             public void onConversionDataSuccess(Map<String, Object> map) {
                 Gson gson = new Gson();

@@ -136,6 +136,10 @@ public class PhotoUtilsSelf extends PhotoSo {
             Intent intent = new Intent(Intent.ACTION_PICK, null);
             intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
             activity.startActivityForResult(intent, SELECT_PHOTO);
+//            Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+//            intent.setType("image/*");
+//            activity.startActivityForResult(intent, SELECT_PHOTO);
+
         } catch (Exception e) {
             e.printStackTrace();
         }

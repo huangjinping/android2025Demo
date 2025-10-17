@@ -43,7 +43,7 @@ import con.fire.android2023demo.FileUtils;
 import con.fire.android2023demo.R;
 import con.fire.android2023demo.photo.PhotoCallback;
 import con.fire.android2023demo.photo.PhotoSo;
-import con.fire.android2023demo.photo.PhotoUtilsSelf;
+import con.fire.android2023demo.photo.PhotoUtilsImagePicker;
 import con.fire.android2023demo.utils.Compressor;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.functions.Consumer;
@@ -159,7 +159,7 @@ public class MainActivity extends AppCompatActivity {
         ImageView img_banner = findViewById(R.id.img_banner);
         img_banner.setImageResource(R.mipmap.banner);
 
-        photoSo = new PhotoUtilsSelf(this);
+        photoSo = new PhotoUtilsImagePicker(this);
 
         photoSo.setCallback(new PhotoCallback() {
             @Override
@@ -219,9 +219,15 @@ public class MainActivity extends AppCompatActivity {
                 image_target = img_load_album;
                 Log.d("okhttps", "====000===11==>>>>");
 //                ActivityCompat.requestPermissions(MainActivity.this, permissionArr, 101);
-//                photoSo.take_Album();
+//                if (ActivityResultContracts.PickVisualMedia.isPhotoPickerAvailable(MainActivity.this)) {
+//                    pickMedia.launch(new PickVisualMediaRequest.Builder().setMediaType(ActivityResultContracts.PickVisualMedia.ImageOnly.INSTANCE).build());
+//
+//                } else {
+//                    photoSo.take_Album();
+//
+//                }
 
-                pickMedia.launch(new PickVisualMediaRequest.Builder().setMediaType(ActivityResultContracts.PickVisualMedia.ImageOnly.INSTANCE).build());
+                photoSo.take_Album();
 
 
             }
