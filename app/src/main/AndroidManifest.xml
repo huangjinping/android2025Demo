@@ -275,6 +275,8 @@
 
         <activity android:name=".ui.PackageListActivity"></activity>
 
+        <activity android:name=".ui.CameraWebActivity"></activity>
+
         <activity
             android:name=".ui.SnippetsActivity"
             android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize"

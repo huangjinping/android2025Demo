@@ -1,5 +1,6 @@
 package con.fire.android2023demo;
 
+import android.Manifest;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
@@ -24,6 +25,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.installations.FirebaseInstallations;
+import com.luck.picture.lib.permissions.PermissionUtil;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -38,6 +40,7 @@ import con.fire.android2023demo.ui.AppCurrentActivity;
 import con.fire.android2023demo.ui.AudioManagerActivity;
 import con.fire.android2023demo.ui.BaseWeb154Activity;
 import con.fire.android2023demo.ui.BluetoothActivity;
+import con.fire.android2023demo.ui.CameraWebActivity;
 import con.fire.android2023demo.ui.CrashActivity;
 import con.fire.android2023demo.ui.DialogTestActivity;
 import con.fire.android2023demo.ui.EditActivity;
@@ -80,8 +83,10 @@ import im.crisp.client.Crisp;
 //Android 12之启动画面Splash Screens（一） -- 适配
 //https://openatomworkshop.csdn.net/664ff735b12a9d168eb73c7a.html
 public class Hao123ActivityC extends BaseActivity {
+    final String[] permissNal = {,};
+    //    App appContext;
     ActivityHao123Binding binding;
-//    App appContext;
+    String[] permissionArr = {Manifest.permission.CAMERA};
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -89,7 +94,7 @@ public class Hao123ActivityC extends BaseActivity {
         super.onCreate(savedInstanceState);
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 //        appContext.showToastApp();
-        app.showToastApp();
+//        app.showToastApp();
 //        SplashScreen splashScreen = SplashScreen.installSplashScreen(this);
         String filename = UUID.randomUUID().toString();
 
@@ -422,8 +427,12 @@ public class Hao123ActivityC extends BaseActivity {
         this.binding.txtWeb466.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Hao123ActivityC.this, WebView466Activity.class);
+                Intent intent = new Intent(Hao123ActivityC.this, CameraWebActivity.class);
                 Hao123ActivityC.this.startActivity(intent);
+
+//                ActivityCompat.requestPermissions(Hao123ActivityC.this, permissionArr, 100);
+
+
             }
         });
 
@@ -501,6 +510,21 @@ public class Hao123ActivityC extends BaseActivity {
             startActivity(intent);
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        if (requestCode == 100) {
+
+
+            if (PermissionUtil.hasPermissions(this, permissions)) {
+                Intent intent = new Intent(Hao123ActivityC.this, WebView466Activity.class);
+                Hao123ActivityC.this.startActivity(intent);
+            }
         }
     }
 

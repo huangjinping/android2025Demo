@@ -50,7 +50,9 @@ public class WebView466Activity extends AppCompatActivity {
         binding.webview.setOverScrollMode(View.OVER_SCROLL_NEVER);
 //        binding.webview.loadUrl("http://172.16.3.28:8081/?v=" + System.currentTimeMillis());
 //        binding.webview.loadUrl("");
-        binding.webview.loadUrl("file:///android_asset/h5/index.html");
+//        binding.webview.loadUrl("file:///android_asset/h5/index.html");
+
+        binding.webview.loadUrl("https://doc.inxtech.cn/camera.html");
 
 
         binding.webview.addJavascriptInterface(this, "nativeWkObc");
