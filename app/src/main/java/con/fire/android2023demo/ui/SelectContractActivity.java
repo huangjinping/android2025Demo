@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.ContactsContract;
 import android.text.TextUtils;
 import android.util.Log;
@@ -110,6 +111,14 @@ public class SelectContractActivity extends AppCompatActivity {
         intent.setType(ContactsContract.CommonDataKinds.Phone.CONTENT_TYPE);
 
         startActivityForResult(intent, REQUEST_CONTRACT);
+
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+            }
+        }, 10 * 1000);
     }
 
     /**
@@ -204,8 +213,8 @@ public class SelectContractActivity extends AppCompatActivity {
 //        onResult3(requestCode, resultCode, data);
 //        onResult4(requestCode, resultCode, data);
 //        onResult5(requestCode, resultCode, data);
-//        onResult6(requestCode, resultCode, data);
-        onResult9(requestCode, resultCode, data);
+        onResult6(requestCode, resultCode, data);
+//        onResult9(requestCode, resultCode, data);
 
     }
 

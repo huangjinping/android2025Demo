@@ -122,7 +122,6 @@ public class FileUtils {
 
 
 //    public String getUniqueId(Context context) {
-//
 //        SharedPreferences pref = context.getSharedPreferences("UniqueId", Context.MODE_PRIVATE);
 //        String uniqueId = pref.getString("uuid", "");
 //        if (TextUtils.isEmpty(uniqueId)) {
@@ -152,8 +151,6 @@ public class FileUtils {
                 } else if (extension != null) {
                     fileName = getBaseName(fileName) + extension;
                 }
-
-
             } catch (Exception e) {
                 e.printStackTrace();
             }

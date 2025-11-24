@@ -29,7 +29,6 @@ public class ViewPager2Activity extends AppCompatActivity {
 
         initPage();
 
-
     }
 
     private void initPage() {

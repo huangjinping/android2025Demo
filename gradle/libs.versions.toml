@@ -5,8 +5,12 @@ junitVersion = "1.2.1"
 espressoCore = "3.6.1"
 appcompat = "1.7.0"
 material = "1.12.0"
-activity = "1.10.1"
-constraintlayout = "2.2.1"
+activity = "1.9.0"
+constraintlayout = "2.1.4"
+kotlin = "2.0.0"
+android-gradle = "8.5.1"
+ext-junit = "1.2.1"
+
 
 [libraries]
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -19,4 +23,5 @@ constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayo
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
+jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 

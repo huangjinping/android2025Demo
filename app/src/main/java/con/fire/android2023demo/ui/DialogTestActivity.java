@@ -1,5 +1,6 @@
 package con.fire.android2023demo.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -29,6 +30,7 @@ import con.fire.android2023demo.ui.fragment.RepayComplaintDialogFragment;
 import con.fire.android2023demo.utils.LoadingDialogUtils;
 import con.fire.android2023demo.utils.LogUtils;
 import con.fire.android2023demo.vm.DialogViewModel;
+import con.fire.android2023demo.widget.LoadingDialog;
 import con.fire.android2023demo.widget.ProgressBarDialog;
 
 public class DialogTestActivity extends AppCompatActivity {
@@ -106,15 +108,41 @@ public class DialogTestActivity extends AppCompatActivity {
                 show306();
 
 
-                new  Handler().postDelayed(new Runnable() {
+                new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         show162();
                     }
-                },3300);
+                }, 3300);
+            }
+        });
+
+        binding.btn494.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                LoadingDialog loadingDialog = LoadingDialog.show(DialogTestActivity.this, "dddd");
+
+
+//                ProgressDialog progressDialog = new ProgressBarDialog(DialogTestActivity.this);
+//                progressDialog.show();
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+//                        loadingDialog.dismiss();
+
+                        LoadingDialog dddd = LoadingDialog.show(DialogTestActivity.this, "dd22dd");
+
+//                        dddd.dismiss();
+                        startActivity(new Intent(DialogTestActivity.this, DialogTestActivity.class));
+
+                    }
+                }, 1000);
+
             }
         });
     }
+
 
     private void show195() {
 //        this.finish();

@@ -2,6 +2,8 @@ plugins {
     alias(libs.plugins.android.application)
 //    id 'com.google.gms.google-services'
 //    id 'com.google.firebase.crashlytics'
+    alias(libs.plugins.jetbrains.kotlin.android)
+
 
 }
 
@@ -69,9 +71,14 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_11
-        targetCompatibility JavaVersion.VERSION_11
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
+    kotlinOptions {
+        jvmTarget = "17"
+    }
+
+
 }
 
 dependencies {
@@ -85,7 +92,7 @@ dependencies {
     androidTestImplementation libs.espresso.core
     implementation 'com.github.lzyzsd:jsbridge:1.0.5'
 
-    implementation 'io.branch.sdk.android:library:5.+'
+//    implementation 'io.branch.sdk.android:library:5.+'
     implementation 'androidx.browser:browser:1.0.0'
     implementation 'com.google.android.gms:play-services-ads-identifier:17.1.0+'
     implementation 'com.github.fingerprintjs:fingerprint-android:2.0.0'
@@ -184,6 +191,9 @@ dependencies {
     implementation("com.google.firebase:firebase-analytics")
 
     implementation 'com.scottyab:rootbeer-lib:0.1.1'
+
+    implementation 'com.airbnb.android:lottie:6.0.0'
+
 
 //    implementation "com.tencent.shadow:host-lib:2.1.0"
 //    // 可选：日志库（便于调试）

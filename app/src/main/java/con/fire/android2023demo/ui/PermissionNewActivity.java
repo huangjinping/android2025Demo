@@ -28,6 +28,7 @@ public class PermissionNewActivity extends AppCompatActivity {
         @Override
         public void onActivityResult(Map<String, Boolean> result) {
             LogUtils.logS(TAG, result);
+            
             /**
              * {"android.permission.ACCESS_COARSE_LOCATION":false,"android.permission.READ_SMS":true,"android.permission.READ_CALL_LOG":true}
              */

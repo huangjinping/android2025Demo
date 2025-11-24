@@ -18,7 +18,6 @@ import con.fire.android2023demo.utils.PhoneUtils;
 public class AppCurrentActivity extends AppCompatActivity {
 
     ActivityAppcurrentBinding binding;
-
     String[] permissions = {Manifest.permission.READ_SMS, Manifest.permission.READ_PHONE_STATE};
     ActivityResultLauncher activityResultLauncher = registerForActivityResult(new ActivityResultContracts.RequestMultiplePermissions(), new ActivityResultCallback<Map<String, Boolean>>() {
         @Override

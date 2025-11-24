@@ -1,5 +1,6 @@
 package con.fire.android2023demo;
 
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -8,6 +9,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -113,7 +115,7 @@ public class Hao123ActivityC extends BaseActivity {
         Log.d("uuid", "cbc060ee4a6141729083d75c13bcf325".length() + "");
 
 
-        Log.d("233Act", "" + io.branch.referral.util.BRANCH_STANDARD_EVENT.COMPLETE_REGISTRATION);
+//        Log.d("233Act", "" + io.branch.referral.util.BRANCH_STANDARD_EVENT.COMPLETE_REGISTRATION);
         Map<String, Object> eventValues = new HashMap<String, Object>();
         eventValues.put(AFInAppEventParameterName.CONTENT_ID, "1234567");
 
@@ -261,11 +263,8 @@ public class Hao123ActivityC extends BaseActivity {
         binding.txtWebupload.setOnClickListener(view -> {
             Intent intent = new Intent(Hao123ActivityC.this, UploadWebActivity.class);
             startActivity(intent);
-
 //            openOutUrl("https://play.google.com/store/apps/details?id=com.kash.credito.aztaca.paypal.dinero.banrural&gl=co&hl=es");
-
 //            openPlay("https://cl214.onelink.me/psuA/cy17htgd");
-
         });
 
         binding.txtPackageUsageStats.setOnClickListener(new View.OnClickListener() {
@@ -456,31 +455,31 @@ public class Hao123ActivityC extends BaseActivity {
 
 
     private void openLine() {
-        testPromisedReply().thenApply(new PromisedReply.SuccessListener<Long>() {
-            @Override
-            public PromisedReply<Long> onSuccess(Long result) throws Exception {
+//        testPromisedReply().thenApply(new PromisedReply.SuccessListener<Long>() {
+//            @Override
+//            public PromisedReply<Long> onSuccess(Long result) throws Exception {
+//
+//
+//                Log.d("openLine", Thread.currentThread().getName() + "-=====onSuccess===" + result);
+//                return null;
+//            }
+//        }, new PromisedReply.FailureListener<Long>() {
+//            @Override
+//            public <E extends Exception> PromisedReply<Long> onFailure(E err) throws Exception {
+//                Log.d("openLine", "-=====onFailure===");
+//
+//                return null;
+//            }
+//        });
 
-
-                Log.d("openLine", Thread.currentThread().getName() + "-=====onSuccess===" + result);
-                return null;
-            }
-        }, new PromisedReply.FailureListener<Long>() {
-            @Override
-            public <E extends Exception> PromisedReply<Long> onFailure(E err) throws Exception {
-                Log.d("openLine", "-=====onFailure===");
-
-                return null;
-            }
-        });
-
-//        Intent intent = new Intent(Intent.ACTION_CALL);
-//        intent.setData(Uri.parse("tel:0788405348")); // 替换为目标电话号码
-//        intent.setPackage("org.linphone"); // 指定 Linphone 包名
-//        try {
-//            startActivity(intent);
-//        } catch (ActivityNotFoundException e) {
-//            Toast.makeText(this, "Linphone 未安装", Toast.LENGTH_SHORT).show();
-//        }
+        Intent intent = new Intent(Intent.ACTION_CALL);
+        intent.setData(Uri.parse("tel:0788405348")); // 替换为目标电话号码
+        intent.setPackage("org.linphone"); // 指定 Linphone 包名
+        try {
+            startActivity(intent);
+        } catch (ActivityNotFoundException e) {
+            Toast.makeText(this, "Linphone 未安装", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void openPlay(String url) {

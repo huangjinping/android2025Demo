@@ -15,7 +15,6 @@ import java.text.SimpleDateFormat;
 
 import con.fire.android2023demo.R;
 import con.fire.android2023demo.utils.UniqueId;
-import io.branch.referral.util.BranchEvent;
 
 public class branchTestActivity extends AppCompatActivity {
     private Button button2;
@@ -71,7 +70,7 @@ public class branchTestActivity extends AppCompatActivity {
         String time6 = sFormat2.format(time7);
         String eventName = "Te9" + time6 + "HS";
         Log.d("eventName", eventName);
-        BranchEvent be = new BranchEvent(eventName);
-        be.logEvent(this);
+//        BranchEvent be = new BranchEvent(eventName);
+//        be.logEvent(this);
     }
 }
