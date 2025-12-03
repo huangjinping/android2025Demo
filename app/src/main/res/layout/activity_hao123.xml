@@ -423,6 +423,35 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="txtjailmonkey" />
+
+                <TextView
+                    android:id="@+id/txt_usage_access"
+                    style="@style/flex_item"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="USAGE_ACCESS" />
+
+                <TextView
+                    android:id="@+id/txt_telegram_demo"
+                    style="@style/flex_item"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="TelegramDemo" />
+
+                <TextView
+                    android:id="@+id/txt_TTS"
+                    style="@style/flex_item"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="TTS" />
+
+                <TextView
+                    android:id="@+id/txt_WebSocket"
+                    style="@style/flex_item"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="WebSocket" />
+
             </com.google.android.flexbox.FlexboxLayout>
         </LinearLayout>
 

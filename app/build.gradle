@@ -127,7 +127,9 @@ dependencies {
     implementation 'com.google.android.play:review:2.0.1'
 
 
-    implementation 'com.appsflyer:af-android-sdk:6.12.1'
+//    implementation 'com.appsflyer:af-android-sdk:6.12.1'
+    implementation 'com.appsflyer:af-android-sdk:6.8.0'
+
     implementation "com.android.installreferrer:installreferrer:2.2"
 
 
@@ -193,6 +195,18 @@ dependencies {
     implementation 'com.scottyab:rootbeer-lib:0.1.1'
 
     implementation 'com.airbnb.android:lottie:6.0.0'
+    implementation "androidx.work:work-runtime-ktx:2.8.1"
+//    implementation 'org.telegram:passport:1.1'
+//    implementation 'org.telegram:telegrambots:6.0.1'
+
+    implementation 'com.squareup.okhttp3:okhttp:4.11.0'
+
+
+//    implementation 'com.github.tdlib:td:1.8.0'
+
+//    implementation 'org.drinkless.td:tdlib:1.8.0'
+//    implementation 'org.drinkless:libtgvoip:2.x' // 检查最新版本
+//    implementation 'org.drinkless:tdlib:1.x' // 检查最新版本
 
 
 //    implementation "com.tencent.shadow:host-lib:2.1.0"

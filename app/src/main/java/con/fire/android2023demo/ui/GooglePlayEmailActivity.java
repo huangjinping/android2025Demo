@@ -1,6 +1,5 @@
 package con.fire.android2023demo.ui;
 
-import static com.appsflyer.internal.AFd1vSDK.init;
 
 //import static con.fire.android2023demo.ui.GoogleOpActivity.RC_SIGN_IN;
 
@@ -15,22 +14,21 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 
-import con.fire.android2023demo.R;
 import con.fire.android2023demo.databinding.ActivityGoogleplayemailBinding;
 
 public class GooglePlayEmailActivity extends AppCompatActivity {
 
     ActivityGoogleplayemailBinding binding;
-
+    GoogleSignInClient mGoogleSignInClient;
+    int RC_SIGN_IN = 100;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding=ActivityGoogleplayemailBinding.inflate(getLayoutInflater());
+        binding = ActivityGoogleplayemailBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         binding.btbEmail.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -40,8 +38,8 @@ public class GooglePlayEmailActivity extends AppCompatActivity {
         });
         init();
     }
-    GoogleSignInClient mGoogleSignInClient;
-    private void init(){
+
+    private void init() {
 //        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
 //                .requestEmail()
 //                .requestId()
@@ -52,8 +50,7 @@ public class GooglePlayEmailActivity extends AppCompatActivity {
 //         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
     }
 
-   int RC_SIGN_IN=100;
-    private void  startAction(){
+    private void startAction() {
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }

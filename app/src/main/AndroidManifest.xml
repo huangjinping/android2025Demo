@@ -17,7 +17,11 @@
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.WRITE_SMS" />
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
+    <uses-permission
+        android:name="android.permission.PACKAGE_USAGE_STATS"
+        tools:ignore="ProtectedPermissions" />
 
     <uses-permission android:name="android.permission.READ_CALENDAR"></uses-permission>
     <uses-permission android:name="android.permission.READ_PHONE_STATE"></uses-permission>
@@ -45,9 +49,9 @@
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"></uses-permission>
 
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-    <uses-permission
-        android:name="android.permission.PACKAGE_USAGE_STATS"
-        tools:ignore="ProtectedPermissions" />
+    <!--    <uses-permission-->
+    <!--        android:name="android.permission.PACKAGE_USAGE_STATS"-->
+    <!--        tools:ignore="ProtectedPermissions" />-->
 
     <uses-permission
         android:name="android.permission.READ_MEDIA_VISUAL_USER_SELECTED"
@@ -75,7 +79,6 @@
         <!--        <intent>-->
         <!--            <action android:name="android.intent.action.MAIN" />-->
         <!--        </intent>-->
-
 
         <intent>
             <action android:name="android.media.action.IMAGE_CAPTURE" />
@@ -257,6 +260,8 @@
         <activity android:name=".ui.ReferrerActivity"></activity>
         <activity android:name=".ui.BaseWeb154Activity"></activity>
 
+        <activity android:name=".ui.UsageStatsActivity"></activity>
+
         <activity android:name=".ui.TemplateActivity"></activity>
         <activity android:name=".ui.DialogTestActivity"></activity>
         <activity android:name=".ui.UploadWebActivity"></activity>
@@ -274,6 +279,9 @@
         <activity android:name=".ui.GooglePlayEmailActivity"></activity>
 
         <activity android:name=".ui.PackageListActivity"></activity>
+
+        <activity android:name=".ui.TelegramDemoActivity"></activity>
+        <activity android:name=".ui.TelegramDemo1Activity"></activity>
 
         <activity android:name=".ui.CameraWebActivity"></activity>
 
@@ -294,6 +302,8 @@
 
         <activity android:name=".ui.JsBridgeActivity"></activity>
         <activity android:name=".ui.WebView466Activity"></activity>
+        <activity android:name=".ui.TTSActivity"></activity>
+        <activity android:name=".ui.WebSocketActivity"></activity>
 
         <service
             android:name=".service.ScreenRecordService"

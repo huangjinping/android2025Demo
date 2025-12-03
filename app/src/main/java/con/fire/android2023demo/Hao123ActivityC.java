@@ -1,6 +1,7 @@
 package con.fire.android2023demo;
 
 import android.Manifest;
+import android.app.AppOpsManager;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
@@ -8,6 +9,7 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
@@ -64,10 +66,14 @@ import con.fire.android2023demo.ui.ScreenRecordActivity;
 import con.fire.android2023demo.ui.SelectContractActivity;
 import con.fire.android2023demo.ui.SnippetsActivity;
 import con.fire.android2023demo.ui.SysModelActivity;
+import con.fire.android2023demo.ui.TTSActivity;
+import con.fire.android2023demo.ui.TelegramDemo1Activity;
 import con.fire.android2023demo.ui.TimerActivity;
 import con.fire.android2023demo.ui.UIFragmentActivity;
 import con.fire.android2023demo.ui.UploadWebActivity;
+import con.fire.android2023demo.ui.UsageStatsActivity;
 import con.fire.android2023demo.ui.ViewActivity;
+import con.fire.android2023demo.ui.WebSocketActivity;
 import con.fire.android2023demo.ui.WebView466Activity;
 import con.fire.android2023demo.ui.WebViewActivity;
 import con.fire.android2023demo.ui.login.EmailLoginActivity;
@@ -443,6 +449,60 @@ public class Hao123ActivityC extends BaseActivity {
                 openLine();
             }
         });
+
+        this.binding.txtUsageAccess.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                openUsageAccess();
+                Intent intent = new Intent(Hao123ActivityC.this, UsageStatsActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        this.binding.txtTelegramDemo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Hao123ActivityC.this, TelegramDemo1Activity.class);
+                startActivity(intent);
+            }
+        });
+
+        this.binding.txtTTS.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Hao123ActivityC.this, TTSActivity.class);
+                startActivity(intent);
+            }
+        });
+        this.binding.txtWebSocket.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Hao123ActivityC.this, WebSocketActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
+
+
+    private void openUsageAccess() {
+
+        // 检查是否已授予使用情况访问权限
+        if (!isUsageAccessGranted()) {
+            // 引导用户到系统设置页面授予权限
+            Intent intent = new Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS);
+            startActivityForResult(intent, 100);
+        } else {
+            // 权限已授予，可以继续进行其他操作
+            // ...
+            Toast.makeText(app, "有这个权限 UsageAccess", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
+    private boolean isUsageAccessGranted() {
+        AppOpsManager appOps = (AppOpsManager) getSystemService(Context.APP_OPS_SERVICE);
+        int mode = appOps.checkOpNoThrow(AppOpsManager.OPSTR_GET_USAGE_STATS, android.os.Process.myUid(), getPackageName());
+        return mode == AppOpsManager.MODE_ALLOWED;
     }
 
 
