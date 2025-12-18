@@ -3,6 +3,7 @@ package con.fire.android2023demo.ui;
 import android.Manifest;
 import android.app.usage.StorageStats;
 import android.app.usage.StorageStatsManager;
+import android.app.usage.UsageStatsManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
@@ -12,6 +13,7 @@ import android.os.UserHandle;
 import android.os.storage.StorageManager;
 import android.provider.Settings;
 import android.util.Log;
+import android.view.View;
 
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
@@ -59,6 +61,19 @@ public class PackageUsageStatsActivity extends AppCompatActivity {
 //            activityResultSingle.launch(permissionsSingle);
             checkOpenPermissions();
         });
+
+        binding.button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadRecentApps();
+            }
+        });
+    }
+
+
+    private void loadRecentApps() {
+        UsageStatsManager usageStatsManager = (UsageStatsManager) getSystemService(Context.USAGE_STATS_SERVICE);
+
     }
 
 

@@ -35,6 +35,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
+import con.fire.android2023demo.activity.Activity1;
 import con.fire.android2023demo.base.BaseActivity;
 import con.fire.android2023demo.bean.User;
 import con.fire.android2023demo.databinding.ActivityHao123Binding;
@@ -113,6 +114,9 @@ public class Hao123ActivityC extends BaseActivity {
         onClickListener();
         String uuid = UUID.randomUUID().toString();
 //        MainKt.start();
+
+        String appsFlyerUID = AppsFlyerLib.getInstance().getAppsFlyerUID(this);
+        Log.d("okhttp9", "====onAttributionFailure============>>>" + appsFlyerUID);
 
 
         getExternalCacheDir();
@@ -478,6 +482,14 @@ public class Hao123ActivityC extends BaseActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Hao123ActivityC.this, WebSocketActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        this.binding.txtActivityLancher.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Hao123ActivityC.this, Activity1.class);
                 startActivity(intent);
             }
         });

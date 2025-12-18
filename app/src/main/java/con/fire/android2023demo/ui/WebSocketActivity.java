@@ -1,8 +1,10 @@
 package con.fire.android2023demo.ui;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -13,12 +15,15 @@ import con.fire.android2023demo.utils.WebSocketClient;
 
 public class WebSocketActivity extends AppCompatActivity {
     // 替换为你的服务器 IP 和端口
-//    private static final String WEB_SOCKET_URL = "ws://192.168.1.100:8080/ws/1001";
-    private static final String WEB_SOCKET_URL = "ws://172.16.3.18:8888/ws/1001"; // userId=1001
+//    private static final String WEB_SOCKET_URL = "wss://bjst.ultracreditosmx.com/ws/smsRobot";
+    private static final String WEB_SOCKET_URL = "ws://10.1.2.11:8888?userId=1001"; // userId=1001
+//    private static final String WEB_SOCKET_URL = "ws://10.1.2.11:8888/ws/1001"; // userId=1001
+
     private EditText etMessage;
     private Button btnSend;
     private TextView tvLog;
     private WebSocketClient webSocketClient;
+    private ScrollView src_list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,9 +34,11 @@ public class WebSocketActivity extends AppCompatActivity {
         etMessage = findViewById(R.id.et_message);
         btnSend = findViewById(R.id.btn_send);
         tvLog = findViewById(R.id.tv_log);
+        src_list = findViewById(R.id.src_list);
 
         // 初始化 WebSocket 客户端（传入 Context、服务器地址、回调）
         initWebSocketClient();
+
 
         // 发送按钮点击事件
         btnSend.setOnClickListener(v -> {
@@ -39,6 +46,7 @@ public class WebSocketActivity extends AppCompatActivity {
             if (!message.isEmpty() && webSocketClient != null) {
                 webSocketClient.sendMessage(message);
                 etMessage.setText("");
+
                 addLog("我：" + message);
             } else {
                 Toast.makeText(WebSocketActivity.this, "消息不能为空或未连接", Toast.LENGTH_SHORT).show();
@@ -47,7 +55,7 @@ public class WebSocketActivity extends AppCompatActivity {
     }
 
     private void initWebSocketClient() {
-        
+
         webSocketClient = new WebSocketClient(this, WEB_SOCKET_URL, new WebSocketClient.OnWebSocketListener() {
             @Override
             public void onConnectSuccess() {
@@ -67,6 +75,13 @@ public class WebSocketActivity extends AppCompatActivity {
 
             @Override
             public void onMessageReceived(String message) {
+                if ("你好张晓三".equals(message)) {
+                    if (webSocketClient != null) {
+                        webSocketClient.release();
+                    }
+                }
+
+
                 runOnUiThread(() -> addLog("📩 服务器/其他客户端：" + message));
             }
 
@@ -92,8 +107,12 @@ public class WebSocketActivity extends AppCompatActivity {
     private void addLog(String log) {
         String currentLog = tvLog.getText().toString();
         tvLog.setText(currentLog + "\n" + log);
+        Log.d("okhttps", "-" + tvLog.getText().toString());
         // 滚动到最后一行
-        tvLog.scrollTo(0, tvLog.getBottom());
+//        tvLog.scrollTo(0, tvLog.getBottom());
+        int offset = src_list.getChildAt(0).getMeasuredHeight() - src_list.getHeight();
+        src_list.scrollTo(0, offset);
+
     }
 
     @Override

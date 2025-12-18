@@ -2,6 +2,7 @@ package con.fire.android2023demo;
 
 import android.app.Application;
 import android.content.Context;
+import android.os.Build;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -16,8 +17,13 @@ import com.facebook.FacebookSdk;
 import com.facebook.appevents.AppEventsLogger;
 import com.google.gson.Gson;
 
-import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 
+import java.util.Map;
+import java.util.concurrent.CompletableFuture;
+
+import con.fire.android2023demo.utils.AfUtils;
+import con.fire.android2023demo.utils.AttributionHelper;
 import con.fire.android2023demo.utils.CrashHandler;
 import con.fire.android2023demo.utils.LogUtils;
 import me.jessyan.autosize.AutoSizeConfig;
@@ -34,7 +40,6 @@ public class App extends Application implements Thread.UncaughtExceptionHandler 
     String EVENT_CHECKOUT = "EVENT_SUBSCRIBE";
 
     public static App getAppContext() {
-
         return application;
     }
 
@@ -73,10 +78,22 @@ public class App extends Application implements Thread.UncaughtExceptionHandler 
 //        BugCrash.initStatus(this);
         AutoSizeConfig.getInstance().setCustomFragment(true);
         startReferrer(this);
+
+        startAfUtils();
+
+//        AfUtils.getInstallReferrer2(this);
+//        startReferrer(this);
         FacebookSdk.setApplicationId(getString(R.string.facebook_app_id));
         AppEventsLogger.activateApp(this);
         AppsFlyerLib.getInstance().setDebugLog(true);
-        AppsFlyerLib.getInstance().init("Vhds7zZfmQRsZGUb8H77jD", new AppsFlyerConversionListener() {
+
+
+        //        com.appsflyer.AFInAppEventType.COMPLETE_REGISTRATION
+
+
+        String key = "orWBFgva2DhiidbywsCtfh";
+        key = "aCaADrB5CHLc4JURun3gXH";
+        AppsFlyerLib.getInstance().init(key, new AppsFlyerConversionListener() {
             @Override
             public void onConversionDataSuccess(Map<String, Object> map) {
                 Gson gson = new Gson();
@@ -105,12 +122,35 @@ public class App extends Application implements Thread.UncaughtExceptionHandler 
 
         application = this;
 
+        AttributionHelper.getFacebookAdAttribution(this);
+
     }
 
     public void showToastApp() {
         Toast.makeText(application, "showToastApp", Toast.LENGTH_SHORT).show();
     }
 
+
+    public void startAfUtils() {
+        AfUtils afUtils = new AfUtils();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            CompletableFuture<@NotNull String> referrerFuture = afUtils.getInstallReferrerForJava(this);
+            referrerFuture.whenComplete((result, throwable) -> {
+                if (throwable != null) {
+                    // 处理异常（如连接失败、超时等）
+                    throwable.printStackTrace();
+                    // 业务逻辑：异常兜底
+
+                } else {
+                    // 处理正常结果
+
+                    Log.d("InstallReferrerHelper", "11======" + result);
+                }
+            });
+
+
+        }
+    }
 
     public void startReferrer(Context context) {
 
@@ -121,26 +161,32 @@ public class App extends Application implements Thread.UncaughtExceptionHandler 
                 public void onInstallReferrerSetupFinished(int responseCode) {
                     switch (responseCode) {
                         case InstallReferrerClient.InstallReferrerResponse.OK:
+
+                            installReferrerClient.isReady();
+
                             if (installReferrerClient != null) {
                                 try {
                                     ReferrerDetails response = installReferrerClient.getInstallReferrer();
                                     String referrer = response.getInstallReferrer();// 你要得referrer值
                                     long referrerClickTime = response.getReferrerClickTimestampSeconds();
                                     long appInstallTime = response.getInstallBeginTimestampSeconds();
-                                    String version = response.getInstallVersion();
 
+                                    boolean isInstantApp = response.getGooglePlayInstantParam(); // 是否是Instant App
+                                    String version = response.getInstallVersion();////getInstallVersion
                                     StringBuilder builder = new StringBuilder();
-                                    builder.append("referrer:" + referrer);
+                                    builder.append("referrer:" + referrer);// 安装来源URL
                                     builder.append("\n");
-                                    builder.append("referrerClickTime:" + referrerClickTime);
+                                    builder.append("referrerClickTime:" + referrerClickTime);//// 点击推广链接的时间（秒）
                                     builder.append("\n");
-                                    builder.append("appInstallTime:" + appInstallTime);
+                                    builder.append("appInstallTime:" + appInstallTime);//// 应用安装开始时间（秒）
                                     builder.append("\n");
                                     builder.append("version:" + version);
+                                    builder.append("\n");
+                                    builder.append("version:" + isInstantApp);//// 是否是Instant App
 
                                     Log.d("InstallReferrerHelper", builder.toString());
 
-                                    LogUtils.logSLocation(context, "InstallReferrerHelper", builder.toString());
+//                                    LogUtils.logSLocation(context, "InstallReferrerHelper", builder.toString());
 
                                     installReferrerClient.endConnection();
                                 } catch (Exception ex) {

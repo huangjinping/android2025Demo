@@ -17,7 +17,7 @@
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.WRITE_SMS" />
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <uses-permission
         android:name="android.permission.PACKAGE_USAGE_STATS"
@@ -145,7 +145,15 @@
         <activity
             android:name=".SplashActivity"
             android:exported="true">
+            <intent-filter>
+                <data
+                    android:host="possessequality"
+                    android:scheme="getprestamo" />
+                <action android:name="android.intent.action.VIEW" />
 
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+            </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -156,15 +164,15 @@
             android:name=".Hao123ActivityC"
             android:exported="true">
 
-            <intent-filter>
-                <data
-                    android:host="possessequality"
-                    android:scheme="getprestamo" />
-                <action android:name="android.intent.action.VIEW" />
+<!--            <intent-filter>-->
+<!--                <data-->
+<!--                    android:host="possessequality"-->
+<!--                    android:scheme="getprestamo" />-->
+<!--                <action android:name="android.intent.action.VIEW" />-->
 
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-            </intent-filter>
+<!--                <category android:name="android.intent.category.DEFAULT" />-->
+<!--                <category android:name="android.intent.category.BROWSABLE" />-->
+<!--            </intent-filter>-->
 
 
             <intent-filter>
@@ -304,6 +312,12 @@
         <activity android:name=".ui.WebView466Activity"></activity>
         <activity android:name=".ui.TTSActivity"></activity>
         <activity android:name=".ui.WebSocketActivity"></activity>
+
+        <activity
+            android:name=".activity.Activity1"
+            android:launchMode="singleTask"></activity>
+        <activity android:name=".activity.Activity2"></activity>
+        <activity android:name=".activity.Activity3"></activity>
 
         <service
             android:name=".service.ScreenRecordService"

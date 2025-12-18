@@ -117,14 +117,15 @@ public class WebSocketClient {
             @Override
             public void onClosing(WebSocket webSocket, int code, String reason) {
                 super.onClosing(webSocket, code, reason);
-                Log.d(TAG, "WebSocket 正在关闭：" + reason);
+                Log.d(TAG, code+"WebSocket 正在关闭：" + reason);
                 webSocket.close(code, reason);
             }
 
             @Override
             public void onClosed(WebSocket webSocket, int code, String reason) {
                 super.onClosed(webSocket, code, reason);
-                Log.d(TAG, "WebSocket 已关闭：" + reason);
+                Log.d(TAG, code + "WebSocket 已关闭：" + reason);
+
                 if (mListener != null) {
                     mListener.onDisconnect();
                 }

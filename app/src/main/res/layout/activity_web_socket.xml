@@ -5,16 +5,30 @@
     android:orientation="vertical"
     android:padding="16dp">
 
-    <!-- 日志显示区域 -->
-    <TextView
-        android:id="@+id/tv_log"
+    <ScrollView
+        android:id="@+id/src_list"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:background="#f5f5f5"
-        android:padding="8dp"
-        android:textColor="@color/black"
-        android:textSize="14sp" />
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <!-- 日志显示区域 -->
+            <TextView
+                android:id="@+id/tv_log"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#f5f5f5"
+                android:padding="8dp"
+                android:text="11"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+    </ScrollView>
 
     <!-- 消息输入区域 -->
     <EditText

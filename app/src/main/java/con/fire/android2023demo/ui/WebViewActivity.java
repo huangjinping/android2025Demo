@@ -99,6 +99,8 @@ public class WebViewActivity extends AppCompatActivity {
 
         url = "http://10.1.2.8:8080/test/webview.html?v=" + UUID.randomUUID().toString();
 
+        url = "https://malaysia.prestamoup.com/customer/index.html?appSsid=521";
+
         webview.loadUrl(url);
 //        webview.loadUrl("https://www.inx-fintech.com/#/home/index");
 //jianshu://notes/4860097148c0
@@ -166,7 +168,6 @@ public class WebViewActivity extends AppCompatActivity {
             try {
                 Log.d(tag, "==UrlLoading====" + url);
 
-
                 if (!url.startsWith("http") && !url.startsWith("http")) {
                     try {
                         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
@@ -174,14 +175,12 @@ public class WebViewActivity extends AppCompatActivity {
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
-
                     return true;
                 }
 
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
             return super.shouldOverrideUrlLoading(view, url);
         }
 

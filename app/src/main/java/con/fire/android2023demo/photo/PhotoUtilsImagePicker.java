@@ -140,8 +140,6 @@ public class PhotoUtilsImagePicker extends PhotoSo {
             pickImageIntent.setType("image/*");
         }
         activity.startActivityForResult(pickImageIntent, SELECT_PHOTO);
-
-
     }
 
 //    public void take_Album() {
