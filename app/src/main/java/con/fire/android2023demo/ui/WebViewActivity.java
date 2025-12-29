@@ -100,7 +100,14 @@ public class WebViewActivity extends AppCompatActivity {
         url = "http://10.1.2.8:8080/test/webview.html?v=" + UUID.randomUUID().toString();
 
         url = "https://malaysia.prestamoup.com/customer/index.html?appSsid=521";
-
+        url = "https://doc.inxtech.cn/video.html?v=" + System.currentTimeMillis();
+//        url = "https://www.kreditku.com.my/turbofundss/video.html";
+//        url = "https://doc.inxtech.cn/YouTube.html?=" + System.currentTimeMillis();
+//        url = "http://10.1.2.218:5500/video.html";
+//        url="https://baike.baidu.com/item/%E6%9E%B8%E6%9D%9E/272759";
+        url = "https://www.cashyah.net/customer/index.html?frontSource=10&appSsid=502&userId=22931&mobile=182182002";
+//        url="https://kz.ultracreditosmx.com/customer/index.html";
+//        url="https://kz.ultracreditosmx.com/customer/index.html";
         webview.loadUrl(url);
 //        webview.loadUrl("https://www.inx-fintech.com/#/home/index");
 //jianshu://notes/4860097148c0
@@ -187,6 +194,25 @@ public class WebViewActivity extends AppCompatActivity {
 
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+
+
+            try {
+                String url = request.getUrl().toString();
+                Log.d(tag, "==UrlLoading====222" + request.getUrl());
+
+                if (!url.startsWith("http") && !url.startsWith("https")) {
+                    try {
+                        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                        startActivity(intent);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    return true;
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             return super.shouldOverrideUrlLoading(view, request);
         }
 

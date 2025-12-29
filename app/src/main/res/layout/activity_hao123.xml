@@ -460,6 +460,15 @@
                     android:layout_height="wrap_content"
                     android:text="WebSocket" />
 
+
+                <TextView
+                    android:id="@+id/txt_Kyc"
+                    style="@style/flex_item"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="KycAc" />
+
+
             </com.google.android.flexbox.FlexboxLayout>
         </LinearLayout>
 

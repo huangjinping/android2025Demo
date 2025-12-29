@@ -53,6 +53,7 @@ public class WebView466Activity extends AppCompatActivity {
 //        binding.webview.loadUrl("file:///android_asset/h5/index.html");
 
         binding.webview.loadUrl("https://doc.inxtech.cn/camera.html");
+//        binding.webview.loadUrl("https://doc.inxtech.cn/kkocr.html?v=121");
 
 
         binding.webview.addJavascriptInterface(this, "nativeWkObc");

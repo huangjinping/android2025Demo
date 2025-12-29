@@ -28,6 +28,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.installations.FirebaseInstallations;
 import com.luck.picture.lib.permissions.PermissionUtil;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.StringCallback;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -53,6 +55,7 @@ import con.fire.android2023demo.ui.GooglePlayEmailActivity;
 import con.fire.android2023demo.ui.GooleLogin2Activity;
 import con.fire.android2023demo.ui.InxAgentwebActivity;
 import con.fire.android2023demo.ui.JsBridgeActivity;
+import con.fire.android2023demo.ui.KycActivity;
 import con.fire.android2023demo.ui.LaoLinActivity;
 import con.fire.android2023demo.ui.MainActivity;
 import con.fire.android2023demo.ui.PackageListActivity;
@@ -86,6 +89,7 @@ import con.fire.android2023demo.utils.RootedCheck.RootedCheck;
 import con.fire.android2023demo.utils.ToastUtils;
 import im.crisp.client.ChatActivity;
 import im.crisp.client.Crisp;
+import okhttp3.Call;
 
 //Android 12之启动画面Splash Screens（一） -- 适配
 //https://openatomworkshop.csdn.net/664ff735b12a9d168eb73c7a.html
@@ -490,6 +494,14 @@ public class Hao123ActivityC extends BaseActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Hao123ActivityC.this, Activity1.class);
+                startActivity(intent);
+            }
+        });
+
+        this.binding.txtKyc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Hao123ActivityC.this, KycActivity.class);
                 startActivity(intent);
             }
         });

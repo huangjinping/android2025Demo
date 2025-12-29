@@ -16,17 +16,24 @@ import com.appsflyer.AppsFlyerLib;
 import com.facebook.FacebookSdk;
 import com.facebook.appevents.AppEventsLogger;
 import com.google.gson.Gson;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.log.LoggerInterceptor;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.TimeUnit;
+
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.SSLSession;
 
 import con.fire.android2023demo.utils.AfUtils;
 import con.fire.android2023demo.utils.AttributionHelper;
 import con.fire.android2023demo.utils.CrashHandler;
 import con.fire.android2023demo.utils.LogUtils;
 import me.jessyan.autosize.AutoSizeConfig;
+import okhttp3.OkHttpClient;
 
 //https://blog.csdn.net/qq_48656522/article/details/126011280
 public class App extends Application implements Thread.UncaughtExceptionHandler {
@@ -67,6 +74,18 @@ public class App extends Application implements Thread.UncaughtExceptionHandler 
 //            }
 //        });
 
+        OkHttpClient okHttpClient = new OkHttpClient.Builder().connectTimeout(10000L, TimeUnit.MILLISECONDS).readTimeout(10000L, TimeUnit.MILLISECONDS).addInterceptor(new LoggerInterceptor("TAG"))
+//                .cookieJar(cookieJar1)
+                .hostnameVerifier(new HostnameVerifier() {
+                    @Override
+                    public boolean verify(String hostname, SSLSession session) {
+                        return true;
+                    }
+                })
+//                .sslSocketFactory(sslParams.sSLSocketFactory, sslParams.trustManager)
+                .build();
+        OkHttpUtils.initClient(okHttpClient);
+
         CrashHandler crashHandler = CrashHandler.getInstance();
         crashHandler.init(this);
 //        OkGo.getInstance().init(this);
@@ -87,9 +106,7 @@ public class App extends Application implements Thread.UncaughtExceptionHandler 
         AppEventsLogger.activateApp(this);
         AppsFlyerLib.getInstance().setDebugLog(true);
 
-
         //        com.appsflyer.AFInAppEventType.COMPLETE_REGISTRATION
-
 
         String key = "orWBFgva2DhiidbywsCtfh";
         key = "aCaADrB5CHLc4JURun3gXH";
@@ -182,7 +199,7 @@ public class App extends Application implements Thread.UncaughtExceptionHandler 
                                     builder.append("\n");
                                     builder.append("version:" + version);
                                     builder.append("\n");
-                                    builder.append("version:" + isInstantApp);//// 是否是Instant App
+                                    builder.append("isInstantApp:" + isInstantApp);//// 是否是Instant App
 
                                     Log.d("InstallReferrerHelper", builder.toString());
 
@@ -243,7 +260,7 @@ public class App extends Application implements Thread.UncaughtExceptionHandler 
 //        Intent intent = new Intent(this, PostErrorService.class);
 //        intent.putExtra("error", reason.toString());
 //        startService(intent);
-//
+
         Log.d("okhttp", "=====uncaughtException=======");
 
 

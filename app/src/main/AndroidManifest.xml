@@ -287,6 +287,7 @@
         <activity android:name=".ui.GooglePlayEmailActivity"></activity>
 
         <activity android:name=".ui.PackageListActivity"></activity>
+        <activity android:name=".ui.KycActivity"></activity>
 
         <activity android:name=".ui.TelegramDemoActivity"></activity>
         <activity android:name=".ui.TelegramDemo1Activity"></activity>
