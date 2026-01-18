@@ -33,6 +33,8 @@ public class BaseWeb154Activity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
         binding = ActivityWebbaseBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         wvContent = new WebView(getApplicationContext());
@@ -43,12 +45,9 @@ public class BaseWeb154Activity extends AppCompatActivity {
 //        AppsFlyerLib.getInstance().logEvent(wvContent, null, null, new AppsFlyerRequestListener() {
 //            @Override
 //            public void onSuccess() {
-//
 //            }
-//
 //            @Override
 //            public void onError(int i, @NonNull String s) {
-//
 //            }
 //        });
 
@@ -104,6 +103,8 @@ public class BaseWeb154Activity extends AppCompatActivity {
 
                 if (url.startsWith("http") || url.startsWith("https")) {
                     return false;
+
+
                 } else {
                     return true;
                 }

@@ -18,8 +18,8 @@
                 android:layout_height="wrap_content"
                 android:hint="number  something"
                 android:inputType="number"
-                android:maxLines="3"
-                ></EditText>
+                android:nextFocusDown="@id/textView3"
+                android:maxLines="3"></EditText>
 
 
             <EditText
@@ -55,6 +55,72 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/teal_200"
                 android:textSize="10sp"></TextView>
+
+            <EditText
+                android:id="@+id/hdhdh"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textEmailAddress" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textEmailAddress" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="TextView" />
+
+
+                <EditText
+                    android:id="@+id/edt_0002"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:nextFocusDown="@id/edt_0003"
+                    android:inputType="textEmailAddress" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="TextView" />
+
+                <CheckBox
+                    android:id="@+id/checkBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="CheckBox" />
+
+                <EditText
+                    android:id="@+id/edt_0003"
+
+                    android:layout_width="match_parent"
+                    android:nextFocusUp="@id/edt_0002"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberDecimal" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="TextView" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+
+                    android:inputType="numberDecimal" />
+
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 

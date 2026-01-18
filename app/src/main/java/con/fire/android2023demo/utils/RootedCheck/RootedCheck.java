@@ -72,7 +72,6 @@ public class RootedCheck {
 
         public Map<String, Object> toNativeMap() {
             final Map<String, Object> map = new HashMap<>();
-
             map.put("detectRootManagementApps", detectRootManagementApps);
             map.put("detectPotentiallyDangerousApps", detectPotentiallyDangerousApps);
             map.put("checkForSuBinary", checkForSuBinary);

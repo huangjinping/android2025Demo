@@ -7,6 +7,10 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
+import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,6 +29,33 @@ public class EditActivity extends AppCompatActivity {
         getList();
         getReferrerApi();
         getReferrerReceiver();
+
+        binding.checkBox.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+//                if(hasFocus){
+//                }
+                binding.checkBox.setChecked(true);
+            }
+        });
+//        binding.edt0002.setImeOptions(EditorInfo.IME_ACTION_DONE);
+        binding.edt0002.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+
+                    binding.checkBox.setChecked(true);
+                }
+                return false;
+            }
+        });
+
+//        binding.edt0002.setOnKeyListener(new View.OnKeyListener() {
+//            @Override
+//            public boolean onKey(View v, int keyCode, KeyEvent event) {
+//                return false;
+//            }
+//        });
     }
 
 

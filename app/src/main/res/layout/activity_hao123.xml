@@ -16,6 +16,8 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
+
+
             <com.google.android.flexbox.FlexboxLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -283,6 +285,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="txt_activityLancher"></TextView>
+                <TextView
+                    android:id="@+id/txt_activityNotifications"
+                    style="@style/flex_item"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Notifications"></TextView>
             </com.google.android.flexbox.FlexboxLayout>
 
 

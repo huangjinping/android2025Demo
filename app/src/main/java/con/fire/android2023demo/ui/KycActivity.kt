@@ -2,6 +2,7 @@ package con.fire.android2023demo.ui
 
 import android.os.Bundle
 import android.util.Log
+import android.view.WindowManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.zhy.http.okhttp.OkHttpUtils
@@ -28,7 +29,24 @@ class KycActivity : AppCompatActivity() {
 
             getSesstionId();
         }
+
+        binding.btnEnableScreenshot.setOnClickListener {
+            window.setFlags(
+                WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE
+            )
+            // 可选：给用户提示
+            binding.btnDisableScreenshot.text = "已禁止截屏"
+            binding.btnEnableScreenshot.text = "允许截屏"
+        }
+
+        binding.btnDisableScreenshot.setOnClickListener {
+            window.clearFlags(WindowManager.LayoutParams.FLAG_SECURE)
+            // 可选：给用户提示
+            binding.btnEnableScreenshot.text = "已允许截屏"
+            binding.btnDisableScreenshot.text = "禁止截屏"
+        }
     }
+
 
     fun getSesstionId() {
 
@@ -39,7 +57,9 @@ class KycActivity : AppCompatActivity() {
             .content("{\"api_key\":\"8KK_PJve0aye9Lh6OY_1w0ZvnliN1vTUa3QNFytJNqhMOGU\"}").build() //
             .execute(object : StringCallback() {
                 override fun onError(call: Call?, e: Exception?, id: Int) {
-                    Toast.makeText(this@KycActivity, "${id}========" + e?.message, Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        this@KycActivity, "${id}========" + e?.message, Toast.LENGTH_SHORT
+                    ).show()
 
                     Log.d("okhttp22", "${id}========" + e?.message);
 
@@ -47,7 +67,7 @@ class KycActivity : AppCompatActivity() {
 
                 override fun onResponse(response: String?, id: Int) {
 
-                    Toast.makeText(this@KycActivity, ""+response, Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@KycActivity, "" + response, Toast.LENGTH_SHORT).show()
 
                     var jsonObject = JSONObject(response);
                     var session_id = jsonObject.optString("session_id");
@@ -103,6 +123,7 @@ class KycActivity : AppCompatActivity() {
                 override fun onResultSuccess(result: String) {
                     Log.d("okhttp22", "====onResultSuccess=====" + result);
                     binding.txtResult.text = "success" + result;
+
                 }
 
                 override fun onResultFailure(reason: String) {

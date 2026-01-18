@@ -18,6 +18,7 @@
     <uses-permission android:name="android.permission.WRITE_SMS" />
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
     <uses-permission
         android:name="android.permission.PACKAGE_USAGE_STATS"
@@ -164,15 +165,15 @@
             android:name=".Hao123ActivityC"
             android:exported="true">
 
-<!--            <intent-filter>-->
-<!--                <data-->
-<!--                    android:host="possessequality"-->
-<!--                    android:scheme="getprestamo" />-->
-<!--                <action android:name="android.intent.action.VIEW" />-->
+            <!--            <intent-filter>-->
+            <!--                <data-->
+            <!--                    android:host="possessequality"-->
+            <!--                    android:scheme="getprestamo" />-->
+            <!--                <action android:name="android.intent.action.VIEW" />-->
 
-<!--                <category android:name="android.intent.category.DEFAULT" />-->
-<!--                <category android:name="android.intent.category.BROWSABLE" />-->
-<!--            </intent-filter>-->
+            <!--                <category android:name="android.intent.category.DEFAULT" />-->
+            <!--                <category android:name="android.intent.category.BROWSABLE" />-->
+            <!--            </intent-filter>-->
 
 
             <intent-filter>
@@ -294,6 +295,8 @@
 
         <activity android:name=".ui.CameraWebActivity"></activity>
 
+        <activity android:name=".ui.NotificationsActivity"></activity>
+
         <activity
             android:name=".ui.SnippetsActivity"
             android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize"
@@ -377,6 +380,11 @@
             </intent-filter>
         </receiver>
 
+
+        <!-- FCM推送相关配置 -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@mipmap/huaban" /> <!-- 你的纯白通知图标 -->
 
         <meta-data
             android:name="com.google.android.gms.ads.AD_MANAGER_APP"
