@@ -286,6 +286,7 @@
         <activity android:name=".ui.login.SystemLoginActivity"></activity>
         <activity android:name=".ui.ap162.ViewPager2Activity"></activity>
         <activity android:name=".ui.GooglePlayEmailActivity"></activity>
+        <activity android:name=".ui.NotificationsPermissionActivity"></activity>
 
         <activity android:name=".ui.PackageListActivity"></activity>
         <activity android:name=".ui.KycActivity"></activity>
@@ -296,6 +297,8 @@
         <activity android:name=".ui.CameraWebActivity"></activity>
 
         <activity android:name=".ui.NotificationsActivity"></activity>
+        <activity android:name=".ui.TouchActivity"></activity>
+        <activity android:name=".ui.ScreenshotActivity"></activity>
 
         <activity
             android:name=".ui.SnippetsActivity"

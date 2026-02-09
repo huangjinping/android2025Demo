@@ -26,7 +26,19 @@ import con.fire.android2023demo.utils.PermissionUtils.checkPermission
 class NotificationsActivity : AppCompatActivity() {
 
     var permissionsSingle: String = Manifest.permission.POST_NOTIFICATIONS
+
+
+    var permissionsLocationSingle: String = Manifest.permission.ACCESS_COARSE_LOCATION
     private var activityResultSingle: ActivityResultLauncher<String>? = null
+
+    private var activityLocationResultSingle: ActivityResultLauncher<String>? = null
+
+
+    var permissionLocationArr: Array<String?> = arrayOf<String?>(
+        Manifest.permission.ACCESS_COARSE_LOCATION
+    )
+
+
     var permissionArr: Array<String?> = arrayOf<String?>(
         Manifest.permission.POST_NOTIFICATIONS
     )
@@ -48,33 +60,115 @@ class NotificationsActivity : AppCompatActivity() {
 //                    );
                     sendNotificationDelay()
 
-                }
-            }
-        binding?.button15?.setOnClickListener {
-
-
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-
-                if (checkPermission(this@NotificationsActivity, permissionArr)) {
-
-                    Toast.makeText(this@NotificationsActivity, "有权限", Toast.LENGTH_SHORT).show()
-
                 } else {
-                    activityResultSingle?.launch(permissionsSingle)
-
-                    Toast.makeText(this@NotificationsActivity, "没有权限", Toast.LENGTH_SHORT)
+                    Toast.makeText(this@NotificationsActivity, "用户不授权权限", Toast.LENGTH_SHORT)
                         .show()
                 }
-
-            } else {
-                sendNotification(
-                    "messageTitle" + System.currentTimeMillis(), "body" + System.currentTimeMillis()
-                )
-
             }
 
-        }
+        activityLocationResultSingle =
+            registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
+                if (isGranted) {
 
+//                    sendNotification(
+//                        "messageTitle" + System.currentTimeMillis(),
+//                        "body" + System.currentTimeMillis()
+//                    );
+                    Toast.makeText(
+                        this@NotificationsActivity, "用户授权定位权限", Toast.LENGTH_SHORT
+                    ).show()
+
+                } else {
+                    Toast.makeText(
+                        this@NotificationsActivity, "用户不授权定位权限", Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+
+        binding?.button15?.setOnClickListener {
+            openActionPermission()
+        }
+//        openActionPermission()
+//        activityLocationResultSingle?.launch(permissionsLocationSingle)
+
+        ActivityCompat.requestPermissions(
+            this@NotificationsActivity, permissionLocationArr, 101
+        )
+
+        ActivityCompat.requestPermissions(
+            this@NotificationsActivity, permissionArr, 100
+        )
+
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int, permissions: Array<out String>, grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (101 == requestCode) {
+            if (checkPermission(this@NotificationsActivity, permissionLocationArr)) {
+                Toast.makeText(
+                    this@NotificationsActivity, "判断有权限--定位", Toast.LENGTH_SHORT
+                ).show()
+            } else {
+                Toast.makeText(
+                    this@NotificationsActivity, "判断没有权限--定位", Toast.LENGTH_SHORT
+                ).show()
+            }
+        } else if (100 == requestCode) {
+            if (checkPermission(this@NotificationsActivity, permissionArr)) {
+                Toast.makeText(
+                    this@NotificationsActivity, "判断有权限--通知", Toast.LENGTH_SHORT
+                ).show()
+            } else {
+                Toast.makeText(
+                    this@NotificationsActivity, "判断没有权限--通知", Toast.LENGTH_SHORT
+                ).show()
+            }
+        }
+    }
+
+//    override fun onRequestPermissionsResult(
+//        requestCode: Int,
+//        permissions: Array<String?>,
+//        grantResults: IntArray
+//    ) {
+//        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+//        if (requestPermissionCode == requestCode) {
+//
+//        } else if (requestPermissionCodeV2 == requestCode) {
+//            Log.d("PermissionsV2", "==================000=" + requestCount)
+//            if (checkPermission(this@PermissionActivity, permissionArr)) {
+//                Toast.makeText(
+//                    this@PermissionActivity,
+//                    "判断有权限--开始读取json",
+//                    Toast.LENGTH_SHORT
+//                ).show()
+//            } else {
+//
+//            }
+//        }
+//    }
+
+    fun openActionPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+
+            if (checkPermission(this@NotificationsActivity, permissionArr)) {
+
+                Toast.makeText(this@NotificationsActivity, "有权限", Toast.LENGTH_SHORT).show()
+
+            } else {
+                activityResultSingle?.launch(permissionsSingle)
+
+                Toast.makeText(this@NotificationsActivity, "没有权限", Toast.LENGTH_SHORT).show()
+            }
+
+        } else {
+            sendNotification(
+                "messageTitle" + System.currentTimeMillis(), "body" + System.currentTimeMillis()
+            )
+
+        }
     }
 
 

@@ -17,7 +17,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDelegate;
-import androidx.core.app.ActivityCompat;
 
 import com.appsflyer.AFInAppEventParameterName;
 import com.appsflyer.AFInAppEventType;
@@ -45,6 +44,7 @@ import con.fire.android2023demo.ui.AppCurrentActivity;
 import con.fire.android2023demo.ui.AudioManagerActivity;
 import con.fire.android2023demo.ui.BaseWeb154Activity;
 import con.fire.android2023demo.ui.BluetoothActivity;
+import con.fire.android2023demo.ui.CameraWebActivity;
 import con.fire.android2023demo.ui.CrashActivity;
 import con.fire.android2023demo.ui.DialogTestActivity;
 import con.fire.android2023demo.ui.EditActivity;
@@ -57,7 +57,7 @@ import con.fire.android2023demo.ui.JsBridgeActivity;
 import con.fire.android2023demo.ui.KycActivity;
 import con.fire.android2023demo.ui.LaoLinActivity;
 import con.fire.android2023demo.ui.MainActivity;
-import con.fire.android2023demo.ui.NotificationsActivity;
+import con.fire.android2023demo.ui.NotificationsPermissionActivity;
 import con.fire.android2023demo.ui.PackageListActivity;
 import con.fire.android2023demo.ui.PackageUsageStatsActivity;
 import con.fire.android2023demo.ui.PermissionActivity;
@@ -67,12 +67,14 @@ import con.fire.android2023demo.ui.ReferrerActivity;
 import con.fire.android2023demo.ui.RemoteConfigActivity;
 import con.fire.android2023demo.ui.SMSActivity;
 import con.fire.android2023demo.ui.ScreenRecordActivity;
+import con.fire.android2023demo.ui.ScreenshotActivity;
 import con.fire.android2023demo.ui.SelectContractActivity;
 import con.fire.android2023demo.ui.SnippetsActivity;
 import con.fire.android2023demo.ui.SysModelActivity;
 import con.fire.android2023demo.ui.TTSActivity;
 import con.fire.android2023demo.ui.TelegramDemo1Activity;
 import con.fire.android2023demo.ui.TimerActivity;
+import con.fire.android2023demo.ui.TouchActivity;
 import con.fire.android2023demo.ui.UIFragmentActivity;
 import con.fire.android2023demo.ui.UploadWebActivity;
 import con.fire.android2023demo.ui.UsageStatsActivity;
@@ -107,7 +109,6 @@ public class Hao123ActivityC extends BaseActivity {
 //        app.showToastApp();
 //        SplashScreen splashScreen = SplashScreen.installSplashScreen(this);
         String filename = UUID.randomUUID().toString();
-
 
         Log.d("filename2w", "" + Build.VERSION.SDK_INT);
         Log.d("==filename===", "" + filename);
@@ -239,7 +240,7 @@ public class Hao123ActivityC extends BaseActivity {
         binding.txtActivityNotifications.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Hao123ActivityC.this, NotificationsActivity.class);
+                Intent intent = new Intent(Hao123ActivityC.this, NotificationsPermissionActivity.class);
                 startActivity(intent);
             }
         });
@@ -457,10 +458,10 @@ public class Hao123ActivityC extends BaseActivity {
         this.binding.txtWeb466.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent intent = new Intent(Hao123ActivityC.this, CameraWebActivity.class);
-//                Hao123ActivityC.this.startActivity(intent);
+                Intent intent = new Intent(Hao123ActivityC.this, WebView466Activity.class);
+                Hao123ActivityC.this.startActivity(intent);
 
-                ActivityCompat.requestPermissions(Hao123ActivityC.this, permissionArr, 100);
+//                ActivityCompat.requestPermissions(Hao123ActivityC.this, permissionArr, 100);
 
 
             }
@@ -518,6 +519,21 @@ public class Hao123ActivityC extends BaseActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Hao123ActivityC.this, KycActivity.class);
+                startActivity(intent);
+            }
+        });
+        this.binding.txtTouch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Hao123ActivityC.this, TouchActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        this.binding.txtScreenshot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Hao123ActivityC.this, ScreenshotActivity.class);
                 startActivity(intent);
             }
         });
@@ -622,7 +638,7 @@ public class Hao123ActivityC extends BaseActivity {
 
 
             if (PermissionUtil.hasPermissions(this, permissions)) {
-                Intent intent = new Intent(Hao123ActivityC.this, WebView466Activity.class);
+                Intent intent = new Intent(Hao123ActivityC.this, CameraWebActivity.class);
                 Hao123ActivityC.this.startActivity(intent);
             }
         }

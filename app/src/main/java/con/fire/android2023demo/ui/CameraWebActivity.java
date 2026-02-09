@@ -80,8 +80,11 @@ public class CameraWebActivity extends AppCompatActivity {
     private void loadWebsite() {
 //        webView.loadUrl("https://doc.inxtech.cn/camera.html?v=" + Math.random());
 
-        webView.loadUrl("https://doc.inxtech.cn/kkocr.html?v=121");
+//        webView.loadUrl("https://doc.inxtech.cn/kkocr.html?v=121");
+//        webView.loadUrl("https://doc.inxtech.cn/faceapi.html");
+//        webView.loadUrl("https://docs.google.com/viewer?url=https://www.ordacredit.com/documentFiles/files/%D0%9B%D0%B8%D1%86%D0%B5%D0%BD%D0%B7%D0%B8%D1%8F.pdf");
 
+        webView.loadUrl("https://www.ordacredit.com/documentFiles/index.html");
 //        webView.loadUrl("https://remote.biometric.kz/flow/1e8f000e-dcae-4bbf-bb6e-7d2a31236b9a?web_view=true");
     }
 

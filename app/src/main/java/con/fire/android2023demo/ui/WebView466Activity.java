@@ -9,7 +9,9 @@ import android.util.Log;
 import android.view.View;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebChromeClient;
+import android.webkit.WebResourceError;
 import android.webkit.WebResourceRequest;
+import android.webkit.WebResourceResponse;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -59,10 +61,13 @@ public class WebView466Activity extends AppCompatActivity {
 //        binding.webview.loadUrl("file:///android_asset/h5/index.html");
 
 //        binding.webview.loadUrl("https://doc.inxtech.cn/camera.html");
-        binding.webview.loadUrl("https://kz.ultracreditosmx.com/cardPage/index.html?token=f54e7567-a980-4ea7-adb8-388715e81b01&accountNumber=77051231214&linkId=fda85e090f44fe6a906027af02432ac088ea08ca8d7f6e1c20be519b83169b9a155897d8d99c5adc5ea060bfa085f1d06fb13db8b7a19231f22926eed020ac48&appssid=561&mobileNumber=1839090908&language=kk");
+        //      binding.webview.loadUrl("https://kz.ultracreditosmx.com/cardPage/index.html?token=f54e7567-a980-4ea7-adb8-388715e81b01&accountNumber=77051231214&linkId=fda85e090f44fe6a906027af02432ac088ea08ca8d7f6e1c20be519b83169b9a155897d8d99c5adc5ea060bfa085f1d06fb13db8b7a19231f22926eed020ac48&appssid=561&mobileNumber=1839090908&language=kk");
 //        binding.webview.loadUrl("https://doc.inxtech.cn/kkocr.html?v=121");
+//        binding.webview.loadUrl("https://l8vl3x.i996.me");
+//        binding.webview.loadUrl("http://111https//www.homecreditpk.com/StartWarning/startAlert.html?language=@lang@1111111");
 
-
+        binding.webview.loadUrl("https://www.homecreditpk.com/StartWarning/repayAlert.html");
+//        binding.webview.loadUrl("https://doc.inxtech.cn/document_v.html");
         binding.webview.addJavascriptInterface(this, "nativeWkObc");
 
     }
@@ -83,6 +88,25 @@ public class WebView466Activity extends AppCompatActivity {
         public void onPageFinished(WebView view, String url) {
             super.onPageFinished(view, url);
             Log.d(TAG, "===onPageFinished=" + url);
+
+        }
+
+        @Override
+        public void onReceivedHttpError(WebView view, WebResourceRequest request, WebResourceResponse errorResponse) {
+            super.onReceivedHttpError(view, request, errorResponse);
+            if (request.isForMainFrame()) {
+                Log.d(TAG, "===onReceivedHttpError=" + errorResponse.getStatusCode());
+
+            } else {
+                Log.d(TAG, "===onReceivedHttpError11=" + errorResponse.getStatusCode());
+            }
+        }
+
+        @Override
+        public void onReceivedError(WebView view, WebResourceRequest request, WebResourceError error) {
+            super.onReceivedError(view, request, error);
+
+            Log.d(TAG, "===onReceivedError=" + request.getUrl());
 
         }
 
