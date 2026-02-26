@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import androidx.activity.result.ActivityResult;
@@ -28,7 +29,7 @@ public class PermissionNewActivity extends AppCompatActivity {
         @Override
         public void onActivityResult(Map<String, Boolean> result) {
             LogUtils.logS(TAG, result);
-            
+
             /**
              * {"android.permission.ACCESS_COARSE_LOCATION":false,"android.permission.READ_SMS":true,"android.permission.READ_CALL_LOG":true}
              */
@@ -52,6 +53,27 @@ public class PermissionNewActivity extends AppCompatActivity {
 
         }
     });
+
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.d("okhttps2", "===========onPause=========");
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.d("okhttps2", "===========onStart=========");
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d("okhttps2", "===========onResume=========");
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

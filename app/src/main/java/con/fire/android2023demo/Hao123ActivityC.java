@@ -10,6 +10,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
@@ -40,7 +41,6 @@ import con.fire.android2023demo.activity.Activity1;
 import con.fire.android2023demo.base.BaseActivity;
 import con.fire.android2023demo.bean.User;
 import con.fire.android2023demo.databinding.ActivityHao123Binding;
-import con.fire.android2023demo.ui.AppCurrentActivity;
 import con.fire.android2023demo.ui.AudioManagerActivity;
 import con.fire.android2023demo.ui.BaseWeb154Activity;
 import con.fire.android2023demo.ui.BluetoothActivity;
@@ -229,7 +229,6 @@ public class Hao123ActivityC extends BaseActivity {
         binding.txtEditText.setOnClickListener(view -> {
             Intent intent = new Intent(Hao123ActivityC.this, EditActivity.class);
             startActivity(intent);
-
         });
 
         binding.txtReferrer.setOnClickListener(view -> {
@@ -359,8 +358,20 @@ public class Hao123ActivityC extends BaseActivity {
         binding.txtGetLine.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Hao123ActivityC.this, AppCurrentActivity.class);
-                startActivity(intent);
+
+                try {
+                    String phone = "77750079456";
+                    if (!TextUtils.isEmpty(phone)) {
+                        Uri uri = Uri.parse("tel:" + phone);
+                        Intent intent = new Intent(Intent.ACTION_DIAL);
+                        intent.setData(uri);
+                        startActivity(intent);
+                    }
+                } catch (Exception E) {
+                    E.printStackTrace();
+                }
+//                Intent intent = new Intent(Hao123ActivityC.this, AppCurrentActivity.class);
+//                startActivity(intent);
             }
         });
 

@@ -69,7 +69,7 @@ public class WebView466Activity extends AppCompatActivity {
         binding.webview.loadUrl("https://www.homecreditpk.com/StartWarning/repayAlert.html");
 //        binding.webview.loadUrl("https://doc.inxtech.cn/document_v.html");
         binding.webview.addJavascriptInterface(this, "nativeWkObc");
-
+        
     }
 
     @JavascriptInterface
