@@ -120,7 +120,7 @@ public class Hao123ActivityC extends BaseActivity {
 //        MainKt.start();
 
         String appsFlyerUID = AppsFlyerLib.getInstance().getAppsFlyerUID(this);
-        Log.d("okhttp9", "====onAttributionFailure============>>>" + appsFlyerUID);
+        Log.d("okhttp9", "====appsFlyerUID============>>>" + appsFlyerUID);
 
 
         getExternalCacheDir();

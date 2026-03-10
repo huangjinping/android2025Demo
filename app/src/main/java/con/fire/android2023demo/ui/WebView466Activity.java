@@ -19,6 +19,8 @@ import android.webkit.WebViewClient;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.appsflyer.AppsFlyerLib;
+
 import con.fire.android2023demo.databinding.ActivityWebview466Binding;
 
 public class WebView466Activity extends AppCompatActivity {
@@ -69,7 +71,11 @@ public class WebView466Activity extends AppCompatActivity {
         binding.webview.loadUrl("https://www.homecreditpk.com/StartWarning/repayAlert.html");
 //        binding.webview.loadUrl("https://doc.inxtech.cn/document_v.html");
         binding.webview.addJavascriptInterface(this, "nativeWkObc");
-        
+
+
+        String appsFlyerUID = AppsFlyerLib.getInstance().getAppsFlyerUID(this);
+        Log.d("okhttp9", "====appsFlyerUID=1===========>>>" + appsFlyerUID);
+
     }
 
     @JavascriptInterface
