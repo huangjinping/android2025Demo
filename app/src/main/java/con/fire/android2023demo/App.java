@@ -11,17 +11,14 @@ import androidx.annotation.NonNull;
 import com.android.installreferrer.api.InstallReferrerClient;
 import com.android.installreferrer.api.InstallReferrerStateListener;
 import com.android.installreferrer.api.ReferrerDetails;
-import com.appsflyer.AppsFlyerConversionListener;
 import com.appsflyer.AppsFlyerLib;
 import com.facebook.FacebookSdk;
 import com.facebook.appevents.AppEventsLogger;
-import com.google.gson.Gson;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.log.LoggerInterceptor;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;
 
@@ -29,6 +26,7 @@ import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.SSLSession;
 
 import con.fire.android2023demo.utils.AfUtils;
+import con.fire.android2023demo.utils.AppsFlyerDataManager;
 import con.fire.android2023demo.utils.AttributionHelper;
 import con.fire.android2023demo.utils.CrashHandler;
 import con.fire.android2023demo.utils.LogUtils;
@@ -110,32 +108,37 @@ public class App extends Application implements Thread.UncaughtExceptionHandler 
 
         String key = "orWBFgva2DhiidbywsCtfh";
         key = "aCaADrB5CHLc4JURun3gXH";
-        AppsFlyerLib.getInstance().init(key, new AppsFlyerConversionListener() {
-            @Override
-            public void onConversionDataSuccess(Map<String, Object> map) {
-                Gson gson = new Gson();
-                Log.d("okhttp9", "=========onConversionDataSuccess=======>>>" + gson.toJson(map));
 
-            }
 
-            @Override
-            public void onConversionDataFail(String s) {
-                Log.d("okhttp9", "=========onConversionDataFail=======>>>" + s);
+        AppsFlyerDataManager instance = AppsFlyerDataManager.getInstance(this);
+        instance.initAppsFlyer(key);
 
-            }
-
-            @Override
-            public void onAppOpenAttribution(Map<String, String> map) {
-
-            }
-
-            @Override
-            public void onAttributionFailure(String s) {
-                Log.d("okhttp9", "====onAttributionFailure============>>>" + s);
-
-            }
-        }, this);
-        AppsFlyerLib.getInstance().start(this);
+        //        AppsFlyerLib.getInstance().init(key, new AppsFlyerConversionListener() {
+//            @Override
+//            public void onConversionDataSuccess(Map<String, Object> map) {
+//                Gson gson = new Gson();
+//                Log.d("okhttp9", "=========onConversionDataSuccess=======>>>" + gson.toJson(map));
+//
+//            }
+//
+//            @Override
+//            public void onConversionDataFail(String s) {
+//                Log.d("okhttp9", "=========onConversionDataFail=======>>>" + s);
+//
+//            }
+//
+//            @Override
+//            public void onAppOpenAttribution(Map<String, String> map) {
+//
+//            }
+//
+//            @Override
+//            public void onAttributionFailure(String s) {
+//                Log.d("okhttp9", "====onAttributionFailure============>>>" + s);
+//
+//            }
+//        }, this);
+//        AppsFlyerLib.getInstance().start(this);
 
         application = this;
 

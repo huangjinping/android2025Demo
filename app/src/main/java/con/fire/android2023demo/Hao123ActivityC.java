@@ -132,7 +132,7 @@ public class Hao123ActivityC extends BaseActivity {
 
         Log.d("uuid", uuid);
         Log.d("uuid", "cbc060ee4a6141729083d75c13bcf325".length() + "");
-
+//        com.google.firebase.analytics.FirebaseAnalytics.Event.ADD_PAYMENT_INFO
 
 //        Log.d("233Act", "" + io.branch.referral.util.BRANCH_STANDARD_EVENT.COMPLETE_REGISTRATION);
         Map<String, Object> eventValues = new HashMap<String, Object>();

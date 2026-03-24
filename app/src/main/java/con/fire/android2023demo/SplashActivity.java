@@ -17,6 +17,15 @@ public class SplashActivity extends AppCompatActivity {
         startActivity(new Intent(SplashActivity.this, Hao123ActivityC.class));
 
 
+
+
+
+
+
+
+
+
+
 //        new Handler().postDelayed(new Runnable() {
 //            @Override
 //            public void run() {
