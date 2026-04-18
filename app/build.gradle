@@ -12,8 +12,11 @@ android {
     compileSdk 35
 
     defaultConfig {
-        applicationId "com.cuota.factoring.renta"
+//        applicationId "com.cuota.factoring.renta"
 //        applicationId "con.modhe.myapplication"
+
+        applicationId "com.trust.liquidity.yield"
+
 
 //        applicationId "com.agrobank.khazanah.bsn"
 
@@ -216,6 +219,9 @@ dependencies {
 //    implementation "com.tencent.shadow:host-lib:2.1.0"
 //    // 可选：日志库（便于调试）
 //    implementation "com.tencent.shadow:logger:2.1.0"
+
+    debugImplementation("com.reqable.android:user-certificate-trust:1.0.0")
+
 
 //    implementation "com.tencent.shadow.core:common:2.3.0"  // 核心工具
 //    implementation "com.tencent.shadow.dynamic:host:2.3.0"  // Host 核心

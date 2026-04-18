@@ -8,6 +8,8 @@ import android.widget.Button;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.analytics.FirebaseAnalytics;
+
 import con.fire.android2023demo.R;
 
 public class Activity1 extends AppCompatActivity {
@@ -18,6 +20,14 @@ public class Activity1 extends AppCompatActivity {
         setContentView(R.layout.activity_demospa);
         Button bttton = findViewById(R.id.btn_tton);
         bttton.setText("Activity1");
+
+//        FirebaseAnalytics instance = FirebaseAnalytics.getInstance(context);
+        
+
+//        instance.setUserId("");
+//        instance.logEvent(com.google.firebase.analytics.FirebaseAnalytics.Event.
+//                ADD_SHIPPING_INFO, new Bundle());
+
 
         bttton.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -7,6 +7,11 @@ import android.os.Build;
 import com.tencent.bugly.crashreport.CrashReport;
 
 public class BugCrash {
+
+
+    public static String  getaoood(){
+        return null;
+    }
     public static void initStatus(Application application) {
         try {
             try {

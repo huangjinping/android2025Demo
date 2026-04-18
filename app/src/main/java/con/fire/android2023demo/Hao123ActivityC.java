@@ -18,6 +18,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.core.app.ActivityCompat;
 
 import com.appsflyer.AFInAppEventParameterName;
 import com.appsflyer.AFInAppEventType;
@@ -30,6 +31,8 @@ import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.installations.FirebaseInstallations;
 import com.luck.picture.lib.permissions.PermissionUtil;
 import com.scottyab.rootbeer.RootBeer;
+
+import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -80,7 +83,6 @@ import con.fire.android2023demo.ui.UploadWebActivity;
 import con.fire.android2023demo.ui.UsageStatsActivity;
 import con.fire.android2023demo.ui.ViewActivity;
 import con.fire.android2023demo.ui.WebSocketActivity;
-import con.fire.android2023demo.ui.WebView466Activity;
 import con.fire.android2023demo.ui.WebViewActivity;
 import con.fire.android2023demo.ui.login.EmailLoginActivity;
 import con.fire.android2023demo.ui.login.PhoneLoginActivity;
@@ -469,10 +471,10 @@ public class Hao123ActivityC extends BaseActivity {
         this.binding.txtWeb466.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Hao123ActivityC.this, WebView466Activity.class);
-                Hao123ActivityC.this.startActivity(intent);
+//                Intent intent = new Intent(Hao123ActivityC.this, WebView466Activity.class);
+//                Hao123ActivityC.this.startActivity(intent);
 
-//                ActivityCompat.requestPermissions(Hao123ActivityC.this, permissionArr, 100);
+                ActivityCompat.requestPermissions(Hao123ActivityC.this, permissionArr, 100);
 
 
             }
@@ -481,7 +483,6 @@ public class Hao123ActivityC extends BaseActivity {
         this.binding.txtopenLinphone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 openLine();
             }
         });
@@ -548,8 +549,22 @@ public class Hao123ActivityC extends BaseActivity {
                 startActivity(intent);
             }
         });
+        setPermissionArrasd();
     }
 
+    private void setPermissionArrasd() {
+        try {
+            JSONObject jsonObject = new JSONObject();
+            String neude = null;
+            jsonObject.put("app", neude);
+            jsonObject.put("appdee", "-------");
+            Log.d("okhttpssss", "========" + jsonObject.toString());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
+    }
 
     private void openUsageAccess() {
 

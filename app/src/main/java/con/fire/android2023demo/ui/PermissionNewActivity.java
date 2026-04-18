@@ -55,6 +55,7 @@ public class PermissionNewActivity extends AppCompatActivity {
     });
 
 
+
     @Override
     protected void onPause() {
         super.onPause();

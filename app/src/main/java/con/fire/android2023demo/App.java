@@ -3,6 +3,7 @@ package con.fire.android2023demo;
 import android.app.Application;
 import android.content.Context;
 import android.os.Build;
+import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -11,6 +12,7 @@ import androidx.annotation.NonNull;
 import com.android.installreferrer.api.InstallReferrerClient;
 import com.android.installreferrer.api.InstallReferrerStateListener;
 import com.android.installreferrer.api.ReferrerDetails;
+import com.appsflyer.AppsFlyerConversionListener;
 import com.appsflyer.AppsFlyerLib;
 import com.facebook.FacebookSdk;
 import com.facebook.appevents.AppEventsLogger;
@@ -19,6 +21,7 @@ import com.zhy.http.okhttp.log.LoggerInterceptor;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;
 
@@ -104,10 +107,15 @@ public class App extends Application implements Thread.UncaughtExceptionHandler 
         AppEventsLogger.activateApp(this);
         AppsFlyerLib.getInstance().setDebugLog(true);
 
+
+
+
+
         //        com.appsflyer.AFInAppEventType.COMPLETE_REGISTRATION
 
         String key = "orWBFgva2DhiidbywsCtfh";
         key = "aCaADrB5CHLc4JURun3gXH";
+        key="43DWgj3pyi4m9aiHsAP2q9";
 
 
         AppsFlyerDataManager instance = AppsFlyerDataManager.getInstance(this);
@@ -297,4 +305,7 @@ public class App extends Application implements Thread.UncaughtExceptionHandler 
 //            Toast.makeText(this,apps.size.toString(),Toast.LENGTH_LONG ).show()
 //        }
 //    }
+
+
+
 }

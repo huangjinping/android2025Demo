@@ -9,6 +9,7 @@ import com.appsflyer.AppsFlyerLib;
 import com.google.android.gms.ads.identifier.AdvertisingIdClient;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
+import com.google.gson.Gson;
 
 import java.io.IOException;
 import java.util.Map;
@@ -62,6 +63,10 @@ public class AppsFlyerDataManager {
         return new AppsFlyerConversionListener() {
             @Override
             public void onConversionDataSuccess(Map<String, Object> conversionData) {
+
+                Gson gson = new Gson();
+                Log.d("okhttp9", "=========onConversionDataSuccess=======>>>" + gson.toJson(conversionData));
+
                 if (conversionData != null && !conversionData.isEmpty()) {
                     // 1. 获取 media_source（媒体来源）
                     String mediaSource = conversionData.containsKey("media_source") ? (String) conversionData.get("media_source") : "unknown";
@@ -99,6 +104,9 @@ public class AppsFlyerDataManager {
             @Override
             public void onAppOpenAttribution(Map<String, String> attributionData) {
                 // App 打开归因（可选处理，非核心需求）
+                Gson gson = new Gson();
+                Log.d("okhttp9", "=========onAppOpenAttribution=======>>>" + gson.toJson(attributionData));
+
             }
 
             @Override
