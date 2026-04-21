@@ -489,7 +489,12 @@
                     android:layout_height="wrap_content"
                     android:text="KycAc" />
 
-
+                <TextView
+                    android:id="@+id/txt_SimXPro"
+                    style="@style/flex_item"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="SimXPro" />
             </com.google.android.flexbox.FlexboxLayout>
         </LinearLayout>
 

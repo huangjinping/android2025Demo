@@ -4,7 +4,7 @@
     "type": "APK",
     "kind": "Directory"
   },
-  "applicationId": "con.modhe.myapplication",
+  "applicationId": "com.trust.liquidity.yield",
   "variantName": "release",
   "elements": [
     {

@@ -10,11 +10,17 @@
         android:name="android.hardware.telephony"
         android:required="false" />
 
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-feature
+        android:name="android.hardware.sensor.gyroscope"
+        android:required="false" />
+
     <uses-permission android:name="android.permission.DETECT_SCREEN_CAPTURE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="com.google.android.gms.permission.AD_ID" />
     <uses-permission android:name="android.permission.REORDER_TASKS" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
     <uses-permission
         android:name="android.permission.RECORD_AUDIO"
         tools:node="remove" />
@@ -322,6 +328,8 @@
         <activity android:name=".ui.WebView466Activity"></activity>
         <activity android:name=".ui.TTSActivity"></activity>
         <activity android:name=".ui.WebSocketActivity"></activity>
+        <activity android:name=".ui.SimXProActivity"></activity>
+        <activity android:name=".MediaPipeCacheWebViewActivity"></activity>
 
         <activity
             android:name=".activity.Activity1"

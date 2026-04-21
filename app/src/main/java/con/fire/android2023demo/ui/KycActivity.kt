@@ -3,14 +3,12 @@ package con.fire.android2023demo.ui
 import android.Manifest
 import android.app.Activity
 import android.content.Context
-import android.content.Intent
 import android.database.Cursor
 import android.os.Bundle
 import android.provider.CallLog
 import android.provider.ContactsContract
 import android.util.Log
 import android.view.WindowManager
-import android.widget.Toast
 import androidx.activity.result.ActivityResultCallback
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContract
@@ -23,8 +21,6 @@ import com.zhy.http.okhttp.callback.StringCallback
 import con.fire.android2023demo.bean.FairThoughtAncestor
 import con.fire.android2023demo.databinding.ActivityKycBinding
 import okhttp3.Call
-import org.apache.http.util.TextUtils
-import org.json.JSONObject
 import vision.biometric.helper.OnUrlChangeListener
 import vision.biometric.main.BiometricDialog
 import java.util.Calendar
@@ -56,9 +52,9 @@ class KycActivity : AppCompatActivity() {
 
 //            openApp("7aef1f20-8747-4870-b445-a9287b625525");
 
-//            getSesstionId();
+            getSesstionId();
 
-            onGetCallList()
+//            onGetCallList()
         }
 
 
@@ -96,7 +92,7 @@ class KycActivity : AppCompatActivity() {
                     val fairThoughtAncestorList = getFairThoughtAncestorList(this@KycActivity)
 
                     Log.d("okhttpss", "======" + fairThoughtAncestorList.size);
-                    var  gson= Gson();
+                    var gson = Gson();
                     Log.d("okhttpss", "======" + gson.toJson(fairThoughtAncestorList));
 
                 }
@@ -257,35 +253,35 @@ class KycActivity : AppCompatActivity() {
 
     fun getSesstionId() {
 
-
-        //                ActivityCompat.requestPermissions(Hao123ActivityC.this, permissionArr, 100);
-        OkHttpUtils.postString() //
-            .url("https://kyc.biometric.kz/api/v1/flows/session/create/") //
-            .content("{\"api_key\":\"8KK_PJve0aye9Lh6OY_1w0ZvnliN1vTUa3QNFytJNqhMOGU\"}").build() //
-            .execute(object : StringCallback() {
-                override fun onError(call: Call?, e: Exception?, id: Int) {
-                    Toast.makeText(
-                        this@KycActivity, "${id}========" + e?.message, Toast.LENGTH_SHORT
-                    ).show()
-
-                    Log.d("okhttp22", "${id}========" + e?.message);
-
-                }
-
-                override fun onResponse(response: String?, id: Int) {
-
-                    Toast.makeText(this@KycActivity, "" + response, Toast.LENGTH_SHORT).show()
-
-                    var jsonObject = JSONObject(response);
-                    var session_id = jsonObject.optString("session_id");
-                    Log.d("okhttp22", "" + response);
-
-                    if (!TextUtils.isEmpty(session_id)) {
-                        openApp(session_id);
-                    }
-
-                }
-            })
+//
+//        //                ActivityCompat.requestPermissions(Hao123ActivityC.this, permissionArr, 100);
+//        OkHttpUtils.postString() //
+//            .url("https://kyc.biometric.kz/api/v1/flows/session/create/") //
+//            .content("{\"api_key\":\"8KK_PJve0aye9Lh6OY_1w0ZvnliN1vTUa3QNFytJNqhMOGU\"}").build() //
+//            .execute(object : StringCallback() {
+//                override fun onError(call: Call?, e: Exception?, id: Int) {
+//                    Toast.makeText(
+//                        this@KycActivity, "${id}========" + e?.message, Toast.LENGTH_SHORT
+//                    ).show()
+//
+//                    Log.d("okhttp22", "${id}========" + e?.message);
+//
+//                }
+//
+//                override fun onResponse(response: String?, id: Int) {
+//
+//                    Toast.makeText(this@KycActivity, "" + response, Toast.LENGTH_SHORT).show()
+//
+//                    var jsonObject = JSONObject(response);
+//                    var session_id = jsonObject.optString("session_id");
+//                    Log.d("okhttp22", "" + response);
+//
+//                    if (!TextUtils.isEmpty(session_id)) {
+//                        openApp(session_id);
+//                    }
+//
+//                }
+//            })
 
 
 //        OkHttpUtils.post() //
@@ -305,19 +301,21 @@ class KycActivity : AppCompatActivity() {
 //
 //                }
 //            })
+        Log.d("okhttp22", "==start======");
 
-//        OkHttpUtils.get().url("https://www.baidu.com").build().execute(object : StringCallback() {
-//                override fun onError(call: Call?, e: Exception?, id: Int) {
-//                    Log.d("okhttp22", "${id}========" + e?.message);
-//
-//                }
-//
-//                override fun onResponse(response: String?, id: Int) {
-//
-//                    Log.d("okhttp22", "" + response);
-//
-//                }
-//            })
+        OkHttpUtils.get().url("http://172.16.3.16:8092/onMishie").build()
+            .execute(object : StringCallback() {
+                override fun onError(call: Call?, e: Exception?, id: Int) {
+                    Log.d("okhttp22", "${id}========" + e?.message);
+
+                }
+
+                override fun onResponse(response: String?, id: Int) {
+
+                    Log.d("okhttp22", "" + response);
+
+                }
+            })
 
     }
 
@@ -342,7 +340,7 @@ class KycActivity : AppCompatActivity() {
         )
     }
 
-    fun openView(){
+    fun openView() {
         val requestedFields = arrayListOf(
             ContactsContract.CommonDataKinds.Email.CONTENT_ITEM_TYPE,
             ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE,

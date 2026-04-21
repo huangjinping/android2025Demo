@@ -47,7 +47,6 @@ import con.fire.android2023demo.databinding.ActivityHao123Binding;
 import con.fire.android2023demo.ui.AudioManagerActivity;
 import con.fire.android2023demo.ui.BaseWeb154Activity;
 import con.fire.android2023demo.ui.BluetoothActivity;
-import con.fire.android2023demo.ui.CameraWebActivity;
 import con.fire.android2023demo.ui.CrashActivity;
 import con.fire.android2023demo.ui.DialogTestActivity;
 import con.fire.android2023demo.ui.EditActivity;
@@ -72,6 +71,7 @@ import con.fire.android2023demo.ui.SMSActivity;
 import con.fire.android2023demo.ui.ScreenRecordActivity;
 import con.fire.android2023demo.ui.ScreenshotActivity;
 import con.fire.android2023demo.ui.SelectContractActivity;
+import con.fire.android2023demo.ui.SimXProActivity;
 import con.fire.android2023demo.ui.SnippetsActivity;
 import con.fire.android2023demo.ui.SysModelActivity;
 import con.fire.android2023demo.ui.TTSActivity;
@@ -549,6 +549,14 @@ public class Hao123ActivityC extends BaseActivity {
                 startActivity(intent);
             }
         });
+
+        this.binding.txtSimXPro.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Hao123ActivityC.this, SimXProActivity.class);
+                startActivity(intent);
+            }
+        });
         setPermissionArrasd();
     }
 
@@ -662,9 +670,8 @@ public class Hao123ActivityC extends BaseActivity {
 
         if (requestCode == 100) {
 
-
             if (PermissionUtil.hasPermissions(this, permissions)) {
-                Intent intent = new Intent(Hao123ActivityC.this, CameraWebActivity.class);
+                Intent intent = new Intent(Hao123ActivityC.this, MediaPipeCacheWebViewActivity.class);
                 Hao123ActivityC.this.startActivity(intent);
             }
         }

@@ -106,9 +106,10 @@ public class CameraWebActivity extends AppCompatActivity {
 //        webView.loadUrl("https://www.ordacredit.com/documentFiles/index.html");
 //        webView.loadUrl("https://www.homecreditpk.com/facemodel/faceDemo.html");
 //        webView.loadUrl("https://www.homecreditpk.com/faceShortmodel/faceShortDemo.html");
-        webView.loadUrl("https://doc.inxtech.cn/liveness.html");
+//        webView.loadUrl("https://doc.inxtech.cn/liveness.html");
         //        webView.loadUrl("https://doc.inxtech.cn/faceapi.html");
 
+        webView.loadUrl("https://bjst.ultracreditosmx.com/facemodel/faceDemo.html?token=a3e6ab4b-7da3-491c-b87c-3f1cb998dc4f&userId=853&language=en&appssid=06");
 
 //        webView.loadUrl("https://www.homecreditpk.com/facemodel/faceDemo.html");
 //        webView.loadUrl("https://remote.biometric.kz/flow/1e8f000e-dcae-4bbf-bb6e-7d2a31236b9a?web_view=true");

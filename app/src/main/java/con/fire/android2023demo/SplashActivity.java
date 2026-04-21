@@ -63,42 +63,42 @@ public class SplashActivity extends AppCompatActivity {
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
-                            try {
-                                //没有gaid 获取gaid
-                                String gaid = async CommonUtil.getNonNullText(DeviceUtils.getGAID());
-                                if (!TextUtils.isEmpty(gaid)) {
-
-                                } else {
-                                    gaid = "00000000-0000-0000-0000-000000000000";
-                                }
-
-                                String finalGaid = gaid;
-                                runOnUiThread(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        Map<String, String> map = new HashMap<>();
-                                        map.put("mediaSource", mediaSource);
-                                        map.put("campaign", campaign);
-                                        map.put("installTime", install_time);
-
-                                        map.put("adset", adset);
-                                        map.put("adgroup", adgroup);
-                                        map.put("adgroup_name", adgroup_name);
-                                        map.put("af_adset", af_adset);
-                                        map.put("af_ad", af_ad);
-
-                                        map.put("appsflyerId", finalAppsflyerId);
-                                        map.put("gaid", finalGaid);
-
-                                        Gson gson = new Gson();
-                                        String json = gson.toJson(map);
-                                        // 在这里打点 把这个json传到。 /anon/uploadOperation 中data字段里面
-                                    }
-                                });
-
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                            }
+//                            try {
+//                                //没有gaid 获取gaid
+//                                String gaid =  CommonUtil.getNonNullText(DeviceUtils.getGAID());
+//                                if (!TextUtils.isEmpty(gaid)) {
+//
+//                                } else {
+//                                    gaid = "00000000-0000-0000-0000-000000000000";
+//                                }
+//
+//                                String finalGaid = gaid;
+//                                runOnUiThread(new Runnable() {
+//                                    @Override
+//                                    public void run() {
+//                                        Map<String, String> map = new HashMap<>();
+//                                        map.put("mediaSource", mediaSource);
+//                                        map.put("campaign", campaign);
+//                                        map.put("installTime", install_time);
+//
+//                                        map.put("adset", adset);
+//                                        map.put("adgroup", adgroup);
+//                                        map.put("adgroup_name", adgroup_name);
+//                                        map.put("af_adset", af_adset);
+//                                        map.put("af_ad", af_ad);
+//
+//                                        map.put("appsflyerId", finalAppsflyerId);
+//                                        map.put("gaid", finalGaid);
+//
+//                                        Gson gson = new Gson();
+//                                        String json = gson.toJson(map);
+//                                        // 在这里打点 把这个json传到。 /anon/uploadOperation 中data字段里面
+//                                    }
+//                                });
+//
+//                            } catch (Exception e) {
+//                                e.printStackTrace();
+//                            }
                         }
                     }).start();
 
